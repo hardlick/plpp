@@ -1,0 +1,6 @@
+{
+    "script_name": "PHP Library Presenter for PLEX",
+    "script_description": "PHP front end to present PLEX libraries over the web",
+    "script_version": "v1.0",
+    "script_guid": "123deb31-dac2-45f0-bdb5-281c20159395"
+}
