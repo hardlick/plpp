@@ -13,14 +13,19 @@
                 display: none;
             }
         </style>
+
     </head>
     <body>
         <?php
         include_once './config/config.php';
         $environment = db_config::$db_conection_config['baul']['environment'];
         $url = 'url_' . $environment;
-        $urlBase = db_config::$db_conection_config['baul'][$url];            
-       
+        $urlBase = db_config::$db_conection_config['baul'][$url];
+        ?>
+        <script>
+            var urlBase = '<?= $urlBase; ?>';
+        </script>
+        <?php
         if (!empty($_POST['i']) && !empty($_POST['b']) && !empty($_POST['amt'])) {
             $item = htmlspecialchars($_POST['i']);
             $item = filter_var($item, FILTER_VALIDATE_INT);
@@ -35,73 +40,72 @@
             ?>
             <script src="https://checkout.culqi.com/js/v3"></script>
             <script>
-                var urlBase = '<?= $urlBase; ?>';
-                var descrp = '<?= $item . ' - ' . $desc; ?>';
-                var amount = '<?php echo $__amount; ?>';
-                Culqi.publicKey = '<?= $__public_key; ?>';
-                Culqi.settings({
-                    title: 'Baul de Peliculas & Series',
-                    currency: 'PEN',
-                    description: descrp,
-                    amount: amount
-                });
-                $(document).ready(function () {
-                    Culqi.open();
-                    $('#RetornoCatalogo').show();
-                });
-                function culqi() {
-                   
-                    if (Culqi.token) {                        
-                        var dialog;
-                        var token = Culqi.token.id;
-                        $.ajax({
-                            type: "POST",
-                            data: {
-                                token: token,
-                                amount: amount,
-                                descrp: descrp,
-                                email: Culqi.token.email
-                            },
-                            dataType: 'json',
-                            url: '/paymentProcess.php',
-                            beforeSend: function () {
-                                dialog = bootbox.dialog({
-                                    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
-                                    closeButton: false
-                                });
-                            },
-                            complete: function (event, r) {
-                                dialog.modal('hide');
-                            },
-                            success: function (response) {
-                                var result = "";
-                                if (response.constructor == String) {
-                                    result = JSON.parse(response);
-                                }
-                                if (response.constructor == Object) {
-                                    result = JSON.parse(JSON.stringify(response));
-                                }
-                                console.log(response);
-                                if (result.object === 'charge') {
-                                    bootbox.alert(response.outcome.user_message + ' Codigo Autorizacion: ' + response.reference_code, function () {
-                                        window.location.replace("http://bauldepeliculas/index.php");
-                                        return false;
-                                    });
-                                }
-                                if (result.object === 'error') {
-                                    bootbox.alert('Hubo un problema con la transaccion:' + result.user_message);
-                                }
+            var descrp = '<?= $item . ' - ' . $desc; ?>';
+            var amount = '<?php echo $__amount; ?>';
+            Culqi.publicKey = '<?= $__public_key; ?>';
+            Culqi.settings({
+                title: 'Baul de Peliculas & Series',
+                currency: 'PEN',
+                description: descrp,
+                amount: amount
+            });
+            $(document).ready(function () {
+                Culqi.open();
+                $('#RetornoCatalogo').show();
+            });
+            function culqi() {
 
-                            },
-                            error: function (response) {
-                                bootbox.alert('Hubo un problema con la transaccion' + response);
+                if (Culqi.token) {
+                    var dialog;
+                    var token = Culqi.token.id;
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            token: token,
+                            amount: amount,
+                            descrp: descrp,
+                            email: Culqi.token.email
+                        },
+                        dataType: 'json',
+                        url: '/paymentProcess.php',
+                        beforeSend: function () {
+                            dialog = bootbox.dialog({
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
+                                closeButton: false
+                            });
+                        },
+                        complete: function (event, r) {
+                            dialog.modal('hide');
+                        },
+                        success: function (response) {
+                            var result = "";
+                            if (response.constructor == String) {
+                                result = JSON.parse(response);
                             }
-                        });
+                            if (response.constructor == Object) {
+                                result = JSON.parse(JSON.stringify(response));
+                            }
+                            console.log(response);
+                            if (result.object === 'charge') {
+                                bootbox.alert(response.outcome.user_message + ' Codigo Autorizacion: ' + response.reference_code, function () {
+                                    window.location.replace("http://bauldepeliculas/index.php");
+                                    return false;
+                                });
+                            }
+                            if (result.object === 'error') {
+                                bootbox.alert('Hubo un problema con la transaccion:' + result.user_message);
+                            }
 
-                    } else {
-                        alert(Culqi.error.user_message);
-                    }
+                        },
+                        error: function (response) {
+                            bootbox.alert('Hubo un problema con la transaccion' + response);
+                        }
+                    });
+
+                } else {
+                    alert(Culqi.error.user_message);
                 }
+            }
             </script>
             <?php
         } else {
