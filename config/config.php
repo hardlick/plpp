@@ -2,7 +2,7 @@
 class db_config {
 	public static $db_conection_config = array('baul' => array(
             'environment' => 'live',
-            'culqi_environment' => 'live',
+            'culqi_environment' => 'test',
             'url_test' => 'http://bauldepeliculas',
             'url_live' => 'http://bauldepeliculas.info',            
             'culqi_public_test' => 'pk_test_RM0mtUtHCs4BJHF6',
