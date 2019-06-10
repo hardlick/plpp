@@ -17,7 +17,10 @@
     <body>
         <?php
         include_once './config/config.php';
-        $urlBase = db_config::$db_conection_config['baul']['url'];
+        $environment = db_config::$db_conection_config['baul']['environment'];
+        $url = 'url_' . $environment;
+        $urlBase = db_config::$db_conection_config['baul'][$url];            
+       
         if (!empty($_POST['i']) && !empty($_POST['b']) && !empty($_POST['amt'])) {
             $item = htmlspecialchars($_POST['i']);
             $item = filter_var($item, FILTER_VALIDATE_INT);
