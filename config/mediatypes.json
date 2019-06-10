@@ -6,6 +6,7 @@
 		"itemList": [
 			{
 				"name": "Poster",
+				"nameEspa": "Poster",
 				"type": "iteminfo",
 				"content_type": "img",
 				"content": "ratingKey",
@@ -13,6 +14,7 @@
 			},
 			{
 				"name": "Title",
+                                "nameEspa": "Titulo",
 				"type": "iteminfo",
 				"content_type": "string",
 				"content": "title",
@@ -20,6 +22,7 @@
 			},
 			{
 				"name": "Original Title",
+                                "nameEspa": "Titulo Original",
 				"type": "iteminfo",
 				"content_type": "string",
 				"content": "originalTitle",
@@ -27,6 +30,7 @@
 			},
 			{
 				"name": "Year",
+                                "nameEspa": "Año",
 				"type": "iteminfo",
 				"content_type": "string",
 				"content": "year",
@@ -34,6 +38,7 @@
 			},
 			{
 				"name": "Duration",
+                                "nameEspa": "Duracion",
 				"type": "iteminfo",
 				"content_type": "minutes",
 				"content": "duration",
@@ -48,6 +53,7 @@
 			},
 			{
 				"name": "Quality",
+                                "nameEspa": "Calidad",
 				"type": "mediainfo",
 				"content_type": "string",
 				"content": "videoResolution",
@@ -55,6 +61,7 @@
 			},
 			{
 				"name": "Rating",
+                                "nameEspa": "Puntuacion",
 				"type": "iteminfo",
 				"content_type": "string",
 				"content": "rating",
@@ -62,6 +69,7 @@
 			},
 			{
 				"name": "Content Rating",
+                                "nameEspa": "Calificación de contenido",
 				"type": "iteminfo",
 				"content_type": "string",
 				"content": "contentRating",
@@ -69,6 +77,7 @@
 			},
 			{
 				"name": "Added on",
+				"nameEspa": "Agregado en",
 				"type": "iteminfo",
 				"content_type": "date",
 				"content": "addedAt",

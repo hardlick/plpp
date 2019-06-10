@@ -11,6 +11,7 @@
 
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.min.js"></script>
 [@Include]
 </head>
 <body>
@@ -38,10 +39,15 @@
 				<div class="col-lg-12">
 				<!-- CONTENT -->
 [@Errors]
-[@Content]		
+[@Content]
 				</div>
 			</div>
 		</div>
-	</div><!-- /#wrapper -->
+	</div>
+<form id='formToSecond' action='/payment.php' method="post">
+<input id='i' type='hidden' name='i' value=''>
+<input id='b' type='hidden' name='b' value=''>
+<input id='amt' type='hidden' name='amt' value=''>
+</form>
 </body>
 </html>

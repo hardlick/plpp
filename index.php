@@ -318,7 +318,7 @@ if ($plppViewmode == 'img') {
 // Getting the xml for the plex library index
 $plppIndex = $plex->getIndex();
 if (empty($plppIndex)) {
-	$plppErrors[] = 'Could not get list of libraries! Is the Plex Server online and are the plex server settings configured properly?';
+	$plppErrors[] = 'No se pudo obtener la lista de bibliotecas! ¿Está el servidor en línea y están configuradas correctamente las configuraciones del servidor?';
 }
 // Sort the library index
 usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
@@ -336,11 +336,11 @@ foreach($plppIndex['items'] AS $child) {
 	}
 }
 // Add link for Search
-if ($plppConfiguration['usersettings']['search_link']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="#" data-target="#myPlexModalSearch"><span class="plpp_menu plpp_menu_search">Search...</span></a></li>'.PHP_EOL;}
+if ($plppConfiguration['usersettings']['search_link']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="#" data-target="#myPlexModalSearch"><span class="plpp_menu plpp_menu_search">Buscar...</span></a></li>'.PHP_EOL;}
 // Add link for Settings
-if ($plppConfiguration['usersettings']['settings_link']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="settings.php"><span class="plpp_menu plpp_menu_settings">Settings</span></a></li>'.PHP_EOL;}
+if ($plppConfiguration['usersettings']['settings_link']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="settings.php"><span class="plpp_menu plpp_menu_settings">Configuracion</span></a></li>'.PHP_EOL;}
 // Add link for debug data
-if ($plppConfiguration['usersettings']['debug']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="#" data-target="#myPlexModalDebug"><span class="plpp_menu plpp_menu_debug">Show Debug Data</span></a></li>'.PHP_EOL;}
+if ($plppConfiguration['usersettings']['debug']) {$plppOutput['Menu'] .= '<li class="plpp_menu"><a href="#" data-target="#myPlexModalDebug"><span class="plpp_menu plpp_menu_debug">Mostrar info Debug</span></a></li>'.PHP_EOL;}
 
 
 // Generating the ItemTypes variable
@@ -602,7 +602,7 @@ foreach ($plppItems as $parentKey => $parent) {
 		foreach ($plppConfiguration['mediatypes'][$plppViewgroupType]['itemList'] as $item) {
 			if (in_array('list',$item['visibility'])) {
 				if ($plex->isSetContent(0, $item['type'], $item['content'], $plexKey)) {
-					$plppOutput['Content'] .= '					<th class="plpp_table plpp_table_'.str_replace(' ', '_', $item['name']).'">'.$item['name'].'</th>'.PHP_EOL;
+					$plppOutput['Content'] .= '					<th class="plpp_table plpp_table_'.str_replace(' ', '_', $item['nameEspa']).'">'.$item['nameEspa'].'</th>'.PHP_EOL;
 				}
 			}
 		}
@@ -708,20 +708,20 @@ foreach ($plppItems as $parentKey => $parent) {
 						}
 					}
 				}
-			}					
+			}
 
 			switch ($plppViewmode) {
 			
 				// Close thumb for thumbs view
 				case 'thumbs': {
 					$plppOutput['Content'] .= '				</a>'.PHP_EOL;
-					$plppOutput['Content'] .= '			</div>'.PHP_EOL;
+					$plppOutput['Content'] .= '			<br><a data-i="'.$child['ratingKey'].'" data-b="'.$child['title'].'" class="buttonPay">Pagar</a></div>'.PHP_EOL;
 					break;
 				}
 				// Close thumb for slider view
 				case 'slider': {
 					$plppOutput['Content'] .= '				</a>'.PHP_EOL;
-					$plppOutput['Content'] .= '			</div>'.PHP_EOL;
+					$plppOutput['Content'] .= '			<br><a data-i="'.$child['ratingKey'].'" data-b="'.$child['title'].'" class="buttonPay">Pagar</a></div>'.PHP_EOL;
 					break;
 				}
 				// Close row for list view
@@ -790,7 +790,8 @@ foreach ($plppItems as $parentKey => $parent) {
 		// Add the javascript code
 		$plppOutput['ScriptCode']  .= '			$("#plpp_table_'.$plppViewgroupType.'").dataTable( {'.PHP_EOL;
 		$plppOutput['ScriptCode']  .= '				"order": [],'.PHP_EOL;
-		$plppOutput['ScriptCode']  .= '				"responsive": true'.PHP_EOL;
+		$plppOutput['ScriptCode']  .= '				"responsive": true,'.PHP_EOL;
+		$plppOutput['ScriptCode']  .= '				"language": {"url": "/js/datatableSpanish.json"}'.PHP_EOL;
 		$plppOutput['ScriptCode']  .= '			});'.PHP_EOL;
 	}
 	// Close the content container
@@ -842,12 +843,12 @@ END;
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Details</h4>
+				<h4 class="modal-title">Detalle</h4>
 			</div>
 			<div class="modal-body">
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>
@@ -863,7 +864,6 @@ if ($plppConfiguration['usersettings']['search_link']) {
 	$plppOutput['ScriptCode']  .= <<<END
 		$(function() {
 			$("a[data-target=#myPlexModalSearch]").click(function (ev) {
-				console.log("clicked");
 				ev.preventDefault();
 				$("#myPlexModalSearch").modal("show");
 				$('#myPlexModalSearch').modal('handleUpdate');
@@ -877,23 +877,23 @@ END;
 		<div class="modal-content">
 			<!-- div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Search</h4>
+				<h4 class="modal-title">Buscar</h4>
 			</div -->
 			<div class="modal-body">
 END;
 $plppOutput['Content']  .= PHP_EOL;
 $plppOutput['Content'] .= '<form class="form-horizontal" action="'.PLPP_BASE_PATH.'" method="get">'.PHP_EOL;
 $plppOutput['Content'] .= '<fieldset>'.PHP_EOL;
-$plppOutput['Content'] .= '<legend>Search</legend>'.PHP_EOL;
+$plppOutput['Content'] .= '<legend>Buscar</legend>'.PHP_EOL;
 $plppOutput['Content'] .= '	<fieldset class="form-group">'.PHP_EOL;
-$plppOutput['Content'] .= '		<label class="col-md-3 control-label" for="query">Search term</label>'.PHP_EOL;
+$plppOutput['Content'] .= '		<label class="col-md-3 control-label" for="query">Buscar terminos</label>'.PHP_EOL;
 $plppOutput['Content'] .= '		<input type="hidden" name="search" id="search" value="1">'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-9">'.PHP_EOL;
 $plppOutput['Content'] .= '			<input id="query" name="query" type="text" placeholder="" value="" class="form-control input-md" required="">'.PHP_EOL;
 $plppOutput['Content'] .= '		</div>'.PHP_EOL;
 $plppOutput['Content'] .= '	</fieldset>'.PHP_EOL;	
 $plppOutput['Content'] .= '	<fieldset class="form-group">'.PHP_EOL;
-$plppOutput['Content'] .= '		<label class="col-md-3 control-label" for="searchtype">Search for</label>'.PHP_EOL;
+$plppOutput['Content'] .= '		<label class="col-md-3 control-label" for="searchtype">Buscar por</label>'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-9">'.PHP_EOL;
 $plppOutput['Content'] .= '			<select id="searchtype" name="searchtype" class="form-control">'.PHP_EOL;
 $plppOutput['Content'] .= '				<option value="">everything</option>'.PHP_EOL;
@@ -928,7 +928,7 @@ $plppOutput['Content'] .= '		<div class="col-md-3">'.PHP_EOL;
 $plppOutput['Content'] .= '		</div>'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-9">'.PHP_EOL;
 $plppOutput['Content'] .= '			<input class="btn btn-primary" type="submit" value="Search">'.PHP_EOL;
-$plppOutput['Content'] .= '			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>'.PHP_EOL;
+$plppOutput['Content'] .= '			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'.PHP_EOL;
 $plppOutput['Content'] .= '		</div>'.PHP_EOL;
 $plppOutput['Content'] .= '	</fieldset>'.PHP_EOL;	
 $plppOutput['Content'] .= '</fieldset>'.PHP_EOL;
@@ -936,7 +936,7 @@ $plppOutput['Content'] .= '</form>'.PHP_EOL;
 $plppOutput['Content']  .= <<<END
 			</div>
 			<!-- div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 			</div -->
 		</div>
 	</div>

@@ -24,7 +24,7 @@ class plexAPI
 		'library' => array(
 			'id' => 0,
 			'typeString' => 'library',
-			'title' => 'Library',
+			'title' => 'Catalogo',
 			'element' => array('Directory', 'Video', 'Photo', 'Artist'),
 			'path' => '/library/sections',
 			'endpoint' => '/all',
@@ -33,7 +33,7 @@ class plexAPI
 		'movie' => array(
 			'id' => 1,
 			'typeString' => 'movie',
-			'title' => 'Movie',
+			'title' => 'Pelicula',
 			'element' => array('Video'),
 			'path' => '/library/metadata',
 			'endpoint' => '',
@@ -42,7 +42,7 @@ class plexAPI
 		'show' => array(
 			'id' => 2,
 			'typeString' => 'show',
-			'title' => 'Show',
+			'title' => 'Serie',
 			'element' => array('Directory'),
 			'path' => '/library/metadata',
 			'endpoint' => '/children',
@@ -51,7 +51,7 @@ class plexAPI
 		'season' => array(
 			'id' => 3,
 			'typeString' => 'season',
-			'title' => 'Season',
+			'title' => 'Temporada',
 			'element' => array('Video'),
 			'path' => '/library/metadata',
 			'endpoint' => '/children',
@@ -60,7 +60,7 @@ class plexAPI
 		'episode' => array(
 			'id' => 4,
 			'typeString' => 'episode',
-			'title' => 'Episode',
+			'title' => 'Episodio',
 			'element' => array('Video'),
 			'path' => '/library/metadata',
 			'endpoint' => '',
@@ -69,7 +69,7 @@ class plexAPI
 		'artist' => array (
 			'id' => 8,
 			'typeString' => 'artist',
-			'title' => 'Artist',
+			'title' => 'Artista',
 			'element' => array('Directory'),
 			'path' => '/library/metadata',
 			'endpoint' => '/children',
@@ -95,7 +95,7 @@ class plexAPI
 		'photoalbum' => array (
 			'id' => 11,
 			'typeString' => 'photoalbum',
-			'title' => 'Photo Album',
+			'title' => 'Foto de Album',
 			'element' => array('Photo', 'Directory'),
 			'path' => '/library/metadata',
 			'endpoint' => '/children',
@@ -104,7 +104,7 @@ class plexAPI
 		'picture' => array (
 			'id' => 13,
 			'typeString' => 'picture',
-			'title' => 'Picture',
+			'title' => 'Foto',
 			'element' => array('Photo'),
 			'path' => '/library/metadata',
 			'endpoint' => '',
@@ -113,7 +113,7 @@ class plexAPI
 		'photo' => array (
 			'id' => 13,
 			'typeString' => 'photo',
-			'title' => 'Photo',
+			'title' => 'Foto',
 			'element' => array('Photo'),
 			'path' => '/library/metadata',
 			'endpoint' => '',
@@ -347,7 +347,7 @@ class plexAPI
 				unset($index[$parent]);
 			}
 			$index['viewGroup'] = $type;
-			$index['title2'] = 'Recently Added '.$this->plexItemTypes[$type]['title'].'s';
+			$index['title2'] = 'Ultimos agregados '.$this->plexItemTypes[$type]['title'].'s';
 			if (!empty($items))
 			{
 				$index['items'] = $items;
@@ -441,7 +441,7 @@ class plexAPI
 			// Correct the size
 			$index['size'] = count($items);
 			
-			$index['title2'] = 'Search results for '.$type.'s';
+			$index['title2'] = 'Resultados de búsqueda para '.$type.'s';
 			if ($item == 0)
 			{
 				$this->plexItems[$type] = $index;
@@ -591,8 +591,8 @@ class plexAPI
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10); 
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30); 
 		$url_parse = parse_url($url);
 		if ($url_parse['scheme'] == 'https') {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
