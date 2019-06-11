@@ -41,6 +41,7 @@
             <script src="https://checkout.culqi.com/js/v3"></script>
             <script>
             var descrp = '<?= $item . ' - ' . $desc; ?>';
+            var item = '<?= $item; ?>';
             var amount = '<?php echo $__amount; ?>';
             Culqi.publicKey = '<?= $__public_key; ?>';
             Culqi.settings({
@@ -58,13 +59,14 @@
                 if (Culqi.token) {
                     var dialog;
                     var token = Culqi.token.id;
+                    var email = Culqi.token.email;
                     $.ajax({
                         type: "POST",
                         data: {
                             token: token,
                             amount: amount,
                             descrp: descrp,
-                            email: Culqi.token.email
+                            email: email
                         },
                         dataType: 'json',
                         url: '/paymentProcess.php',
@@ -87,12 +89,50 @@
                             }
                             console.log(response);
                             if (result.object === 'charge') {
+
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        event: true,
+                                        item: item,
+                                        amount: amount,
+                                        email: response.email,
+                                        descrp: descrp,
+                                        code_reference: response.reference_code,
+                                        code_auth: response.authorization_code
+                                    },
+                                    dataType: 'json',
+                                    url: '/postProcess.php',
+                                    success: function (response) {
+                                        return true;
+                                    }
+                                });
+
                                 bootbox.alert(response.outcome.user_message + ' Codigo Autorizacion: ' + response.reference_code, function () {
                                     window.location.replace("http://bauldepeliculas/index.php");
                                     return false;
                                 });
                             }
                             if (result.object === 'error') {
+                                  $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        event: false,
+                                        item: item,
+                                        amount: amount,
+                                        email: email,
+                                        descrp: descrp,
+                                        user_message: result.user_message,
+                                        type: result.type,
+                                        codigo_error: result.code,
+                                        merchant_message: result.merchant_message
+                                    },
+                                    dataType: 'json',
+                                    url: '/postProcess.php',
+                                    success: function (response) {
+                                        return true;
+                                    }
+                                });
                                 bootbox.alert('Hubo un problema con la transaccion:' + result.user_message);
                             }
 
@@ -103,7 +143,7 @@
                     });
 
                 } else {
-                    alert(Culqi.error.user_message);
+                    bootbox.alert(Culqi.error.user_message);
                 }
             }
             </script>
