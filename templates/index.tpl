@@ -11,6 +11,7 @@
 
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+        <script src="js/bootbox.min.js"></script>
 	<script src="js/main.min.js"></script>
 [@Include]
 </head>
@@ -37,6 +38,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
+                                    <div id="RetornoCatalogo" class="alert alert-success" role="alert"> <strong>Deseas saber cuales son los pasos para poder ver tu pelicula o serie en FULL HD</strong> Click <a href="<?php echo $urlBase; ?>" class="alert-link">Para ver el manual</a>,si la pelicula o serie no se encuentra disponible puedes hacernos tu pedido, Click <a href="<?php echo $urlBase; ?>" class="alert-link">Para hacer pedido nuevo</a> </div>
 				<!-- CONTENT -->
 [@Errors]
 [@Content]
@@ -49,5 +51,24 @@
 <input id='b' type='hidden' name='b' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
 </form>
+    
+    <!-- WhatsHelp.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            facebook: "518981848157046", // Facebook page ID
+            whatsapp: "+51943357937", // WhatsApp number
+            call_to_action: "Escríbenos", // Call to action
+            button_color: "#FF6550", // Color of button
+            position: "right", // Position may be 'right' or 'left'
+            order: "facebook,whatsapp", // Order of buttons
+        };
+        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /WhatsHelp.io widget -->
 </body>
 </html>
