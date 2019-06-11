@@ -62,6 +62,8 @@ try {
                 if($email==''){
                     $email = 'hugocasanovam@gmail.com';
                 }
+                var_dump($email);
+                die();
                 $user_ip = getUserIP();
                 $db = new SQLite3('db/bdp.db');
                 $codigo_error = trim(htmlspecialchars($_POST['codigo_error']));
@@ -85,6 +87,7 @@ try {
                 $result->finalize();
                 
                 $mail = new PHPMailer(true);
+                $mail->SMTPDebug = 2;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true; 
