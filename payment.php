@@ -153,7 +153,7 @@
                             descrp: descrp,
                             user_message: Culqi.error.user_message,
                             type: Culqi.card_error,
-                            codigo_error: result.code,
+                            codigo_error: '0000',
                             merchant_message: Culqi.error.merchant_message
                         },
                         dataType: 'json',
