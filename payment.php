@@ -114,7 +114,7 @@
                                 });
                             }
                             if (result.object === 'error') {
-                                  $.ajax({
+                                $.ajax({
                                     type: "POST",
                                     data: {
                                         event: false,
@@ -143,6 +143,26 @@
                     });
 
                 } else {
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            event: false,
+                            item: item,
+                            amount: amount,
+                            email: email,
+                            descrp: descrp,
+                            user_message: Culqi.error.user_message,
+                            type: Culqi.card_error,
+                            codigo_error: result.code,
+                            merchant_message: Culqi.error.merchant_message
+                        },
+                        dataType: 'json',
+                        url: '/postProcess.php',
+                        success: function (response) {
+                            return true;
+                        }
+                    });
+
                     bootbox.alert(Culqi.error.user_message);
                 }
             }
