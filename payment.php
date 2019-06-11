@@ -149,7 +149,7 @@
                             event: false,
                             item: item,
                             amount: amount,
-                            email: email,
+                            email: Culqi.token.email,
                             descrp: descrp,
                             user_message: Culqi.error.user_message,
                             type: Culqi.card_error,
