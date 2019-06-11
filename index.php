@@ -896,25 +896,25 @@ $plppOutput['Content'] .= '	<fieldset class="form-group">'.PHP_EOL;
 $plppOutput['Content'] .= '		<label class="col-md-3 control-label" for="searchtype">Buscar por</label>'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-9">'.PHP_EOL;
 $plppOutput['Content'] .= '			<select id="searchtype" name="searchtype" class="form-control">'.PHP_EOL;
-$plppOutput['Content'] .= '				<option value="">everything</option>'.PHP_EOL;
+$plppOutput['Content'] .= '				<option value="">Todo</option>'.PHP_EOL;
 if ($plppItemType == 'library') {
-	$plppOutput['Content'] .= '				<option value="library">'.$plppViewgroupType.'s in current library</option>'.PHP_EOL;	
+	$plppOutput['Content'] .= '				<option value="library">'.$plppViewgroupType.'s en el actual Catalogo</option>'.PHP_EOL;	
 }
 if (in_array('movie',$plppLibraryTypes)) {
-	$plppOutput['Content'] .= '				<option value="movie">movies in all libraries</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="movie">En todo el catalogo</option>'.PHP_EOL;
 }
 if (in_array('show',$plppLibraryTypes)) {
-	$plppOutput['Content'] .= '				<option value="show">shows in all libraries</option>'.PHP_EOL;
-	$plppOutput['Content'] .= '				<option value="episode">episodes in all libraries</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="show">Shows en todos los catalogos</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="episode">Episodios en todos los catalogos</option>'.PHP_EOL;
 }
 if (in_array('artist',$plppLibraryTypes)) {
-	$plppOutput['Content'] .= '				<option value="artist">artists in all libraries</option>'.PHP_EOL;
-	$plppOutput['Content'] .= '				<option value="album">albums in all libraries</option>'.PHP_EOL;
-	$plppOutput['Content'] .= '				<option value="track">tracks in all libraries</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="artist">Artistas en todos los catalogos</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="album">albums  en todos los catalogos</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="track">Canciones  en todos los catalogos</option>'.PHP_EOL;
 }
 if (in_array('photo',$plppLibraryTypes)) {
-	$plppOutput['Content'] .= '				<option value="photo album">photo albums  in all libraries</option>'.PHP_EOL;
-	$plppOutput['Content'] .= '				<option value="photo">photos  in all libraries</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="photo album">Fotos Albums en todos los catalogos</option>'.PHP_EOL;
+	$plppOutput['Content'] .= '				<option value="photo">photos en todos los catalogos</option>'.PHP_EOL;
 }
 $plppOutput['Content'] .= '			</select>'.PHP_EOL;
 if ($plppItemType == 'library') {
@@ -927,7 +927,7 @@ $plppOutput['Content'] .= '	<fieldset class="row form-group">'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-3">'.PHP_EOL;
 $plppOutput['Content'] .= '		</div>'.PHP_EOL;
 $plppOutput['Content'] .= '		<div class="col-md-9">'.PHP_EOL;
-$plppOutput['Content'] .= '			<input class="btn btn-primary" type="submit" value="Search">'.PHP_EOL;
+$plppOutput['Content'] .= '			<input class="btn btn-primary" type="submit" value="Buscar">'.PHP_EOL;
 $plppOutput['Content'] .= '			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'.PHP_EOL;
 $plppOutput['Content'] .= '		</div>'.PHP_EOL;
 $plppOutput['Content'] .= '	</fieldset>'.PHP_EOL;	
@@ -1038,7 +1038,7 @@ END;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>
