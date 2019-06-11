@@ -551,14 +551,14 @@ foreach ($plppItems as $parentKey => $parent) {
 			// First we have to find the active filter view and set it as title of the dropdwon menu
 			foreach ($filters as $key => $value) {
 				if ($plppItemsFilter == $key || ($plppItemsFilter == '' && $key == 'all')) {
-					$plppOutput['Content'] .= '					'.$parent['title2'].' ('.count($parent['items']).')&nbsp;&nbsp;<a href="" class="plpp_dropdown-toggle dropdown-toggle" data-toggle="dropdown"><i class="caret"></i></a>'.PHP_EOL;
+					$plppOutput['Content'] .= '					'.$parent['title2']= (($value == 'Recently Added') ? 'Agregados Recientemente' : $parent['title2']== 'Recently Released' ? 'Lanzados Recientemente' : $parent['title2'] ).' ('.count($parent['items']).')&nbsp;&nbsp;<a href="" class="plpp_dropdown-toggle dropdown-toggle" data-toggle="dropdown"><i class="caret"></i></a>'.PHP_EOL;
 				}
 			}
 			$plppOutput['Content'] .= '					<ul class="plpp_dropdown-menu dropdown-menu">'.PHP_EOL;
 			// Then we add the other filters except the active filter as dropdown items
 			foreach ($filters as $key => $value) {
 				if ($plppItemsFilter != $key && (!($plppItemsFilter == '' && $key == 'all') || $plppIsSearch)) {
-					$plppOutput['Content'] .= '						<li><a href="'.PLPP_BASE_PATH.'?item='.$plppItem.'&type=library&filter='.$key.'">'.$value.'</a></li>'.PHP_EOL;
+					$plppOutput['Content'] .= '						<li><a href="'.PLPP_BASE_PATH.'?item='.$plppItem.'&type=library&filter='.$key.'">'.$value= (($value == 'Recently Added') ? 'Agregados Recientemente' : $value== 'Recently Released' ? 'Lanzados Recientemente' : $value ).'</a></li>'.PHP_EOL;
 				}
 			}
 			$plppOutput['Content'] .= '					</ul>'.PHP_EOL;

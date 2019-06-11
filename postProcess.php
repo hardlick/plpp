@@ -1,8 +1,13 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 try {
     include_once './config/config.php';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         $event = trim(htmlspecialchars($_POST['event']));
         if ($event == 'true') {
             if (!empty($_POST['code_auth']) && !empty($_POST['code_reference']) && !empty($_POST['email']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
@@ -29,6 +34,21 @@ try {
                 $statement->bindValue(':ip', $user_ip);
                 $result = $statement->execute();
                 $result->finalize();
+
+                $mail = new PHPMailer(true);
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true; 
+                $mail->Username = 'bauldepeliculas1@gmail.com'; 
+                $mail->Password = 'peliculas2019';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
+                $mail->addAddress($email);
+                $mail->Subject = 'Nuevo pedido:' .$code_reference. '- -'.$code_auth;
+                $mail->msgHTML($descrp);
+                $mail->send();
+                 echo json_encode($result);
             } else {
                 echo json_encode('Faltan parametros');
             }
@@ -59,7 +79,20 @@ try {
                 $statement->bindValue(':ip', $user_ip);
                 $result = $statement->execute();
                 $result->finalize();
-
+                
+                $mail = new PHPMailer(true);
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true; 
+                $mail->Username = 'bauldepeliculas1@gmail.com'; 
+                $mail->Password = 'peliculas2019';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+                $mail->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
+                $mail->addAddress($email);
+                $mail->Subject = 'Error en pedido:' .$codigo_error. '- -'.$user_message;
+                $mail->msgHTML($descrp.'-- ip: --'.$user_ip);
+                $mail->send();
                 echo json_encode($result);
             } else {
                 echo json_encode('Faltan parametros');
@@ -69,8 +102,6 @@ try {
         echo json_encode('Peticion Erronea');
     }
 } catch (Exception $e) {
-    var_dump($e->getMessage());
-    die();
     echo json_encode($e->getMessage());
 }
 
