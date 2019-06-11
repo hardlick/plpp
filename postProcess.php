@@ -62,8 +62,6 @@ try {
                 if($email==''){
                     $email = 'hugocasanovam@gmail.com';
                 }
-                var_dump($email);
-                die();
                 $user_ip = getUserIP();
                 $db = new SQLite3('db/bdp.db');
                 $codigo_error = trim(htmlspecialchars($_POST['codigo_error']));
