@@ -149,7 +149,7 @@
                             event: false,
                             item: item,
                             amount: amount,
-                            email: Culqi.token.email,
+                            email: $("input[value='cardEmail']").val(),
                             descrp: descrp,
                             user_message: Culqi.error.user_message,
                             type: Culqi.card_error,
