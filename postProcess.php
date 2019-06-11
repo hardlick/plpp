@@ -53,11 +53,15 @@ try {
                 echo json_encode('Faltan parametros');
             }
         } else {
-            if (!empty($_POST['codigo_error']) && !empty($_POST['merchant_message']) && !empty($_POST['email']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
+            if (!empty($_POST['codigo_error']) && !empty($_POST['merchant_message']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
+                
                 $item = trim(htmlspecialchars($_POST['item']));
                 $amount = trim(htmlspecialchars($_POST['amount']));
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
                 $email = trim(htmlspecialchars($_POST['email']));
+                if($email==''){
+                    $email = 'noemail@gmail.com';
+                }
                 $user_ip = getUserIP();
                 $db = new SQLite3('db/bdp.db');
                 $codigo_error = trim(htmlspecialchars($_POST['codigo_error']));
