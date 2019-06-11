@@ -4,7 +4,7 @@ class db_config {
             'environment' => 'live',
             'culqi_environment' => 'live',
             'url_test' => 'http://bauldepeliculas',
-            'url_live' => 'http://bauldepeliculas.info',            
+            'url_live' => 'https://bauldepeliculas.info',            
             'culqi_public_test' => 'pk_test_RM0mtUtHCs4BJHF6',
             'culqi_private_test' => 'sk_test_umG01cubv75ChqX5',
             'culqi_public_live' => 'pk_live_ePX6YR0QVpvDteWN',
