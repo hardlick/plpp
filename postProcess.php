@@ -95,8 +95,8 @@ try {
                 $mail->Port = 587;
                 $mail->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
                 $mail->addAddress($email);
-                $mail->Subject = 'Error en pedido:' .$codigo_error. '- -'.$user_message;
-                $mail->msgHTML($descrp.'-- ip: --'.$user_ip);
+                $mail->Subject = 'Error en pedido:' .$codigo_error;
+                $mail->msgHTML($descrp.'-- ip: --'.$user_ip.' -- <br>'.$user_message.' -- <br>'.$merchant_message);
                 $mail->send();
                 echo json_encode($result);
             } else {
