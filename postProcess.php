@@ -60,7 +60,7 @@ try {
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
                 $email = trim(htmlspecialchars($_POST['email']));
                 if($email==''){
-                    $email = 'noemail@gmail.com';
+                    $email = 'hugocasanovam@gmail.com';
                 }
                 $user_ip = getUserIP();
                 $db = new SQLite3('db/bdp.db');
