@@ -38,7 +38,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-                                    <div id="RetornoCatalogo" class="alert alert-success" role="alert"> <strong>Deseas saber cuales son los pasos para poder ver tu pelicula o serie en FULL HD</strong> Click <a href="<?php echo $urlBase; ?>" class="alert-link">Para ver el manual</a>,si la pelicula o serie no se encuentra disponible puedes hacernos tu pedido, Click <a href="<?php echo $urlBase; ?>" class="alert-link">Para hacer pedido nuevo</a> </div>
+                                    <div id="RetornoCatalogo" class="alert alert-success" role="alert"> Deseas saber cuales son los pasos para poder ver tu pelicula o serie en FULL HD <strong><a href="#" id="viewWhy" class="alert-link">click Aqui Para ver el manual</a></strong>,si la pelicula o serie no se encuentra disponible puedes hacernos tu pedido,<a href="#" id="order" class="alert-link">Click Aqui, Para hacer pedido nuevo</a> </div>
 				<!-- CONTENT -->
 [@Errors]
 [@Content]
@@ -51,7 +51,7 @@
 <input id='b' type='hidden' name='b' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
 </form>
-    
+
     <!-- WhatsHelp.io widget -->
 <script type="text/javascript">
     (function () {

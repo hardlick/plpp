@@ -486,7 +486,9 @@ span.plpp_details_Year::after {
     content: ")";
 }
 
-
+.titleviewWhy{
+    font-size: 16px;
+}
 a.buttonPay{
 display: inline-block;
 padding:0.35em 1.2em;

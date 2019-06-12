@@ -13,7 +13,11 @@ define('PLPP_FONTS_PATH', PLPP_PATH.'fonts/');
 define('PLPP_IMGCACHE_PATH', PLPP_PATH.'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 
-
+$ip = $_SERVER['REMOTE_ADDR'];
+$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+var_dump($dataArray);
+echo "Hello visitor from: ".$dataArray["geoplugin_countryName"];
+die();
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH.'general.json')) {
 	header('Location: settings.php');
