@@ -195,6 +195,7 @@
                         <div class="login100-form validate-form">
                             <span class="login100-form-title p-b-26">
                                 <strong style="font-size: 32px;"><?php echo $desc; ?></strong><br>
+                                <?php echo $img_c; ?>
                                 <img src="<?php echo $img_c; ?>">
                             </span>
                             <span class="login100-form-title p-b-1">
