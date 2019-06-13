@@ -49,6 +49,7 @@
 <form id='formToSecond' action='/payment.php' method="post">
 <input id='i' type='hidden' name='i' value=''>
 <input id='b' type='hidden' name='b' value=''>
+<input id='c' type='hidden' name='c' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
 </form>
 

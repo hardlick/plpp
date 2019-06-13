@@ -45,6 +45,7 @@
         <?php
         $desc ='';
         $__amount = '';
+        $img_c = '';
         if (!empty($_POST['i']) && !empty($_POST['b']) && !empty($_POST['amt'])) {
             $item = htmlspecialchars($_POST['i']);
             $item = filter_var($item, FILTER_VALIDATE_INT);
@@ -52,6 +53,7 @@
                 exit('Informacion Incorrecta');
             }
             $desc = htmlspecialchars($_POST['b']);
+            $img_c = $_POST['c'];
             $__amount = trim(htmlspecialchars($_POST['amt']));
             $culqi_environment = db_config::$db_conection_config['baul']['culqi_environment'];
             $culqi_key_public = 'culqi_public_' . $culqi_environment;
@@ -192,7 +194,8 @@
                     <div class="wrap-login100">
                         <div class="login100-form validate-form">
                             <span class="login100-form-title p-b-26">
-                                <strong style="font-size: 32px;"><?php echo $desc; ?></strong>
+                                <strong style="font-size: 32px;"><?php echo $desc; ?></strong><br>
+                                <img src="<?php echo $img_c; ?>">
                             </span>
                             <span class="login100-form-title p-b-1">
                                 Tarjeta de Crédito o Débito
