@@ -1,5 +1,5 @@
 {
-    "scheme": "http",
+    "scheme": "https",
     "domain": "server.bauldepeliculas.info",
     "port": 32400,
     "username": "hardlick",
