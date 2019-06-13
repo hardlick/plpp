@@ -1,3 +1,11 @@
+<?php
+$ip = $_SERVER['REMOTE_ADDR'];
+$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+    header("Location: https://google.com");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
