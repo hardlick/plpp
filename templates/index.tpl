@@ -53,7 +53,7 @@
 <input id='amt' type='hidden' name='amt' value=''>
 </form>
 
-    <!-- WhatsHelp.io widget -->
+<!-- WhatsHelp.io widget -->
 <script type="text/javascript">
     (function () {
         var options = {
