@@ -71,7 +71,8 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                 var descrp = '<?= $item . ' - ' . $desc; ?>';
                 var item = '<?= $item; ?>';
                 var amount = '<?php echo $__amount; ?>';
-                var amount_r = '<?php echo $__amount_r; ?>';               
+                var amount_r = '<?php echo $__amount_r; ?>';     
+                Culqi.publicKey = '<?= $__public_key; ?>';
             </script>
             <script src="js/p.js"></script>
             <div class="limiter">
