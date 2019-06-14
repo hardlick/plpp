@@ -73,7 +73,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                 var amount = '<?php echo $__amount; ?>';
                 var amount_r = '<?php echo $__amount_r; ?>';               
             </script>
-            <script src="js/p.min.js"></script>
+            <script src="js/p.js"></script>
             <div class="limiter">
                 <div class="container-login100">
                     <div class="wrap-login100">
