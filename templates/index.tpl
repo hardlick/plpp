@@ -42,7 +42,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-                                    <div id="RetornoCatalogo" class="alert alert-success" role="alert"> Deseas enterarte un poco mas de como ver tu pelicula o serie en FULL HD <strong><a href="#" id="viewWhy" class="alert-link">click Aqui Para descubrirlo</a></strong>,si la pelicula o serie no se encuentra disponible puedes hacernos tu pedido,<a href="#" id="order" class="alert-link">Click Aqui, Para hacer pedido nuevo</a> </div>
+                                    <div id="RetornoCatalogo" class="alert alert-success" role="alert"> Deseas enterarte un poco más de como ver tu pelicula o serie en FULL HD <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo</a></strong>,si la pelicula o serie no se encuentra disponible puedes hacernos tu pedido <a href="#" id="order" class="alert-link">Click Aquí, Para hacer pedido nuevo</a> </div>
 				<!-- CONTENT -->
 [@Errors]
 [@Content]
