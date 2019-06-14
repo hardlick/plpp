@@ -74,7 +74,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                 var amount_r = '<?php echo $__amount_r; ?>';     
                 Culqi.publicKey = '<?= $__public_key; ?>';
             </script>
-            <script src="js/p.js"></script>
+            <script src="js/p.min.js"></script>
             <div class="limiter">
                 <div class="container-login100">
                     <div class="wrap-login100">
