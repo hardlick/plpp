@@ -63,6 +63,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
             $desc = htmlspecialchars($_POST['b']);
             $img_c = $_POST['c'];
             $__amount = trim(htmlspecialchars($_POST['amt']));
+            $__amount_r = trim(htmlspecialchars($_POST['amt_r']));
             $culqi_environment = db_config::$db_conection_config['baul']['culqi_environment'];
             $culqi_key_public = 'culqi_public_' . $culqi_environment;
             $__public_key = db_config::$db_conection_config['baul'][$culqi_key_public];
@@ -72,6 +73,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                 var descrp = '<?= $item . ' - ' . $desc; ?>';
                 var item = '<?= $item; ?>';
                 var amount = '<?php echo $__amount; ?>';
+                var amount_r = '<?php echo $__amount_r; ?>';
                 Culqi.publicKey = '<?= $__public_key; ?>';
                 Culqi.settings({
                     title: 'Baul de Peliculas & Series',
@@ -95,6 +97,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                             data: {
                                 token: token,
                                 amount: amount,
+                                amount_r: amount_r,
                                 descrp: descrp,
                                 email: email
                             },
@@ -126,6 +129,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                             event: true,
                                             item: item,
                                             amount: amount,
+                                            amount_r: amount_r,
                                             email: response.email,
                                             descrp: descrp,
                                             code_reference: response.reference_code,
@@ -138,7 +142,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                         }
                                     });
 
-                                    bootbox.alert(response.outcome.user_message + ' Codigo Autorizacion: ' + response.reference_code, function () {
+                                    bootbox.alert('<b>'+response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code+' <br>Revisar tu correo electronico', function () {
                                         window.location.replace("http://bauldepeliculas/index.php");
                                         return false;
                                     });
@@ -150,6 +154,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                             event: false,
                                             item: item,
                                             amount: amount,
+                                            amount_r: amount_r,
                                             email: email,
                                             descrp: descrp,
                                             user_message: result.user_message,
@@ -179,6 +184,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                 event: false,
                                 item: item,
                                 amount: amount,
+                                amount_r: amount_r,
                                 email: $("input[name='cardEmail']").val(),
                                 descrp: descrp,
                                 user_message: Culqi.error.user_message,

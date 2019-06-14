@@ -14,6 +14,7 @@ try {
 
                 $item = trim(htmlspecialchars($_POST['item']));
                 $amount = trim(htmlspecialchars($_POST['amount']));
+                $amount_r = trim(htmlspecialchars($_POST['amount_r']));
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
                 $email = trim(htmlspecialchars($_POST['email']));
                 $user_ip = getUserIP();
@@ -37,6 +38,8 @@ try {
 
                 $mail = new PHPMailer(true);
                 $mail->isSMTP();
+                $mail->CharSet = 'UTF-8';
+                $mail->Encoding = 'base64';
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true; 
                 $mail->Username = 'bauldepeliculas1@gmail.com'; 
@@ -44,10 +47,34 @@ try {
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
-                $mail->addAddress($email);
-                $mail->Subject = 'Nuevo pedido:' .$code_reference. '- -'.$code_auth;
+                $mail->addAddress('hugocasanovam@gmail.com');
+                $mail->Subject = 'Nuevo pedido: ' .$code_reference. '- -'.$code_auth;
                 $mail->msgHTML($descrp);
                 $mail->send();
+                
+                $mail_to_client = new PHPMailer(true);
+                $mail_to_client->isSMTP();
+                $mail_to_client->CharSet = 'UTF-8';
+                $mail_to_client->Encoding = 'base64';
+                //$mail_to_client->SMTPDebug = 2; //Alternative to above constant
+                $mail_to_client->Host = 'smtp.gmail.com';
+                $mail_to_client->SMTPAuth = true; 
+                $mail_to_client->Username = 'bauldepeliculas1@gmail.com'; 
+                $mail_to_client->Password = 'peliculas2019';
+                $mail_to_client->SMTPSecure = 'tls';
+                $mail_to_client->Port = 587;
+                $mail_to_client->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
+                $mail_to_client->addAddress($email);
+                $mail_to_client->Subject = 'Gracias por tu Pedido: '.$descrp;
+                $message = '<h2>Gracias por confiar en nosotros!</h2><hr><br><h3>Los datos de tu pedido fue: '.$descrp;
+                $message .= '</h3><br><h3>Monto Pagado: '.$amount_r.'</h3><br>';
+                $message .= '<h4>Adjuntamos el pdf para poder acceder a nuestro contenido y disfrutar de la pelicula elegida.</h3>';
+                $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h3><a target="_blank" href='.getBaseUrlReal().'/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
+                $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h3><a target="_blank" href=http://bit.do/eS7dC >http://bit.do/eS7dC </a>';
+                $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/media/pasos_y_cuenta_general.pdf', $name = 'pasos_y_cuenta_general.pdf',  $encoding = 'base64', $type = 'application/pdf');
+                $mail_to_client->msgHTML($message);
+                $mail_to_client->send();
+                
                  echo json_encode($result);
             } else {
                 echo json_encode('Faltan parametros');
@@ -130,3 +157,46 @@ function getUserIP() {
 
     return $ip;
 }
+
+
+/**
+ * Suppose, you are browsing in your localhost 
+ * http://localhost/myproject/index.php?id=8
+ */
+function getBaseUrl() 
+{
+    // output: /myproject/index.php
+    $currentPath = $_SERVER['PHP_SELF']; 
+
+    // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
+    $pathInfo = pathinfo($currentPath); 
+
+    // output: localhost
+    $hostName = $_SERVER['HTTP_HOST']; 
+
+    // output: http://
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
+
+    // return: http://localhost/myproject/
+    return $protocol.'://'.$hostName.$pathInfo['dirname']."/";
+}
+
+function getBaseUrlReal() 
+{
+    // output: /myproject/index.php
+    $currentPath = $_SERVER['PHP_SELF']; 
+
+    // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
+    $pathInfo = pathinfo($currentPath); 
+
+    // output: localhost
+    $hostName = $_SERVER['HTTP_HOST']; 
+
+    // output: http://
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
+
+    // return: http://localhost/myproject/
+    return $protocol.'://'.$hostName;
+}
+
+

@@ -1,2 +1,6 @@
 #
 /nbproject/private/
+/cache/*
+/cache/
+cache
+cache/*

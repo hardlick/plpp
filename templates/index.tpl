@@ -51,6 +51,7 @@
 <input id='b' type='hidden' name='b' value=''>
 <input id='c' type='hidden' name='c' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
+<input id='amt_r' type='hidden' name='amt_r' value=''>
 </form>
 
 <!-- WhatsHelp.io widget -->
@@ -71,5 +72,17 @@
     })();
 </script>
 <!-- /WhatsHelp.io widget -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142113171-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142113171-1');
+</script>
+
+
 </body>
 </html>
