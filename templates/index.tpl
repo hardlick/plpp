@@ -16,7 +16,7 @@
         <script src="js/bootbox.min.js"></script>
 	<script src="js/main.min.js"></script>
        
-    <!--    <script src="/js/jquery-1.10.2.min,bootstrap.min,bootbox.min,main.min_123.mjs"></script>
+    <!--    <script src="/js/jquery-1.10.2.min,bootstrap.min,bootbox.min,main.min_123.mjs"></script>-->
 [@Include]
 </head>
 <body>
