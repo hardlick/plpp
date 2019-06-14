@@ -10,14 +10,14 @@
 	<link rel="stylesheet" type="text/css" href="css/local.css" />
         -->
         
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min,local.mcss" />
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min,local.mcss" />
 	<!--
         <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>
 	<script src="js/main.min.js"></script>
         -->
-        <script src="js/jquery-1.10.2.min,bootstrap.min,bootbox.min,main.min.mjs"></script>
+        <script src="/js/jquery-1.10.2.min,bootstrap.min,bootbox.min,main.min.mjs"></script>
 [@Include]
 </head>
 <body>
