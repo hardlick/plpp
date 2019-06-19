@@ -13,11 +13,11 @@ define('PLPP_IMGCACHE_PATH', PLPP_PATH . 'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 define('SITE_DOMAIN', $_SERVER['HTTP_HOST']);
 $ip = $_SERVER['REMOTE_ADDR'];
-$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
-if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
-    header("Location: https://google.com");
-    die();
-}
+//$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+//if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+ //   header("Location: https://google.com");
+  //  die();//
+//}
 
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
@@ -30,6 +30,7 @@ if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
 $plppConfiguration = array(
     'general' => array(),
     'plexserver' => array(),
+    'plexserver_series' => array(),
     'libraries' => array(),
     'usersettings' => array(),
     'mediatypes' => array()
@@ -77,6 +78,14 @@ if (
 ) {
     $plppErrors[] = 'Plex Server not configured. Please configure <a href="settings.php"><u>settings</u></a> first!';
 }
+// Generate warning message if plex server is not configured
+if (
+        empty($plppConfiguration['plexserver_series']['domain']) ||
+        empty($plppConfiguration['plexserver_series']['username']) ||
+        empty($plppConfiguration['plexserver_series']['password'])
+) {
+    $plppErrors[] = 'Plex Server Series not configured. Please configure <a href="settings.php"><u>settings</u></a> first!';
+}
 
 
 // Setting Error level
@@ -104,11 +113,20 @@ session_start();
 // Initiate the plexAPI class and request the token if not already set in session variable (speeds up image delivery)
 $plppConfiguration['plexserver']['token'] = $_SESSION['token'];
 $plex = new plexAPI($plppConfiguration['plexserver'], $plppConfiguration['general']);
+
+$plppConfiguration['plexserver_series']['token'] = $_SESSION['token_series'];
+$plex_series = new plexAPI($plppConfiguration['plexserver_series'], $plppConfiguration['general']);
 if (empty($plex->getToken())) {
     $plppErrors[] = 'No token received! Plex.tv not reachable or wrong credentials!';
 } else {
     $_SESSION['token'] = $plex->getToken();
     $plppConfiguration['plexserver']['token'] = $plex->getToken();
+}
+if (empty($plex_series->getToken())) {
+    $plppErrors[] = 'No token received! Plex.tv not reachable or wrong credentials!';
+} else {
+    $_SESSION['token_series'] = $plex_series->getToken();
+    $plppConfiguration['plexserver_series']['token'] = $plex_series->getToken();
 }
 
 
@@ -311,14 +329,31 @@ if ($plppViewmode == 'img') {
 
 // Getting the xml for the plex library index
 $plppIndex = $plex->getIndex();
+$plppIndex_series = $plex_series->getIndex();
 if (empty($plppIndex)) {
+    $plppErrors[] = 'No se pudo obtener la lista de bibliotecas! ¿Está el servidor en línea y están configuradas correctamente las configuraciones del servidor?';
+}
+if (empty($plppIndex_series)) {
     $plppErrors[] = 'No se pudo obtener la lista de bibliotecas! ¿Está el servidor en línea y están configuradas correctamente las configuraciones del servidor?';
 }
 // Sort the library index
 usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
+usort($plppIndex_series['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
 
 // Creating the plex library menu
 foreach ($plppIndex['items'] AS $child) {
+    $plppOutput['Menu'] .= '<li class="plpp_menu';
+    if ($child['key'] == $plppLibrarySectionID) {
+        $plppOutput['Menu'] .= ' plpp_menu_selected selected';
+    }
+    $plppOutput['Menu'] .= '"><a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library">';
+    $plppOutput['Menu'] .= '<span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a></li>' . PHP_EOL;
+    if (!in_array($child['type'], $plppLibraryTypes)) {
+        $plppLibraryTypes[] = $child['type'];
+    }
+}
+// Creating the plex library menu
+foreach ($plppIndex_series['items'] AS $child) {
     $plppOutput['Menu'] .= '<li class="plpp_menu';
     if ($child['key'] == $plppLibrarySectionID) {
         $plppOutput['Menu'] .= ' plpp_menu_selected selected';
