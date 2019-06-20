@@ -6,17 +6,13 @@
 	<title>[@Title]</title>
 	
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min,local.mcss" />
-	<link rel="stylesheet" type="text/css" href="css/local.css" />      
-        
-     <!--  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min,local_123.mcss" />-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/local.css" />              
 	
         <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>
 	<script src="js/main.min.js"></script>
-       
-    <!--    <script src="/js/jquery-1.10.2.min,bootstrap.min,bootbox.min,main.min_123.mjs"></script>-->
 [@Include]
 </head>
 <body>
@@ -30,8 +26,15 @@
 					<span class="icon-bar"></span>
 				</button>
 				<div class="navbar-brand">[@Title]</div>
-				
+                                <div id="navbar" class="navbar-collapse collapse" style="margin-left: 300px;">
+                                <ul class="naver">
+                                    <li><a href="index.html">Inicio</a></li>
+                                    <li><a href="movies.php">Peliculas</a></li>
+                                    <li><a href="series.php">Series</a></li>            
+                                </ul>
+                          </div>
 			</div>
+                            
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul id="active" class="nav navbar-nav side-nav">
 [@Menu]
@@ -43,7 +46,7 @@
 			<div class="row">
 				<div class="col-lg-12">
                                     <div id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
-				<!-- CONTENT -->
+				
 [@Errors]
 [@Content]
 				</div>
@@ -67,7 +70,7 @@
             call_to_action: "Escríbenos", // Call to action
             button_color: "#FF6550", // Color of button
             position: "right", // Position may be 'right' or 'left'
-            order: "facebook,whatsapp", // Order of buttons
+            order: "facebook,whatsapp" // Order of buttons
         };
         var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
         var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';

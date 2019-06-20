@@ -6276,3 +6276,28 @@ table.tablesorter thead tr th:hover {
                     right: auto;
                 }
         }
+
+        
+ul.naver {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+ul.naver li {
+  float: left;
+}
+
+ul.naver li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+ul.naver li a:hover {
+  background-color: #111111;
+}
