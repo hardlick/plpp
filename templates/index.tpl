@@ -7,7 +7,7 @@
 	
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/local.css" />
+	<link rel="stylesheet" type="text/css" href="css/local.min.css" />
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>

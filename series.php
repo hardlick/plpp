@@ -471,7 +471,7 @@ if ($plppItems[$plppItemType]['viewGroup'] == 'photo') {
 
 // Include font awesome and plpp css
 $plppOutput['IncludeCSS'] .= '	<link rel="stylesheet" type="text/css" href="' . PLPP_CSS_PATH . 'font-awesome.min.css" />' . PHP_EOL;
-$plppOutput['IncludeCSS'] .= '	<link rel="stylesheet" type="text/css" href="' . PLPP_CSS_PATH . 'plpp.css" />' . PHP_EOL;
+$plppOutput['IncludeCSS'] .= '	<link rel="stylesheet" type="text/css" href="' . PLPP_CSS_PATH . 'plpp.min.css" />' . PHP_EOL;
 
 
 // Generate the content
