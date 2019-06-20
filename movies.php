@@ -113,7 +113,7 @@ if (empty($plex->getToken())) {
 
 
 // Setting the excluded libraries
-$plex->setExcludedLibraries($plppConfiguration['libraries']['excluded_libraries']);
+$plex->setExcludedLibraries($plppConfiguration['libraries_series']['excluded_libraries']);
 
 
 // Setting the Item variable from GET
