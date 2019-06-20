@@ -13,11 +13,11 @@ define('PLPP_IMGCACHE_PATH', PLPP_PATH . 'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 define('SITE_DOMAIN', $_SERVER['HTTP_HOST']);
 $ip = $_SERVER['REMOTE_ADDR'];
-//$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
-//if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
-//    header("Location: https://google.com");
-//    die();
-//}
+$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+    header("Location: https://google.com");
+    die();
+}
 
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
@@ -625,7 +625,6 @@ foreach ($plppItems as $parentKey => $parent) {
 
         // rotate through the items
         foreach ($parent['items'] as $childKey => $child) {
-
             switch ($plppViewmode) {
 
                 // Start thumb for thumbs view
@@ -690,7 +689,9 @@ foreach ($plppItems as $parentKey => $parent) {
                             }
                         }
                         $plppOutput['Content'] .= '				<span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
-                        $plppOutput['Content'] .= $plex->getFormatedItemsContent($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
+                        $contentText = $plex->getFormatedItemsContent($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
+
+                        $plppOutput['Content'] .= $contentText;
                         $plppOutput['Content'] .= '</span>' . PHP_EOL;
                         // For the list view we have to close the td and link tag
                         if ($plppViewmode == 'list') {
@@ -706,13 +707,13 @@ foreach ($plppItems as $parentKey => $parent) {
                 // Close thumb for thumbs view
                 case 'thumbs': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close thumb for slider view
                 case 'slider': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close row for list view

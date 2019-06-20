@@ -36,7 +36,10 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                 background-position: 100% .4em;
                 padding-right: .6em;
             }
-
+            hr{
+                margin-top: 10px;
+margin-bottom: 10px;
+            }
         </style>
 
     </head>
@@ -84,7 +87,8 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                 <img src="<?php echo $img_c; ?>">
                             </span>
                             <span class="login100-form-title p-b-1">
-                                Tarjeta de Crédito o Débito
+                                Tarjeta de Crédito o Débito<br>
+                                 <strong style="font-size: 32px;">S/ <?php echo $__amount_r; ?></strong><br>
                             </span>
                             <span class="login100-form-title p-b-5">
                                 <i class="zmdi zmdi-font"></i>
@@ -100,7 +104,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
                                     </button>
                                 </div>
                             </div>
-                            <div class="text-center p-t-30">
+                            <div class="text-center p-t-10">
                                 <span class="txt1">
                                     <ul>
                                         <li>* Toda la información de pago es segura</li>

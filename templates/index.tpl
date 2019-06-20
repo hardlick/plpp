@@ -7,12 +7,11 @@
 	
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/local.css" />              
-	
+	<link rel="stylesheet" type="text/css" href="css/local.css" />
         <script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>
-	<script src="js/main.min.js"></script>
+        <script src="js/main.min.js"></script>
 [@Include]
 </head>
 <body>
@@ -57,6 +56,7 @@
 <input id='i' type='hidden' name='i' value=''>
 <input id='b' type='hidden' name='b' value=''>
 <input id='c' type='hidden' name='c' value=''>
+<input id='d' type='hidden' name='d' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
 <input id='amt_r' type='hidden' name='amt_r' value=''>
 </form>

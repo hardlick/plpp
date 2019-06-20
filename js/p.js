@@ -43,7 +43,6 @@
                                 if (response.constructor == Object) {
                                     result = JSON.parse(JSON.stringify(response));
                                 }
-                                console.log(response);
                                 if (result.object === 'charge') {
 
                                     $.ajax({

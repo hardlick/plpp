@@ -1,11 +1,24 @@
 $(document).ready(function () {
     $(document).on('click', '.buttonPay', function () {
         $('#formToSecond #i').val($(this).attr('data-i'));
-        $('#formToSecond #b').val($(this).attr('data-b'));
-        var c = $(this).parent().find('img.img-rounded').attr('src');
-        $('#formToSecond #c').val(c);
-        $('#formToSecond #amt').val('500');
-        $('#formToSecond #amt_r').val('5.00');
+        $('#formToSecond #b').val($(this).attr('data-b'));     
+       
+        if ($(this).attr('data-c') == 'season') {
+            $('#formToSecond #amt').val('1500');
+            $('#formToSecond #amt_r').val('15.00');
+            $('#formToSecond #b').val($(this).parents().find('span.plpp_slider_Show_Title').html());
+            
+        } else if ($(this).attr('data-c') == 'episode')
+        {
+            $('#formToSecond #amt').val('300');
+            $('#formToSecond #amt_r').val('3.00');
+        } else {
+            var c = $(this).parent().find('img.img-rounded').attr('src');
+            $('#formToSecond #c').val(c);
+            $('#formToSecond #amt').val('500');
+            $('#formToSecond #amt_r').val('5.00');
+        }
+
         $('#formToSecond').submit();
     });
     $(document).on('click', '#viewWhy', function () {
