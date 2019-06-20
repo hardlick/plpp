@@ -53,6 +53,7 @@
 		</div>
 	</div>
 <form id='formToSecond' action='/payment.php' method="post">
+<input id='token' type='hidden' name='token' value='=u72re8rdb6uvujqn6s31MXBNhsdgb'>
 <input id='i' type='hidden' name='i' value=''>
 <input id='b' type='hidden' name='b' value=''>
 <input id='c' type='hidden' name='c' value=''>
