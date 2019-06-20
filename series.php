@@ -30,7 +30,7 @@ if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
 $plppConfiguration = array(
     'general' => array(),
     'plexserver_series' => array(),
-    'libraries' => array(),
+    'libraries_series' => array(),
     'usersettings' => array(),
     'mediatypes' => array()
 );
@@ -95,7 +95,7 @@ if ($plppConfiguration['usersettings']['debug']) {
 
 
 // Set the default viewmode from the configuration file
-$plppViewmode = $plppConfiguration['libraries']['default_viewmode'];
+$plppViewmode = $plppConfiguration['libraries_series']['default_viewmode'];
 
 
 // Start Session
@@ -316,7 +316,7 @@ if (empty($plppIndex)) {
     $plppErrors[] = 'No se pudo obtener la lista de bibliotecas! ¿Está el servidor en línea y están configuradas correctamente las configuraciones del servidor?';
 }
 // Sort the library index
-usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
+usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries_series']['sort_by'], constant($plppConfiguration['libraries_series']['sort_order'])], ['title', SORT_ASC]));
 
 // Creating the plex library menu
 foreach ($plppIndex['items'] AS $child) {
@@ -413,7 +413,7 @@ $plppLibrarySectionID = $plppItems[$plppItemType]['librarySectionID'];
 
 
 // Checking whether requested item is in the excluded libraries array
-if (in_array($plppLibrarySectionID, $plppConfiguration['libraries']['excluded_libraries'])) {
+if (in_array($plppLibrarySectionID, $plppConfiguration['libraries_series']['excluded_libraries'])) {
     // If yes we throw an error message and load the start page
     $plppErrors[] = 'Requested ' . $plppItemType . ' is not available!';
     unset($plppItems[$plppItemType]);
