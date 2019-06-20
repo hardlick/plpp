@@ -61,7 +61,6 @@
 <input id='amt_r' type='hidden' name='amt_r' value=''>
 </form>
 
-<!-- WhatsHelp.io widget -->
 <script type="text/javascript">
     (function () {
         var options = {
@@ -78,6 +77,6 @@
         var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
     })();
 </script>
-<!-- /WhatsHelp.io widget -->
+
 </body>
 </html>
