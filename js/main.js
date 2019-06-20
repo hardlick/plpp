@@ -42,7 +42,7 @@ $(document).ready(function () {
     });
     $(document).on('click', '#order', function () {
         var text = '<div><b class="titleviewWhy">¿Buscas una pelicula y no la tenemos disponible aún?🤔</b><br>';
-        text += '<span>Si no tienes netflix, HBO, no encuentras tu peli /Serie en internet, o es de mala calidad, Escríbenos, nos dices que pelicula/serie quieres ver ( en tu Smart TV, tablet, laptop, cel) y en una hora podrás verla en calidad HD ya sea en tu Smart TV, pc , laptop. Solo dinos qué película quieres ver, a qué hora ya que el link durará unas 5 horas, pagas con tarjeta de Crédito o Débito,  yapeas (BCP) o transferencia (BCP o Interbank) y listo. Hay unos pequeños pasos que tienes que hacer para que lo veas en tu pc o laptop , smart tv , las películas son con audio original (ingles, francés, etc dependiendo de la película) y con subtítulos en español, todas las películas las tenemos en HD y full HD</div>';
+        text += '<span>Si no te alcanza el presupuesto para adquirir una cuenta de pago para ver tus series o películas en línea, NO TE PREOCUPES! Escríbenos , pide tu serie o peli y podrás verla en calidad HD desde cualquier dispositivo y a un precio justo! El pago es sencillo: pagas directamente desde nuestra pág web o transfieres a BCP o INTERBANK Y el link estará disponible aprox 5 hrs.</div>';
         bootbox.alert({
             message: text,
             size: 'large'
