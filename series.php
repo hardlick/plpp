@@ -13,11 +13,11 @@ define('PLPP_IMGCACHE_PATH', PLPP_PATH . 'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 define('SITE_DOMAIN', $_SERVER['HTTP_HOST']);
 $ip = $_SERVER['REMOTE_ADDR'];
-$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
-if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
-    header("Location: https://google.com");
-    die();
-}
+//$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+//if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+//    header("Location: https://google.com");
+//    die();
+//}
 
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
@@ -29,7 +29,7 @@ if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
 // Defining runtime variables and setting standard details
 $plppConfiguration = array(
     'general' => array(),
-    'plexserver' => array(),
+    'plexserver_series' => array(),
     'libraries' => array(),
     'usersettings' => array(),
     'mediatypes' => array()
@@ -60,6 +60,7 @@ include(PLPP_INCLUDE_PATH . 'class.plexAPI.php');
 
 // Load configuration files
 $plppConfiguration = json_load($plppConfiguration, PLPP_CONFIGURATION_PATH, '');
+
 foreach ($plppConfiguration as $key => $value) {
     if (empty($plppConfiguration[$key])) {
         $plppErrors[] = 'Unable to load configuration file "' . PLPP_CONFIGURATION_PATH . $key . '.json"!';
@@ -71,9 +72,9 @@ foreach ($plppConfiguration as $key => $value) {
 
 // Generate warning message if plex server is not configured
 if (
-        empty($plppConfiguration['plexserver']['domain']) ||
-        empty($plppConfiguration['plexserver']['username']) ||
-        empty($plppConfiguration['plexserver']['password'])
+        empty($plppConfiguration['plexserver_series']['domain']) ||
+        empty($plppConfiguration['plexserver_series']['username']) ||
+        empty($plppConfiguration['plexserver_series']['password'])
 ) {
     $plppErrors[] = 'Plex Server not configured. Please configure <a href="settings.php"><u>settings</u></a> first!';
 }
@@ -102,13 +103,13 @@ session_start();
 
 
 // Initiate the plexAPI class and request the token if not already set in session variable (speeds up image delivery)
-$plppConfiguration['plexserver']['token'] = $_SESSION['token'];
-$plex = new plexAPI($plppConfiguration['plexserver'], $plppConfiguration['general']);
+$plppConfiguration['plexserver_series']['token'] = $_SESSION['token'];
+$plex = new plexAPI($plppConfiguration['plexserver_series'], $plppConfiguration['general']);
 if (empty($plex->getToken())) {
     $plppErrors[] = 'No token received! Plex.tv not reachable or wrong credentials!';
 } else {
     $_SESSION['token'] = $plex->getToken();
-    $plppConfiguration['plexserver']['token'] = $plex->getToken();
+    $plppConfiguration['plexserver_series']['token'] = $plex->getToken();
 }
 
 
@@ -220,7 +221,7 @@ if ($plppViewmode == 'img') {
         ;
 
         // Construct the image URL
-        $plppImageURL = $plppConfiguration['plexserver']['scheme'] . '://' . $plppConfiguration['plexserver']['domain'] . ':' . $plppConfiguration['plexserver']['port'] . '/photo/:/transcode?url=/library/metadata/' . $plppItem . '/thumb/' . $plppThumbID . '&width=' . $plppImageLoadWidth . '&height=9999&X-Plex-Token=' . $plex->getToken();
+        $plppImageURL = $plppConfiguration['plexserver_series']['scheme'] . '://' . $plppConfiguration['plexserver_series']['domain'] . ':' . $plppConfiguration['plexserver_series']['port'] . '/photo/:/transcode?url=/library/metadata/' . $plppItem . '/thumb/' . $plppThumbID . '&width=' . $plppImageLoadWidth . '&height=9999&X-Plex-Token=' . $plex->getToken();
 
 
         // For debug only: If GET parameter url is set, we show the URL and filename and -path instead of the image
