@@ -13,12 +13,11 @@ define('PLPP_IMGCACHE_PATH', PLPP_PATH . 'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 define('SITE_DOMAIN', $_SERVER['HTTP_HOST']);
 $ip = $_SERVER['REMOTE_ADDR'];
-$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
-if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
-    header("Location: https://google.com");
-    die();
-}
-
+//$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+//if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+//    header("Location: https://google.com");
+//    die();
+//}
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
     header('Location: settings.php');
@@ -541,6 +540,13 @@ foreach ($plppItems as $parentKey => $parent) {
 
     // If there is a title2 it is always the title of the active view.
     if (!empty($parent['title2'])) {
+        if ($parent['title2'] == 'All Shows') {
+            $parent['title2'] = 'Todas las series';
+        } elseif ($parent['title2'] == 'Recently Added') {
+            $parent['title2'] = 'Agregados Recientemente';
+        } elseif ($parent['title2'] == 'Recently Aired') {
+            $parent['title2'] = 'Lanzados Recientemente';
+        }
         // But if it is a library, we generate the filter dropdwon menu
         if ($plppItemType == 'library' && $plppItem != '') {
             $filters = $plex->getFilters($plppItem);
@@ -548,15 +554,29 @@ foreach ($plppItems as $parentKey => $parent) {
             $plppOutput['Content'] .= '				<li class="plpp_dropdown dropdown active">' . PHP_EOL;
             // First we have to find the active filter view and set it as title of the dropdwon menu
             foreach ($filters as $key => $value) {
+                if ($value == 'All Shows') {
+                    $value = 'Todas las series';
+                } elseif ($value == 'Recently Added') {
+                    $value = 'Agregados Recientemente';
+                } elseif ($value == 'Recently Aired') {
+                    $value = 'Lanzados Recientemente';
+                }
                 if ($plppItemsFilter == $key || ($plppItemsFilter == '' && $key == 'all')) {
-                    $plppOutput['Content'] .= '					' . $parent['title2'] = (($value == 'Recently Added') ? 'Agregados Recientemente' : $parent['title2'] == 'Recently Released' ? 'Lanzados Recientemente' : $parent['title2'] ) . ' (' . count($parent['items']) . ')&nbsp;&nbsp;<a href="" class="plpp_dropdown-toggle dropdown-toggle" data-toggle="dropdown"><i class="caret"></i></a>' . PHP_EOL;
+                    $plppOutput['Content'] .= '					' . $parent['title2'] . ' (' . count($parent['items']) . ')&nbsp;&nbsp;<a href="" class="plpp_dropdown-toggle dropdown-toggle" data-toggle="dropdown"><i class="caret"></i></a>' . PHP_EOL;
                 }
             }
             $plppOutput['Content'] .= '					<ul class="plpp_dropdown-menu dropdown-menu">' . PHP_EOL;
             // Then we add the other filters except the active filter as dropdown items
             foreach ($filters as $key => $value) {
+                if ($value == 'All Shows') {
+                    $value = 'Todas las series';
+                } elseif ($value == 'Recently Added') {
+                    $value = 'Agregados Recientemente';
+                } elseif ($value == 'Recently Aired') {
+                    $value = 'Lanzados Recientemente';
+                }
                 if ($plppItemsFilter != $key && (!($plppItemsFilter == '' && $key == 'all') || $plppIsSearch)) {
-                    $plppOutput['Content'] .= '						<li><a href="' . PLPP_BASE_PATH . '?item=' . $plppItem . '&type=library&filter=' . $key . '">' . $value = (($value == 'Recently Added') ? 'Agregados Recientemente' : $value == 'Recently Released' ? 'Lanzados Recientemente' : $value ) . '</a></li>' . PHP_EOL;
+                    $plppOutput['Content'] .= '						<li><a href="' . PLPP_BASE_PATH . '?item=' . $plppItem . '&type=library&filter=' . $key . '">' . $value . '</a></li>' . PHP_EOL;
                 }
             }
             $plppOutput['Content'] .= '					</ul>' . PHP_EOL;
