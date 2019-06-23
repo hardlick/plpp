@@ -90,12 +90,12 @@
                                             return true;
                                         }
                                     });
-                                    bootbox.alert('Hubo un problema con la transaccion:' + result.user_message);
+                                    bootbox.alert('Hubo un problema con la transaccion: ' + result.user_message);
                                 }
 
                             },
                             error: function (response) {
-                                bootbox.alert('Hubo un problema con la transaccion' + response);
+                                bootbox.alert('Hubo un problema con la transaccion: ' + response);
                             }
                         });
 
