@@ -31,7 +31,7 @@ if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryNa
 
             li
             {
-                background-image: url(arrow.gif);
+                
                 background-repeat: no-repeat;
                 background-position: 100% .4em;
                 padding-right: .6em;
