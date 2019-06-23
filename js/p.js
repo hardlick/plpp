@@ -81,7 +81,7 @@
                                             descrp: descrp,
                                             user_message: result.user_message,
                                             type: result.type,
-                                            codigo_error: result.code,
+                                            codigo_error: '0001',
                                             merchant_message: result.merchant_message
                                         },
                                         dataType: 'json',
