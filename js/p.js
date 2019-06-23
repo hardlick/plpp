@@ -65,7 +65,7 @@
                                     });
 
                                     bootbox.alert('<b>'+response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code+' <br>Revisar tu correo electronico', function () {
-                                        window.location.replace("http://bauldepeliculas/index.php");
+                                        window.location.replace("https://bauldepeliculas.info/");
                                         return false;
                                     });
                                 }
