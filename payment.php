@@ -14,8 +14,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/util.css">
-        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/css/util.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.min.css">
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>
@@ -88,7 +88,7 @@ margin-bottom: 10px;
                             </span>
                             <span class="login100-form-title p-b-1">
                                 Tarjeta de Crédito o Débito<br>
-                                 <strong style="font-size: 32px;">S/ <?php echo $__amount_r; ?></strong><br>
+                                 <strong style="font-size: 25px;">S/ <?php echo $__amount_r; ?></strong><br>
                             </span>
                             <span class="login100-form-title p-b-5">
                                 <i class="zmdi zmdi-font"></i>
