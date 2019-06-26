@@ -12,12 +12,12 @@ define('PLPP_FONTS_PATH', PLPP_PATH . 'fonts/');
 define('PLPP_IMGCACHE_PATH', PLPP_PATH . 'cache/');
 define('PLPP_BASE_PATH', $_SERVER['SCRIPT_NAME']);
 define('SITE_DOMAIN', $_SERVER['HTTP_HOST']);
-$ip = $_SERVER['REMOTE_ADDR'];
-$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
-if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
-   header("Location: https://bauldepeliculas.info/index.html");
-    die();
-}
+//$ip = $_SERVER['REMOTE_ADDR'];
+//$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+//if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
+//   header("Location: https://bauldepeliculas.info/index.html");
+//    die();
+//}
 // Redirect to settings page if general.json does not exist (usually in case of first run after installation)
 if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
     header('Location: settings.php');
