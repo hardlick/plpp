@@ -66,7 +66,7 @@ try {
 }
 
 $user = $response->getGraphUser();
-
+echo '<h3>Data Info</h3>';
 var_dump($user);
 
 
