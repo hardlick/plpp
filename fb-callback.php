@@ -56,7 +56,7 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 
 try {
   // Returns a `Facebook\FacebookResponse` object
-  $response = $fb->get('/me?fields=id,name', $accessToken);
+  $response = $fb->get('/me?locale=en_US&fields=id,name,first_name,last_name,gender,email,birthday', $accessToken);
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
