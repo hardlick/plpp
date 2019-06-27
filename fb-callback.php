@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(! isset($_SESSION['fb_access_token'])){
 require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 $fb = new \Facebook\Facebook([
     'app_id' => '1448141528671219',
@@ -66,6 +67,11 @@ try {
 }
 
 $user = $response->getGraphUser();
+$_SESSION['fb_id'] = $user['id'];
+$_SESSION['fb_name'] = $user['name'];
+$_SESSION['fb_first_name'] = $user['first_name'];
+$_SESSION['fb_last_name'] = $user['last_name'];
+$_SESSION['fb_email'] = $user['email'];
 echo '<h3>Data Info</h3>';
 var_dump($user);
 
@@ -88,10 +94,11 @@ if (! $accessToken->isLongLived()) {
   echo '<h3>Long-lived</h3>';
   var_dump($accessToken->getValue());
 }
-
-
-            
-
-// User is logged in with a long-lived access token.
-// You can redirect them to a members-only page.
-//header('Location: https://example.com/members.php');
+}else{
+$fb_id = $_SESSION['fb_id'];
+$fb_name = $_SESSION['fb_name'];
+$fb_first_name = $_SESSION['fb_first_name'];
+$fb_last_name = $_SESSION['fb_last_name'];
+$fb_email = $_SESSION['fb_email'];
+echo $fb_email;
+}
