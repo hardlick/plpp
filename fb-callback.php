@@ -74,10 +74,9 @@ if (! $accessToken->isLongLived()) {
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
- $datos = $fb->get('/me?locale=en_US&fields=id,name,first_name,last_name,gender,email,birthday', $accessToken);
- $body = $datos->getBody();
- $user  = json_decode($body);
- echo $user;
+$res = $fb->get('/me');
+ 
+var_dump($res->getDecodedBody());
             
 
 // User is logged in with a long-lived access token.
