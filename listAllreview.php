@@ -10,8 +10,15 @@ try {
     while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
         $data[] = $row;
     }
+    
+    $avg = $db->query('select round(avg(puntuacion),2)  promedio from reviews');
+    $data_avg = [];
+    while ($row_avg = $avg->fetchArray(SQLITE3_ASSOC)) {
+        $data_avg[] = $row_avg;
+    }
     $aResponse['code'] = 200;
     $aResponse['data'] =  $data;
+    $aResponse['avg'] =  $data_avg;
     echo json_encode($aResponse);
 } catch (Exception $e) {
     echo $e->getMessage();

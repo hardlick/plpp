@@ -96,7 +96,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (r) {
                 var html = '';
-                $('.card-body').html('');
+                $('.card-body').html('');                
+                $('#average').html('');
                 var image = '';
                 if (r.data.length > 0) {
                     $.each(r.data, function () {
@@ -126,8 +127,20 @@ $(document).ready(function () {
                 </div> <hr>`;
                         $('.card-body').append(html);
                     });
+                    
+                    var avg ='<h3 style="float:left;">Como nos califican:&nbsp;&nbsp;&nbsp;</h3><input id="input-3-ltr-star-md" name="input-3-ltr-star-md" class="average rating-loading" value="'+r.avg[0].promedio+'" dir="ltr" data-size="md"><br>';
+                    $('#average').show();
+                    $('#average').html(avg);                   
+                    
+                     $('.average').rating({
+                    hoverOnClear: false,
+                    theme: 'krajee-fas',
+                    'language': 'es',
+                    'readonly': true
+                });
+                    
                 } else {
-                    $('#emptySelectedObs').show();
+                    
                 }
 
 
@@ -158,6 +171,7 @@ $(document).ready(function () {
             fetchUserProfile();
             $("#formReview").show();
             $("#containerForm").hide();
+            $('#average').hide();
         } else {
             facebookLoginByDialog();
         }
