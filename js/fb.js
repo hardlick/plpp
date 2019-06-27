@@ -36,7 +36,9 @@ $(document).ready(function(){
      {
         $("#login").hide();
         $("#logout").show(); 
+        
         fetchUserProfile();
+        $("#formReview").show(); 
      }
      else{
          // Logging the user to Facebook by a Dialog Window
