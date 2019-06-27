@@ -171,7 +171,7 @@ $(document).ready(function () {
             fetchUserProfile();
             $("#formReview").show();
             $("#containerForm").hide();
-            $('#average').hide();
+            $('#average').show();
         } else {
             facebookLoginByDialog();
         }
