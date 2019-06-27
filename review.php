@@ -7,6 +7,7 @@ try {
 
         if (!empty($_POST['input-3-ltr-star-md']) && !empty($_POST['email']) && !empty($_POST['message']) && !empty($_POST['name'])) {
 
+            $profileid = trim(htmlspecialchars($_POST['profileid']));
             $message = trim(htmlspecialchars($_POST['message']));
             $puntuacion = trim(htmlspecialchars($_POST['input-3-ltr-star-md']));
             $name = trim(htmlspecialchars($_POST['name']));
@@ -18,34 +19,36 @@ try {
                 $charge = 'Formato de Email incorrecto';
             }
             $db = new SQLite3('db/bdp.db');
-            $statement = $db->prepare('INSERT INTO "reviews" ("nombre", "email", "comentario", "puntuacion", "ip", "fecha")
-                                                        VALUES (:nombre, :email, :comentario, :puntuacion, :ip, :fecha)');
+            $statement = $db->prepare('INSERT INTO "reviews" ("nombre", "email", "comentario", "puntuacion", "ip", "fecha","profileid")
+                                                        VALUES (:nombre, :email, :comentario, :puntuacion, :ip, :fecha, :profileid)');
+            
             $statement->bindValue(':nombre', $name);
             $statement->bindValue(':email', $email);
             $statement->bindValue(':comentario', $message);
             $statement->bindValue(':puntuacion', $puntuacion);
             $statement->bindValue(':ip', $user_ip);
-            $statement->bindValue(':fecha', date('Y-m-d H:i:s'));
+            $statement->bindValue(':fecha',date('d/m/Y h:i A'));
             $statement->bindValue(':ip', $user_ip);
+            $statement->bindValue(':profileid', $profileid);
             $result = $statement->execute();
             $result->finalize();
             $aResponse['data'] = $result;
             $aResponse['code'] = 200;
-            echo json_encode($result);
+            echo json_encode($aResponse);
         } else {
             $aResponse['data'] = 'Error al procesar  el Review - Informacion Erronea';
             $aResponse['code'] = 400;
-            echo json_encode($result);
+            echo json_encode($aResponse);
         }
     } else {
         $aResponse['data'] = 'Error al procesar  el Review - Informacion Erronea';
         $aResponse['code'] = 400;
-        echo json_encode($result);
+        echo json_encode($aResponse);
     }
 } catch (Exception $exc) {
     $aResponse['data'] = json_encode($e->getMessage());
     $aResponse['code'] = 400;
-    echo json_encode($result);
+    echo json_encode($aResponse);
 }
 
 
