@@ -9,8 +9,30 @@ $(document).ready(function () {
     $('.kv-rtl-theme-fas-alt').rating({
         hoverOnClear: false,
         theme: 'krajee-fas',       
-          'language' : 'es'
+          'language' : 'es',
+          'readonly': true
     });
+    
+        $('#procesarReview').click(function (e)
+    {
+        e.preventDefault();
+        
+        var dataString = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: '/review.php',
+            data: dataString,
+            dataType: 'json',
+            success: function (r) {
+                if (r.code ==400) {
+                        
+                } else {
+                    msgBox(r.data, r.code);
+                }
+            }
+        });
+    });
+
     
     $("#login").click(function () {
         facebookLogin();
