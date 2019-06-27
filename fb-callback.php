@@ -1,13 +1,12 @@
 <?php
-if (!session_id()) {
-    session_start();
-}
+session_start();
 require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 $fb = new \Facebook\Facebook([
     'app_id' => '1448141528671219',
     'app_secret' => '89a44d740dd1d24f038edf629d0d1dd1',
     'default_graph_version' => 'v3.3',
-    'persistent_data_handler'=>'session'
+    'persistent_data_handler'=>'session',
+    'default_access_token' => 'abaf7536a812fca085d340112c0fbd38', // optional
         ]);
 
 $helper = $fb->getRedirectLoginHelper();
@@ -55,9 +54,21 @@ var_dump($tokenMetadata);
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
 
-$res = $fb->get('/me');
- 
-var_dump($res->getDecodedBody());
+try {
+  // Returns a `Facebook\FacebookResponse` object
+  $response = $fb->get('/me?fields=id,name', 'abaf7536a812fca085d340112c0fbd38');
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+  echo 'Graph returned an error: ' . $e->getMessage();
+  exit;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  exit;
+}
+
+$user = $response->getGraphUser();
+
+var_dump($user);
+
 
 // Validation (these will throw FacebookSDKException's when they fail)
 $tokenMetadata->validateAppId($config['app_id']);
