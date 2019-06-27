@@ -53,6 +53,12 @@ $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 echo '<h3>Metadata</h3>';
 var_dump($tokenMetadata);
 
+$_SESSION['fb_access_token'] = (string) $accessToken;
+
+$res = $fb->get('/me');
+ 
+var_dump($res->getDecodedBody());
+
 // Validation (these will throw FacebookSDKException's when they fail)
 $tokenMetadata->validateAppId($config['app_id']);
 // If you know the user ID this access token belongs to, you can validate it here
@@ -72,11 +78,7 @@ if (! $accessToken->isLongLived()) {
   var_dump($accessToken->getValue());
 }
 
-$_SESSION['fb_access_token'] = (string) $accessToken;
 
-$res = $fb->get('/me');
- 
-var_dump($res->getDecodedBody());
             
 
 // User is logged in with a long-lived access token.
