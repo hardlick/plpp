@@ -1,5 +1,7 @@
 <?php
-
+if(!session_id()) {
+    session_start();
+}
 require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 include_once './config/config.php';
 $environment = db_config::$db_conection_config['baul']['environment'];
