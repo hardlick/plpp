@@ -59,10 +59,13 @@ $(document).ready(function () {
                         $('#profileid').val('');
                         $('#name').val('');
                         $('#email').val('');
+                        $('#message').val('');
+                        $('#message').html('');
+                        $('#message').text('');
 
                         $("#formReview").hide();
                         $("#containerForm").show();
-                        $('#containerForm').html('<h3>Muchas gracias por compartir tu experiencia!</h3>');
+                        $('#containerForm').html('<center><h3>Muchas gracias por compartir tu experiencia!</h3></br><h4><a href="https://bauldepeliculas.info/">Pedir nuevamente?</a></h4></center>');
                         onload();
                     } else {
 
