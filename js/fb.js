@@ -113,7 +113,7 @@ $(document).ready(function () {
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <a class="float-left"<strong>` + this.nombre + `</strong></a>                                
+                        <h4 class="float-left card-title">` + this.nombre + `</h4>                            
                         </p>
                         <div style="float: right">                            
                             <input id="input-3-ltr-star-md" name="input-3-ltr-star-md" class="ratingClients rating-loading" value="` + this.puntuacion + `" dir="ltr" data-size="md">
