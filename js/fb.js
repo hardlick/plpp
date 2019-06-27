@@ -20,6 +20,9 @@ $(document).ready(function(){
 
  });
 
+   $(document).on('click', '#procesarReview', function () {
+                        
+                    });
 
  function facebookLogin()
  {
