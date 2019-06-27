@@ -119,7 +119,7 @@ $(document).ready(function () {
                             <input id="input-3-ltr-star-md" name="input-3-ltr-star-md" class="ratingClients rating-loading" value="` + this.puntuacion + `" dir="ltr" data-size="md">
                         </div>
                         <div class="clearfix"></div>
-                        <p>` + this.comentario + `</p>
+                        <p class="card-text">` + this.comentario + `</p>
                                 
                     </div>
                                
