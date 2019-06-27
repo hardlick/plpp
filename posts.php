@@ -1,17 +1,15 @@
+<?php
+require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 
-<script type="text/javascript">
-    (function () {
-        var options = {
-            facebook: "518981848157046", // Facebook page ID
-            whatsapp: "+51943357937", // WhatsApp number
-            call_to_action: "Escríbenos", // Call to action
-            button_color: "#FF6550", // Color of button
-            position: "right", // Position may be 'right' or 'left'
-            order: "facebook,whatsapp" // Order of buttons
-        };
-        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
-        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-</script>
+$fb = new \Facebook\Facebook([
+  'app_id' => '1448141528671219',
+  'app_secret' => '89a44d740dd1d24f038edf629d0d1dd1',
+  'default_graph_version' => 'v3.3',
+  'default_access_token' => 'abaf7536a812fca085d340112c0fbd38', // optional
+]);
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('https://example.com/fb-callback.php', $permissions);
+
+echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
