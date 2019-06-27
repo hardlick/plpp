@@ -61,6 +61,7 @@ $(document).ready(function () {
                         $('#email').val('');
 
                         $("#formReview").hide();
+                        $("#containerForm").show();
                         $('#containerForm').html('<h3>Muchas gracias por compartir tu experiencia!</h3>');
                         onload();
                     } else {
@@ -87,6 +88,7 @@ $(document).ready(function () {
     });
     onload();
     function onload() {
+        
         $.ajax({
             type: "POST",
             url: '/listAllreview.php',
@@ -148,7 +150,6 @@ $(document).ready(function () {
 
     function statusChangeCallback(response)
     {
-        console.log(response);
         if (response.status === "connected")
         {
             $("#login").hide();
@@ -156,8 +157,8 @@ $(document).ready(function () {
 
             fetchUserProfile();
             $("#formReview").show();
+            $("#containerForm").hide();
         } else {
-            // Logging the user to Facebook by a Dialog Window
             facebookLoginByDialog();
         }
     }
