@@ -50,8 +50,9 @@ $(document).ready(function(){
    FB.api('/me?fields=id,name,email,gender,birthday', function(response) {
      console.log(response);
      console.log('Successful login for: ' + response.name);
-     var profile = '<h1>Welcome '+response.name+'<h1><h2>Your email is'+response.email+'</h2><h3>Your Birthday is'+response.birthday+'</h3>';
-     $("#status").append(profile);
+     $('#name').val(response.name);
+     $('#email').val(response.email);
+    
    });
  }
 
