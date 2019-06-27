@@ -7,10 +7,9 @@ $url = 'url_' . $environment;
 $urlBase = db_config::$db_conection_config['baul'][$url];
 
 $fb = new \Facebook\Facebook([
-    'app_id' => '670426636716311',
-    'app_secret' => 'a40d3c4225b9603e3c092dea0807bd11',
-    'default_graph_version' => 'v2.10',
-    'default_access_token' => 'd946ad17b9d97586c5e0801cfed35817', // optional
+    'app_id' => '1448141528671219',
+    'app_secret' => '89a44d740dd1d24f038edf629d0d1dd1',
+    'default_graph_version' => 'v3.3'
         ]);
 $helper = $fb->getRedirectLoginHelper();
 
