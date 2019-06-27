@@ -6,7 +6,7 @@ $(document).ready(function () {
         'language': 'es'
     });
 
-  
+
 
     $("form#processReview").validate({
         rules: {
@@ -56,7 +56,13 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (r) {
                     if (r.code == 200) {
-                            onload();
+                        $('#profileid').val('');
+                        $('#name').val('');
+                        $('#email').val('');
+
+                        $("#formReview").hide();
+                        $('#containerForm').html('<h3>Muchas gracias por compartir tu experiencia!</h3>');
+                        onload();
                     } else {
 
                     }
@@ -75,7 +81,7 @@ $(document).ready(function () {
 
         $("#logout").hide();
         $("#login").show();
-        $("#status").empty();
+
         facebookLogout();
 
     });
@@ -89,46 +95,46 @@ $(document).ready(function () {
             success: function (r) {
                 var html = '';
                 $('.card-body').html('');
-                var image ='';
+                var image = '';
                 if (r.data.length > 0) {
-                            $.each(r.data, function () {
-                                if(this.profileid == '' || this.profileid == null){
-                                    image = '/images/def_face.jpg';
-                                }else{
-                                    image = '//graph.facebook.com/'+this.profileid+'/picture';
-                                }
-                               html = `<div class="row">
+                    $.each(r.data, function () {
+                        if (this.profileid == '' || this.profileid == null) {
+                            image = '/images/def_face.jpg';
+                        } else {
+                            image = '//graph.facebook.com/' + this.profileid + '/picture';
+                        }
+                        html = `<div class="row">
                     <div class="col-md-2">
-                                <img src="`+image+`" class="img img-rounded img-fluid">
+                                <img src="` + image + `" class="img img-rounded img-fluid">
                         
-                        <p class="text-secondary text-center">`+this.fecha+`</p>
+                        <p class="text-secondary text-center">` + this.fecha + `</p>
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <a class="float-left"<strong>`+this.nombre+`</strong></a>                                
+                            <a class="float-left"<strong>` + this.nombre + `</strong></a>                                
                         </p>
                         <div style="float: right">                            
-                            <input id="input-3-ltr-star-md" name="input-3-ltr-star-md" class="ratingClients rating-loading" value="`+this.puntuacion+`" dir="ltr" data-size="md">
+                            <input id="input-3-ltr-star-md" name="input-3-ltr-star-md" class="ratingClients rating-loading" value="` + this.puntuacion + `" dir="ltr" data-size="md">
                         </div>
                         <div class="clearfix"></div>
-                        <p>`+this.comentario+`</p>
+                        <p>` + this.comentario + `</p>
                                 
                     </div>
                                
                 </div> <hr>`;
-                                $('.card-body').append(html);
-                            });
-                        } else {
-                            $('#emptySelectedObs').show();
-                        }
-                       
-                
-                  $('.ratingClients').rating({
-        hoverOnClear: false,
-        theme: 'krajee-fas',
-        'language': 'es',
-        'readonly': true
-    });
+                        $('.card-body').append(html);
+                    });
+                } else {
+                    $('#emptySelectedObs').show();
+                }
+
+
+                $('.ratingClients').rating({
+                    hoverOnClear: false,
+                    theme: 'krajee-fas',
+                    'language': 'es',
+                    'readonly': true
+                });
             }
         });
     }
@@ -158,10 +164,9 @@ $(document).ready(function () {
 
     function fetchUserProfile()
     {
-        console.log('Welcome!  Fetching your information.... ');
+
         FB.api('/me?fields=id,name,email,gender,birthday', function (response) {
-            console.log(response);
-            console.log('Successful login for: ' + response.name);
+
             $('#profileid').val(response.id);
             $('#name').val(response.name);
             $('#email').val(response.email);
