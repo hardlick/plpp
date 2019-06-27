@@ -103,7 +103,7 @@ $(document).ready(function () {
                         if (this.profileid == '' || this.profileid == null) {
                             image = '/images/def_face.jpg';
                         } else {
-                            image = '//graph.facebook.com/' + this.profileid + '/picture';
+                            image = '//graph.facebook.com/v3.3/' + this.profileid + '/picture?width=250&height=250';
                         }
                         html = `<div class="row">
                     <div class="col-md-2">
