@@ -68,9 +68,10 @@ try {
                 $mail_to_client->Subject = 'Gracias por tu Pedido: '.$descrp;
                 $message = '<h2>Gracias por confiar en nosotros!</h2><hr><br><h3>Los datos de tu pedido fue: '.$descrp;
                 $message .= '</h3><br><h3>Monto Pagado: '.$amount_r.'</h3><br>';
-                $message .= '<h4>Adjuntamos el pdf para poder acceder a nuestro contenido y disfrutar de la pelicula elegida.</h3>';
-                $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h3><a target="_blank" href='.getBaseUrlReal().'/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
-                $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h3><a target="_blank" href=http://bit.do/eS7dC >http://bit.do/eS7dC </a>';
+                $message .= '<h4>Adjuntamos el pdf para poder acceder a nuestro contenido y disfrutar de la pelicula elegida.</h4>';
+                $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h4><a target="_blank" href='.getBaseUrlReal().'/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
+                $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h4><a target="_blank" href="http://bit.do/eS7dC" >http://bit.do/eS7dC </a>';
+                $message .= '<h4>Al finalizar tu experiencia con nosotros, podrias comentarnoslo?</h4><a target="_blank" href="https://bauldepeliculas.info/reviews.html" >CLick aqui!</a>';
                 $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'].'/media/pasos_y_cuenta_general.pdf', $name = 'pasos_y_cuenta_general.pdf',  $encoding = 'base64', $type = 'application/pdf');
                 $mail_to_client->msgHTML($message);
                 $mail_to_client->send();
