@@ -1,15 +1,103 @@
-<?php
-require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
-
-$fb = new \Facebook\Facebook([
-  'app_id' => '1448141528671219',
-  'app_secret' => '89a44d740dd1d24f038edf629d0d1dd1',
-  'default_graph_version' => 'v3.3',
-  'default_access_token' => 'abaf7536a812fca085d340112c0fbd38', // optional
-]);
-$helper = $fb->getRedirectLoginHelper();
-
-$permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('https://example.com/fb-callback.php', $permissions);
-
-echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+<div class="container-fluid">
+    <h1 class="text-center my-3">Bootstrap 4 Card Carousel</h1>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner row w-100 mx-auto">
+        <div class="carousel-item col-md-4 active">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 1</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 2</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 3</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 4</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 5</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 6</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Card 7</h4>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is
+                a little bit longer.</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mt-4">
+            <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
+              <i class="fa fa-lg fa-chevron-left"></i>
+            </a>
+            <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
+              <i class="fa fa-lg fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
