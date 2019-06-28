@@ -63,8 +63,10 @@
                 var html = '';
                 $('#reviewsIndex').html('');                
                 $('#average').html('');
+                
                 var image = '';
                 if (r.data.length > 0) {
+                    $('#reviewsHome').show();
                     $.each(r.data, function (i,k) {
                         if (this.profileid == '' || this.profileid == null) {
                             image = '/images/def_face.jpg';
@@ -139,7 +141,7 @@
                     });
                     
                 } else {
-                    
+                    $('#reviewsHome').hide();
                 }
 
             }
