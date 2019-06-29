@@ -8,7 +8,7 @@ class db_config {
             'dbUser' => 'root',
             'dbPassword' => '280510jt',
             'environment' => 'live',
-            'culqi_environment' => 'lvie',
+            'culqi_environment' => 'live',
             'url_test' => 'http://bauldepeliculas',
             'url_live' => 'https://bauldepeliculas.info',            
             'culqi_public_test' => 'pk_test_RM0mtUtHCs4BJHF6',
