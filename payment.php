@@ -2,7 +2,7 @@
 //$ip = $_SERVER['REMOTE_ADDR'];
 //$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
 //if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
- //   header("Location: https://google.com");
+//   header("Location: https://google.com");
 //    die();
 //}
 ?>
@@ -31,14 +31,14 @@
 
             li
             {
-                
+
                 background-repeat: no-repeat;
                 background-position: 100% .4em;
                 padding-right: .6em;
             }
             hr{
                 margin-top: 10px;
-margin-bottom: 10px;
+                margin-bottom: 10px;
             }
         </style>
 
@@ -51,7 +51,7 @@ margin-bottom: 10px;
         $urlBase = db_config::$db_conection_config['baul'][$url];
         ?>
         <?php
-        $desc ='';
+        $desc = '';
         $__amount = '';
         $img_c = '';
         if (!empty($_POST['i']) && !empty($_POST['b']) && !empty($_POST['amt'])) {
@@ -74,7 +74,7 @@ margin-bottom: 10px;
                 var descrp = '<?= $item . ' - ' . $desc; ?>';
                 var item = '<?= $item; ?>';
                 var amount = '<?php echo $__amount; ?>';
-                var amount_r = '<?php echo $__amount_r; ?>';     
+                var amount_r = '<?php echo $__amount_r; ?>';
                 Culqi.publicKey = '<?= $__public_key; ?>';
             </script>
             <script src="js/p.min.js"></script>
@@ -88,14 +88,14 @@ margin-bottom: 10px;
                             </span>
                             <span class="login100-form-title p-b-1">
                                 Tarjeta de Crédito o Débito<br>
-                                 <strong style="font-size: 25px;">S/ <?php echo $__amount_r; ?></strong><br>
+                                <strong style="font-size: 25px;">S/ <?php echo $__amount_r; ?></strong><br>
                             </span>
                             <span class="login100-form-title p-b-5">
                                 <i class="zmdi zmdi-font"></i>
                             </span>
                             <center> Paga tus pedidos  de peliculas y/o series usando tus tarjetas de débito o crédito VISA, Mastercard, American Express o Diners que tengan código CVV.
-                            <img src="/images/icono-tarjetas.png" style="width: 250px;">
-</center>
+                                <img src="/images/icono-tarjetas.png" style="width: 250px;">
+                            </center>
                             <div class="container-login100-form-btn">
                                 <div class="wrap-login100-form-btn">
                                     <div class="login100-form-bgbtn"></div>
@@ -111,9 +111,9 @@ margin-bottom: 10px;
                                         <li>* Algunas de las tarjetas de débito con CVV podrían ser rechazadas por la plataforma de pago que utilizamos debido a las políticas de seguridad del banco</li>
                                         <li>* Contamos con protección SSL para transacciones seguras
                                             <script type="text/javascript"> //<![CDATA[
-                                                var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
-                                                document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-                                                //]]></script>
+                var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
+                document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+                //]]></script>
                                             <script language="JavaScript" type="text/javascript">
                                                 TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
                                             </script>
@@ -128,33 +128,41 @@ margin-bottom: 10px;
                 </div>
             </div>         
             <!-- WhatsHelp.io widget -->
-<script type="text/javascript">
-    (function () {
-        var options = {
-            facebook: "518981848157046", // Facebook page ID
-            whatsapp: "+51943357937", // WhatsApp number
-            call_to_action: "Escríbenos", // Call to action
-            button_color: "#FF6550", // Color of button
-            position: "right", // Position may be 'right' or 'left'
-            order: "facebook,whatsapp", // Order of buttons
-        };
-        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
-        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-</script>
-<!-- /WhatsHelp.io widget -->
+            <script type="text/javascript">
+                (function () {
+                    var options = {
+                        facebook: "518981848157046", // Facebook page ID
+                        whatsapp: "+51943357937", // WhatsApp number
+                        call_to_action: "Escríbenos", // Call to action
+                        button_color: "#FF6550", // Color of button
+                        position: "right", // Position may be 'right' or 'left'
+                        order: "facebook,whatsapp", // Order of buttons
+                    };
+                    var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = url + '/widget-send-button/js/init.js';
+                    s.onload = function () {
+                        WhWidgetSendButton.init(host, proto, options);
+                    };
+                    var x = document.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(s, x);
+                })();
+            </script>
+            <!-- /WhatsHelp.io widget -->
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142113171-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142113171-2"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
 
-  gtag('config', 'UA-142113171-2');
-</script>
+                gtag('config', 'UA-142113171-2');
+            </script>
 
             <?php
         } else {
@@ -165,8 +173,8 @@ margin-bottom: 10px;
                     return false;
                 });
             </script>
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
     </body>
 </html>

@@ -1,26 +1,36 @@
 <?php
 
+include_once './config/config.php';
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $aResponse['data'] = FALSE;
-    $aResponse['code'] = 400;
-    $db = new SQLite3('db/bdp.db');
-    $res = $db->query('SELECT * FROM reviews');
-    $data = [];
-    while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
-        $data[] = $row;
-    }
-    
-    $avg = $db->query('select round(avg(puntuacion),2)  promedio from reviews');
-    $data_avg = [];
-    while ($row_avg = $avg->fetchArray(SQLITE3_ASSOC)) {
-        $data_avg[] = $row_avg;
-    }
-    $aResponse['code'] = 200;
-    $aResponse['data'] =  $data;
-    $aResponse['avg'] =  $data_avg;
-    echo json_encode($aResponse);
-        } else {
+        $serverDBName = db_config::$db_conection_config['baul']['serverDBName'];
+        $servername = db_config::$db_conection_config['baul']['dbName'];
+        $username = db_config::$db_conection_config['baul']['dbUser'];
+        $password = db_config::$db_conection_config['baul']['dbPassword'];
+        $aResponse['data'] = FALSE;
+        $aResponse['code'] = 400;
+
+        $db = new mysqli($serverDBName, $username, $password, $servername);
+        if ($db->connect_error) {
+            echo json_encode("Problemas de conexion con la DB: " . $db->connect_error);
+            die();
+        }
+        $res = $db->query('SELECT * FROM reviews');
+        $data = [];
+        while ($row = $res->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        $avg = $db->query('select round(avg(puntuacion),2)  promedio from reviews');
+        $data_avg = [];
+        while ($row_avg = $avg->fetch_assoc()) {
+            $data_avg[] = $row_avg;
+        }
+        $aResponse['code'] = 200;
+        $aResponse['data'] = $data;
+        $aResponse['avg'] = $data_avg;
+        echo json_encode($aResponse);
+    } else {
         $aResponse['data'] = 'Error al procesar  el Review - Informacion Erronea';
         $aResponse['code'] = 400;
         echo json_encode($aResponse);
