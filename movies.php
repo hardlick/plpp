@@ -66,8 +66,6 @@ foreach ($plppConfiguration as $key => $value) {
         // Something to do here?
     }
 }
-
-
 // Generate warning message if plex server is not configured
 if (
         empty($plppConfiguration['plexserver']['domain']) ||
@@ -98,8 +96,15 @@ $plppViewmode = $plppConfiguration['libraries']['default_viewmode'];
 
 // Start Session
 session_start();
-
-
+$idUser = NULL;
+$_SESSION['idU']= NULL;
+if (isset($_GET['i'])) {
+    $idUser = (int) $_GET['i'];
+    $_SESSION['idU']= $idUser;
+}
+if(isset($_SESSION['idU']) AND $_SESSION['idU']!=NULL){
+    $idUser = (int) $_SESSION['idU'];
+}
 // Initiate the plexAPI class and request the token if not already set in session variable (speeds up image delivery)
 $plppConfiguration['plexserver']['token'] = $_SESSION['token'];
 $plex = new plexAPI($plppConfiguration['plexserver'], $plppConfiguration['general']);
@@ -322,6 +327,7 @@ foreach ($plppIndex['items'] AS $child) {
     if ($child['key'] == $plppLibrarySectionID) {
         $plppOutput['Menu'] .= ' plpp_menu_selected selected';
     }
+    $plppOutput['Catalogo'] = '<a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library"><span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a>';
     $plppOutput['Menu'] .= '"><a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library">';
     $plppOutput['Menu'] .= '<span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a></li>' . PHP_EOL;
     if (!in_array($child['type'], $plppLibraryTypes)) {

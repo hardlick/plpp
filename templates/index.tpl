@@ -44,6 +44,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
+                                    Ver todas las:&nbsp;&nbsp; [@Catalogo]
                                     <div id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
 				
 [@Errors]
