@@ -1318,7 +1318,7 @@ $plppOutput['ScriptCode'] .= PHP_EOL;
 if($plppYear!='' AND $plppYear!=NULL){
 $plppOutput['ScriptCode'] .= ' var years='.$plppYear.'</script>' . PHP_EOL;
 }else{
-$plppOutput['ScriptCode'] .= '	</script>' . PHP_EOL;
+$plppOutput['ScriptCode'] .= 'var years=""</script>' . PHP_EOL;
 }
 
 // Constructing the error messages
