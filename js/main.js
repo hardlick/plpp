@@ -3,6 +3,7 @@ $(document).ready(function () {
         $('#formToSecond #i').val($(this).attr('data-i'));
         $('#formToSecond #b').val($(this).attr('data-b'));
         $('#formToSecond #d').val($(this).attr('data-c'));
+        $('#formToSecond #us').val($(this).attr('data-us'));
         var c = $(this).parent().find('img.img-rounded').attr('src');
         
         $('#formToSecond #c').val(c);

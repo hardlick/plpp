@@ -102,6 +102,7 @@
 <input id='b' type='hidden' name='b' value=''>
 <input id='c' type='hidden' name='c' value=''>
 <input id='d' type='hidden' name='d' value=''>
+<input id='us' type='hidden' name='us' value=''>
 <input id='amt' type='hidden' name='amt' value=''>
 <input id='amt_r' type='hidden' name='amt_r' value=''>
 </form>

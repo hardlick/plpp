@@ -22,7 +22,8 @@
                                 amount: amount,
                                 amount_r: amount_r,
                                 descrp: descrp,
-                                email: email
+                                email: email,
+                                us: us
                             },
                             dataType: 'json',
                             url: '/paymentProcess.php',
@@ -54,6 +55,7 @@
                                             amount_r: amount_r,
                                             email: response.email,
                                             descrp: descrp,
+                                            us: us,
                                             code_reference: response.reference_code,
                                             code_auth: response.authorization_code
                                         },
@@ -79,6 +81,7 @@
                                             amount_r: amount_r,
                                             email: email,
                                             descrp: descrp,
+                                            us: us,
                                             user_message: result.user_message,
                                             type: result.type,
                                             codigo_error: '0001',
@@ -109,6 +112,7 @@
                                 amount_r: amount_r,
                                 email: $("input[name='cardEmail']").val(),
                                 descrp: descrp,
+                                us: us,
                                 user_message: Culqi.error.user_message,
                                 type: Culqi.card_error,
                                 codigo_error: '0000',

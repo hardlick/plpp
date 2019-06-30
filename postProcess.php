@@ -20,13 +20,13 @@ try {
                 $amount = trim(htmlspecialchars($_POST['amount']));
                 $amount_r = trim(htmlspecialchars($_POST['amount_r']));
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
-                $email = trim(htmlspecialchars($_POST['email']));
+                
                 $user_ip = getUserIP();
                 $code_auth = trim(htmlspecialchars($_POST['code_auth']));
                 $code_reference = trim(htmlspecialchars($_POST['code_reference']));
 
-                if (isset($_POST['idUser'])) {
-                    $idUser = trim(htmlspecialchars($_POST['idUser']));
+                if (isset($_POST['us'])) {
+                    $idUser = trim(htmlspecialchars($_POST['us']));
                 } else {
                     $idUser = null;
                 }
@@ -95,8 +95,8 @@ try {
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
                 $email = trim(htmlspecialchars($_POST['email']));
 
-                if (isset($_POST['idUser'])) {
-                    $idUser = trim(htmlspecialchars($_POST['idUser']));
+                if (isset($_POST['us'])) {
+                    $idUser = trim(htmlspecialchars($_POST['us']));
                 } else {
                     $idUser = null;
                 }

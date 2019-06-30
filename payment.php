@@ -1,5 +1,5 @@
 <?php
-
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //$ip = $_SERVER['REMOTE_ADDR'];
 //$dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
 //if (isset($dataArray->geoplugin_countryName) AND $dataArray->geoplugin_countryName != 'Peru') {
@@ -20,29 +20,6 @@
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootbox.min.js"></script>
-        <style>
-
-            ul
-            {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                text-align: left;
-            }
-
-            li
-            {
-
-                background-repeat: no-repeat;
-                background-position: 100% .4em;
-                padding-right: .6em;
-            }
-            hr{
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-        </style>
-
     </head>
     <body>
         <?php
@@ -55,6 +32,7 @@
         $desc = '';
         $__amount = '';
         $img_c = '';
+        $idUser ='';
         if (!empty($_POST['i']) && !empty($_POST['b']) && !empty($_POST['amt'])) {
             $item = htmlspecialchars($_POST['i']);
             $item = filter_var($item, FILTER_VALIDATE_INT);
@@ -62,6 +40,7 @@
                 exit('Informacion Incorrecta');
             }
             $desc = htmlspecialchars($_POST['b']);
+            $idUser = htmlspecialchars($_POST['us']);
             $img_c = $_POST['c'];
             $__amount = trim(htmlspecialchars($_POST['amt']));
             $__amount_r = trim(htmlspecialchars($_POST['amt_r']));
@@ -74,6 +53,7 @@
                 var urlBase = '<?= $urlBase; ?>';
                 var descrp = '<?= $item . ' - ' . $desc; ?>';
                 var item = '<?= $item; ?>';
+                var us = '<?= $idUser; ?>';
                 var amount = '<?php echo $__amount; ?>';
                 var amount_r = '<?php echo $__amount_r; ?>';
                 Culqi.publicKey = '<?= $__public_key; ?>';
@@ -175,6 +155,9 @@
                 });
             </script>
     <?php
+}
+}else{
+    exit('Upss....');
 }
 ?>
     </body>
