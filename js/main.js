@@ -49,6 +49,11 @@ $(document).ready(function () {
         });
     });
     
+    if(sorM==1){
+        $('#onlyM').show();
+    }else{
+        $('#onlyM').hide();
+    }
     if(years!=null && years != ''){
     $('#anio').val(0);
     $('#anioSelected').html(years);

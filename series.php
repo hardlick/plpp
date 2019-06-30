@@ -737,13 +737,13 @@ foreach ($plppItems as $parentKey => $parent) {
                 // Close thumb for thumbs view
                 case 'thumbs': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close thumb for slider view
                 case 'slider': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $contentText . '" data-c="' . $child['type'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close row for list view
@@ -1081,7 +1081,8 @@ END;
 $plppOutput['ScriptCode'] .= PHP_EOL;
 
 // Close the script tag
-$plppOutput['ScriptCode'] .= '	</script>' . PHP_EOL;
+
+$plppOutput['ScriptCode'] .= 'var sorM=0 </script>' . PHP_EOL;
 
 
 // Constructing the error messages

@@ -46,6 +46,7 @@
 				<div class="col-lg-12">
                                     <span>Ver todas las:&nbsp;&nbsp; [@Catalogo]</span>
                                     <br>
+                                    <div id="onlyM">
                                     <div>
                                      Por Género:<br>
                                      [@generos]</div>
@@ -86,6 +87,7 @@
                                        </select>
                                       <span>Año Seleccionado: <b id="anioSelected"></b></span>
                                      </div>
+                                        </div>
                                     <div style="margin-top: 5px;" id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
 				
 [@Errors]

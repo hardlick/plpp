@@ -762,13 +762,13 @@ foreach ($plppItems as $parentKey => $parent) {
                 // Close thumb for thumbs view
                 case 'thumbs': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close thumb for slider view
                 case 'slider': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '"  class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close row for list view
@@ -864,13 +864,13 @@ foreach ($plppItems as $parentKey => $parent) {
                 // Close thumb for thumbs view
                 case 'thumbs': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close thumb for slider view
                 case 'slider': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close row for list view
@@ -967,13 +967,13 @@ foreach ($plppItems as $parentKey => $parent) {
                 // Close thumb for thumbs view
                 case 'thumbs': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close thumb for slider view
                 case 'slider': {
                         $plppOutput['Content'] .= '				</a>' . PHP_EOL;
-                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" data-us="' . $idUser . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
                         break;
                     }
                 // Close row for list view
@@ -1316,9 +1316,9 @@ $plppOutput['ScriptCode'] .= PHP_EOL;
 // Close the script tag
 
 if($plppYear!='' AND $plppYear!=NULL){
-$plppOutput['ScriptCode'] .= ' var years='.$plppYear.'</script>' . PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
 }else{
-$plppOutput['ScriptCode'] .= 'var years=""</script>' . PHP_EOL;
+$plppOutput['ScriptCode'] .= 'var years=""; var sorM=1;</script>' . PHP_EOL;
 }
 
 // Constructing the error messages
