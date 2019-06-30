@@ -48,4 +48,9 @@ $(document).ready(function () {
             size: 'large'
         });
     });
+    
+    if(years!=null && years != ''){
+    $('#anio').val(0);
+    $('#anioSelected').html(years);
+    }
 });

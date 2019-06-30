@@ -6,12 +6,12 @@
 	<title>[@Title]</title>
 	
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/local.min.css" />
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootbox.min.js"></script>
-        <script src="js/main.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/local.min.css" />
+        <script src="/js/jquery-1.10.2.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootbox.min.js"></script>
+        <script src="/js/main.min.js"></script>
 [@Include]
 </head>
 <body>
@@ -44,8 +44,49 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-                                    Ver todas las:&nbsp;&nbsp; [@Catalogo]
-                                    <div id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
+                                    <span>Ver todas las:&nbsp;&nbsp; [@Catalogo]</span>
+                                    <br>
+                                    <div>
+                                     Por Género:<br>
+                                     [@generos]</div>
+                                    <div>
+                                      <br/>  Por Año:&nbsp;&nbsp;
+                                      <select name="anio" id="anio" onchange="location = this.value;">
+                                        <option value='' id="0">Seleccione...</option>
+                                        <option value='?year=1990&item=1&type=library' id="1990">1990</option>
+                                        <option value='?year=1991&item=1&type=library' id="1991">1991</option>
+                                        <option value='?year=1992&item=1&type=library' id="1992">1992</option>
+                                        <option value='?year=1993&item=1&type=library' id="1993">1993</option>
+                                        <option value='?year=1994&item=1&type=library' id="1994">1994</option>
+                                        <option value='?year=1995&item=1&type=library' id="1995">1995</option>
+                                        <option value='?year=1996&item=1&type=library' id="1996">1996</option>
+                                        <option value='?year=1997&item=1&type=library' id="1997">1997</option>
+                                        <option value='?year=1998&item=1&type=library' id="1998">1998</option>
+                                        <option value='?year=1999&item=1&type=library' id="1999">1999</option>
+                                        <option value='?year=2000&item=1&type=library' id="2000">2000</option>
+                                        <option value='?year=2001&item=1&type=library' id="2001">2001</option>
+                                        <option value='?year=2002&item=1&type=library' id="2002">2002</option>
+                                        <option value='?year=2003&item=1&type=library' id="2003">2003</option>
+                                        <option value='?year=2004&item=1&type=library' id="2004">2004</option>
+                                        <option value='?year=2005&item=1&type=library' id="2005">2005</option>
+                                        <option value='?year=2006&item=1&type=library' id="2006">2006</option>
+                                        <option value='?year=2007&item=1&type=library' id="2007">2007</option>
+                                        <option value='?year=2008&item=1&type=library' id="2008">2008</option>
+                                        <option value='?year=2009&item=1&type=library' id="2009">2009</option>
+                                        <option value='?year=2010&item=1&type=library' id="2010">2010</option>
+                                        <option value='?year=2011&item=1&type=library' id="2011">2011</option>
+                                        <option value='?year=2012&item=1&type=library' id="2012">2012</option>
+                                        <option value='?year=2013&item=1&type=library' id="2013">2013</option>
+                                        <option value='?year=2014&item=1&type=library' id="2014">2014</option>
+                                        <option value='?year=2015&item=1&type=library' id="2015">2015</option>
+                                        <option value='?year=2016&item=1&type=library' id="2016">2016</option>
+                                        <option value='?year=2017&item=1&type=library' id="2017">2017</option>
+                                        <option value='?year=2018&item=1&type=library' id="2018">2018</option>
+                                        <option value='?year=2019&item=1&type=library' id="2019">2019</option>                                        
+                                       </select>
+                                      <span>Año Seleccionado: <b id="anioSelected"></b></span>
+                                     </div>
+                                    <div style="margin-top: 5px;" id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
 				
 [@Errors]
 [@Content]

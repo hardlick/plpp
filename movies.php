@@ -35,6 +35,9 @@ $plppConfiguration = array(
 );
 $plppErrors = array();
 $plppItems = array();
+$plppGenre = '';
+$plppYear = '';
+$plpp = '';
 $plppOutput = array(
     'Title' => '',
     'Errors' => '',
@@ -105,6 +108,7 @@ if (isset($_GET['i'])) {
 if(isset($_SESSION['idU']) AND $_SESSION['idU']!=NULL){
     $idUser = (int) $_SESSION['idU'];
 }
+
 // Initiate the plexAPI class and request the token if not already set in session variable (speeds up image delivery)
 $plppConfiguration['plexserver']['token'] = $_SESSION['token'];
 $plex = new plexAPI($plppConfiguration['plexserver'], $plppConfiguration['general']);
@@ -119,11 +123,26 @@ if (empty($plex->getToken())) {
 // Setting the excluded libraries
 $plex->setExcludedLibraries($plppConfiguration['libraries']['excluded_libraries']);
 
-
 // Setting the Item variable from GET
 if (isset($_GET['item'])) {
     $plppItem = (int) $_GET['item'];
     $plppItemsQueryString['item'] = $plppItem;
+}
+if (isset($_GET['genre'])) {
+    $plppGenre = (int) $_GET['genre'];
+    $plppItemsQueryString['genre'] = $plppGenre;
+    $plppViewmode = 'genre';
+    $plppItemsFilter = 'all';
+    $plppItemsQueryString['filter'] = 'all';
+    $plppItemsQuery = 'genre='.$plppGenre;
+}
+if (isset($_GET['year'])) {
+    $plppYear = (int) $_GET['year'];
+    $plppItemsQueryString['year'] = $plppYear;
+    $plppViewmode = 'year';
+    $plppItemsFilter = 'all';
+    $plppItemsQueryString['filter'] = 'all';
+    $plppItemsQuery = 'year='.$plppYear;
 }
 
 
@@ -322,6 +341,14 @@ if (empty($plppIndex)) {
 usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
 
 // Creating the plex library menu
+$filtersGeneros = $plex->getListAllGenre();
+$plppOutput['generos']='';
+foreach ($filtersGeneros AS  $key=> $genero) {
+    
+    $plppOutput['generos'] .='<a class="buttonGenero" href="' . PLPP_BASE_PATH . '?genre=' . $key . '&item=1&type=library">' . $genero . '</a>';
+}
+
+
 foreach ($plppIndex['items'] AS $child) {
     $plppOutput['Menu'] .= '<li class="plpp_menu';
     if ($child['key'] == $plppLibrarySectionID) {
@@ -394,6 +421,12 @@ if ($plppIsSearch) {
         $plppItems['artist'] = $plex->getRecentlyAdded('artist');
     }
     // Else we load the requested item
+    else if($plppGenre !=''){
+        $plppItems[$plppItemType] = $plex->getItemsBy($plppItem, $plppItemType, $plppItemsFilter, $plppItemsQuery);
+    }
+    else if($plppYear!=''){
+        $plppItems[$plppItemType] = $plex->getItemsBy($plppItem, $plppItemType, $plppItemsFilter, $plppItemsQuery);
+    }
     else {
         $plppItems[$plppItemType] = $plex->getItems($plppItem, $plppItemType, $plppItemsFilter, $plppItemsQuery);
     }
@@ -483,12 +516,11 @@ foreach ($plppItems as $parentKey => $parent) {
 
     // Set the type of content
     $plppViewgroupType = (!empty($parent['viewGroup'])) ? $parent['viewGroup'] : $parentKey;
-    ;
     if ($plppIsSearch) {
         $plexKey = $parentKey;
     } else {
         $plexKey = (empty($plppItem)) ? $plppViewgroupType : $plppItem;
-        ;
+        
     }
 
     // Start of the content output container
@@ -514,6 +546,12 @@ foreach ($plppItems as $parentKey => $parent) {
         $plppOutput['Content'] .= '				<a href="' . PLPP_BASE_PATH . '?' . http_build_query($plppItemsQueryString) . '&viewmode=list"><i class="fa fa-bars fa-lg"></i></a>&nbsp;&nbsp;' . PHP_EOL;
         $plppOutput['Content'] .= '				<a href="' . PLPP_BASE_PATH . '?' . http_build_query($plppItemsQueryString) . '&viewmode=thumbs"><i class="fa fa-th fa-lg"></i></a>&nbsp;&nbsp;' . PHP_EOL;
         $plppOutput['Content'] .= '			</div>' . PHP_EOL;
+    }
+    else if($plppViewmode =='genre'){
+         $plppOutput['Content'] .= '			<div class="plpp_bxslide_navigation">' . PHP_EOL;
+        $plppOutput['Content'] .= '				<span class="plpp_bxslide_prev_' . $plppViewgroupType . '"></span>&nbsp;&nbsp;' . PHP_EOL;
+        $plppOutput['Content'] .= '				<span class="plpp_bxslide_next_' . $plppViewgroupType . '"></span>' . PHP_EOL;
+        $plppOutput['Content'] .= '			</div>' . PHP_EOL;	
     }
 
     // End of navigation container
@@ -553,7 +591,7 @@ foreach ($plppItems as $parentKey => $parent) {
             $parent['title2'] = 'Estrenados Recientemente';
         }
         // But if it is a library, we generate the filter dropdwon menu
-        if ($plppItemType == 'library' && $plppItem != '') {
+        if ($plppItemType == 'library' && $plppItem != '' && $plppGenre=='' && $plppYear=='') {
             $filters = $plex->getFilters($plppItem);
             asort($filters);
             $plppOutput['Content'] .= '				<li class="plpp_dropdown dropdown active">' . PHP_EOL;
@@ -640,11 +678,111 @@ foreach ($plppItems as $parentKey => $parent) {
     }
 
     // Only generate the items output if we are not in details viewmode
-    if ($plppViewmode != 'details') {
+    if ($plppViewmode != 'details' && $plppGenre=='' && $plppYear=='') {
+       
+        foreach ($parent['items'] as $childKey => $child) {         
+            
+            switch ($plppViewmode) {
 
-        // rotate through the items
-        foreach ($parent['items'] as $childKey => $child) {
+                // Start thumb for thumbs view
+                case 'thumbs': {
+                        $plppOutput['Content'] .= '			<div class="col-xs-1 plpp_' . $plppViewmode . '">' . PHP_EOL;
+                        $plppOutput['Content'] .= '				<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                        if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                            if ($child['type'] != 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                $plppIsModalLink = true;
+                            } else if ($child['type'] == 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo" data-title="' . $child['title'] . '">' . PHP_EOL;
+                            }
+                        } else {
+                            $plppOutput['Content'] .= '">' . PHP_EOL;
+                        }
+                        break;
+                    }
 
+                // Start thumb for slider view
+                case 'slider': {
+                        $plppOutput['Content'] .= '			<div class="plpp_slider">' . PHP_EOL;
+                        $plppOutput['Content'] .= '				<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                        if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                            if ($child['type'] != 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                $plppIsModalLink = true;
+                            } else if ($child['type'] == 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo" data-title="' . $child['title'] . '">' . PHP_EOL;
+                            }
+                        } else {
+                            $plppOutput['Content'] .= '">' . PHP_EOL;
+                        }
+                        break;
+                    }
+
+                // Start row for list view
+                case 'list': {
+                        $plppOutput['Content'] .= '				<tr class="plpp_table">' . PHP_EOL;
+                        break;
+                    }
+            }
+
+            // Generate the actual item content
+            foreach ($plppConfiguration['mediatypes'][$child['type']]['itemList'] as $item) {
+                if ($plex->isSetContent(0, $item['type'], $item['content'], $plexKey)) {
+                    if (in_array($plppViewmode, $item['visibility'])) {
+                        // For the list view we have to add the td and link tag
+                        if ($plppViewmode == 'list') {
+                            $plppOutput['Content'] .= '					<td class="plpp_table plpp_table_' . str_replace(' ', '_', $item['name']) . '">' . PHP_EOL;
+                            $plppOutput['Content'] .= '						<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                            if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                                if ($child['type'] != 'photo') {
+                                    $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                    $plppIsModalLink = true;
+                                } else if ($child['type'] == 'photo') {
+                                    $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo_' . $item['name'] . '" data-title="' . $child['title'] . '">' . PHP_EOL;
+                                }
+                            } else {
+                                $plppOutput['Content'] .= '">' . PHP_EOL;
+                            }
+                        }
+                        $plppOutput['Content'] .= '				<span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
+                       
+                        $plppOutput['Content'] .= $plex->getFormatedItemsContent($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
+                        $plppOutput['Content'] .= '</span>' . PHP_EOL;
+                        // For the list view we have to close the td and link tag
+                        if ($plppViewmode == 'list') {
+                            $plppOutput['Content'] .= '						</a>' . PHP_EOL;
+                            $plppOutput['Content'] .= '					</td>' . PHP_EOL;
+                        }
+                    }
+                }
+            }
+
+            switch ($plppViewmode) {
+
+                // Close thumb for thumbs view
+                case 'thumbs': {
+                        $plppOutput['Content'] .= '				</a>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        break;
+                    }
+                // Close thumb for slider view
+                case 'slider': {
+                        $plppOutput['Content'] .= '				</a>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        break;
+                    }
+                // Close row for list view
+                case 'list': {
+                        $plppOutput['Content'] .= '				</tr>' . PHP_EOL;
+                        break;
+                    }
+            }
+        }
+    } else if ($plppGenre!=''){
+        $listItemByGenrer = $plex->getFiltersByGenre($plppGenre);
+        foreach ($listItemByGenrer  as $childKey => $child) {
+             
+            
             switch ($plppViewmode) {
 
                 // Start thumb for thumbs view
@@ -709,7 +847,8 @@ foreach ($plppItems as $parentKey => $parent) {
                             }
                         }
                         $plppOutput['Content'] .= '				<span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
-                        $plppOutput['Content'] .= $plex->getFormatedItemsContent($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
+        
+                        $plppOutput['Content'] .= $plex->getFormatedItemsContentBy($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
                         $plppOutput['Content'] .= '</span>' . PHP_EOL;
                         // For the list view we have to close the td and link tag
                         if ($plppViewmode == 'list') {
@@ -741,7 +880,113 @@ foreach ($plppItems as $parentKey => $parent) {
                     }
             }
         }
-    } else {
+        
+       
+    } else if ($plppYear!=''){
+        $listItemByYear = $plex->getFiltersByYear($plppYear);
+        foreach ($listItemByYear  as $childKey => $child) {           
+            
+            switch ($plppViewmode) {
+
+                // Start thumb for thumbs view
+                case 'thumbs': {
+                        $plppOutput['Content'] .= '			<div class="col-xs-1 plpp_' . $plppViewmode . '">' . PHP_EOL;
+                        $plppOutput['Content'] .= '				<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                        if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                            if ($child['type'] != 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                $plppIsModalLink = true;
+                            } else if ($child['type'] == 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo" data-title="' . $child['title'] . '">' . PHP_EOL;
+                            }
+                        } else {
+                            $plppOutput['Content'] .= '">' . PHP_EOL;
+                        }
+                        break;
+                    }
+
+                // Start thumb for slider view
+                case 'slider': {
+                        $plppOutput['Content'] .= '			<div class="plpp_slider">' . PHP_EOL;
+                        $plppOutput['Content'] .= '				<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                        if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                            if ($child['type'] != 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                $plppIsModalLink = true;
+                            } else if ($child['type'] == 'photo') {
+                                $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo" data-title="' . $child['title'] . '">' . PHP_EOL;
+                            }
+                        } else {
+                            $plppOutput['Content'] .= '">' . PHP_EOL;
+                        }
+                        break;
+                    }
+
+                // Start row for list view
+                case 'list': {
+                        $plppOutput['Content'] .= '				<tr class="plpp_table">' . PHP_EOL;
+                        break;
+                    }
+            }
+
+            // Generate the actual item content
+            foreach ($plppConfiguration['mediatypes'][$child['type']]['itemList'] as $item) {
+
+                if ($plex->isSetContent(0, $item['type'], $item['content'], $plexKey)) {
+                    if (in_array($plppViewmode, $item['visibility'])) {
+                        // For the list view we have to add the td and link tag
+                        if ($plppViewmode == 'list') {
+                            $plppOutput['Content'] .= '					<td class="plpp_table plpp_table_' . str_replace(' ', '_', $item['name']) . '">' . PHP_EOL;
+                            $plppOutput['Content'] .= '						<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
+                            if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
+                                if ($child['type'] != 'photo') {
+                                    $plppOutput['Content'] .= '&viewmode=details" data-target="#plpp_Modal">' . PHP_EOL;
+                                    $plppIsModalLink = true;
+                                } else if ($child['type'] == 'photo') {
+                                    $plppOutput['Content'] .= '&viewmode=img&filter=full" data-lightbox="plpp_photo_' . $item['name'] . '" data-title="' . $child['title'] . '">' . PHP_EOL;
+                                }
+                            } else {
+                                $plppOutput['Content'] .= '">' . PHP_EOL;
+                            }
+                        }
+                        $plppOutput['Content'] .= '				<span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
+        
+                        $plppOutput['Content'] .= $plex->getFormatedItemsContentBy($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
+                        $plppOutput['Content'] .= '</span>' . PHP_EOL;
+                        // For the list view we have to close the td and link tag
+                        if ($plppViewmode == 'list') {
+                            $plppOutput['Content'] .= '						</a>' . PHP_EOL;
+                            $plppOutput['Content'] .= '					</td>' . PHP_EOL;
+                        }
+                    }
+                }
+            }
+
+            switch ($plppViewmode) {
+
+                // Close thumb for thumbs view
+                case 'thumbs': {
+                        $plppOutput['Content'] .= '				</a>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        break;
+                    }
+                // Close thumb for slider view
+                case 'slider': {
+                        $plppOutput['Content'] .= '				</a>' . PHP_EOL;
+                        $plppOutput['Content'] .= '			<br><a data-i="' . $child['ratingKey'] . '" data-b="' . $child['title'] . '" class="buttonPay">Pagar</a></div>' . PHP_EOL;
+                        break;
+                    }
+                // Close row for list view
+                case 'list': {
+                        $plppOutput['Content'] .= '				</tr>' . PHP_EOL;
+                        break;
+                    }
+            }
+        }
+        
+        
+    }
+       else {
         // Generate item details output if we are in details viewmode
         foreach ($plppConfiguration['mediatypes'][$plppViewgroupType]['itemList'] as $item) {
             if (in_array('itemdetails', $item['visibility'])) {
@@ -1069,8 +1314,12 @@ END;
 $plppOutput['ScriptCode'] .= PHP_EOL;
 
 // Close the script tag
-$plppOutput['ScriptCode'] .= '	</script>' . PHP_EOL;
 
+if($plppYear!='' AND $plppYear!=NULL){
+$plppOutput['ScriptCode'] .= ' var years='.$plppYear.'</script>' . PHP_EOL;
+}else{
+$plppOutput['ScriptCode'] .= '	</script>' . PHP_EOL;
+}
 
 // Constructing the error messages
 if (!empty($plppErrors)) {
