@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.4.3 (64 bit)
-MySQL - 10.3.13-MariaDB-2 : Database - baul
+MySQL - 10.1.40-MariaDB-0ubuntu0.18.04.1 : Database - baul
 *********************************************************************
 */
 
@@ -44,12 +44,12 @@ DROP TABLE IF EXISTS `pedidos_error`;
 CREATE TABLE `pedidos_error` (
   `idPedido` int(11) NOT NULL AUTO_INCREMENT,
   `item` int(11) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
+  `descripcion` text,
   `monto` decimal(10,2) DEFAULT NULL,
-  `type` text DEFAULT NULL,
+  `type` text,
   `codigo_error` varchar(50) DEFAULT NULL,
-  `merchant_message` mediumtext DEFAULT NULL,
-  `user_message` mediumtext DEFAULT NULL,
+  `merchant_message` mediumtext,
+  `user_message` mediumtext,
   `fecha_pedido` datetime DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `ip` varchar(20) DEFAULT NULL,
@@ -84,15 +84,23 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `username` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `password` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `fullName` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `status` smallint(1) NOT NULL,
   `codeUser` varchar(7) COLLATE latin1_spanish_ci NOT NULL,
   `dateCreation` datetime NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `users` */
+
+insert  into `users`(`idUser`,`username`,`password`,`fullName`,`status`,`codeUser`,`dateCreation`) values 
+(1,'harold.guerrero','506_1bus','Harold Guerrero',1,'74362','2019-06-30 10:58:16'),
+(2,'rossy.mercado','506_1bus','Rossy Mercado',1,'39752','2019-06-30 10:58:16'),
+(3,'fiorella.nomberto','506_1bus','Fiorella Nomberto',1,'39417','2019-06-30 10:58:16'),
+(4,'renso.nomberto','506_1bus','Renso Nomberto',1,'85924','2019-06-30 10:58:16'),
+(5,'mily.campos','506_1bus','Mily Campos',1,'64735','2019-06-30 10:58:16');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
