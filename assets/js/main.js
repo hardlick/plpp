@@ -73,7 +73,7 @@
                         } else {
                             image = '//graph.facebook.com/v3.3/' + this.profileid + '/picture?width=250&height=250';
                         }
-                        if(i==1){
+                        if(i==0){
                             html = `<div class="carousel-item col-md-4 active">
           <div class="card">
             
