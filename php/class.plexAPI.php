@@ -304,7 +304,7 @@ class plexAPI {
     }
     public function getItemsBy($item = 0, $type, $filter = '', $query = '') {
         if (empty($this->plexItems[$item])) {
-            $path = $this->plexItemTypes[$type]['path'].'/1/'.$filter.'?'.$query;
+            $path = $this->plexItemTypes[$type]['path'].'/'.$item.'/'.$filter.'?'.$query;
             $query = array();
             $index = $this->getXMLN($path,$query);
             $element = $this->plexItemTypes[$type]['element'];
@@ -397,14 +397,14 @@ class plexAPI {
         return $filters;
     }
 
-    public function getFiltersByYear($year) {
-        $path = '/library/sections/1/all?year=' . $year;
+    public function getFiltersByYear($lib,$year) {
+        $path = '/library/sections/'.$lib.'/all?year=' . $year;
         $index = $this->getXMLN($path);
         $filters = $index['Video'];
         return $filters;
     }
-    public function getListAllGenre() {
-        $path = '/library/sections/1/genre?a=a';
+    public function getListAllGenre($lib) {
+        $path = '/library/sections/'.$lib.'/genre?a=a';
         $index = $this->getXMLN($path);
       
         foreach ($index['Directory'] as $child) {            
@@ -412,8 +412,8 @@ class plexAPI {
         }
         return $filters;
     }
-    public function getFiltersByGenre($key) {
-        $path = '/library/sections/1/all?genre='.$key;
+    public function getFiltersByGenre($lib,$key) {
+        $path = '/library/sections/'.$lib.'/all?genre='.$key;
         $index = $this->getXMLN($path);
         $filters = $index['Video'];
         return $filters;

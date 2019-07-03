@@ -341,11 +341,11 @@ if (empty($plppIndex)) {
 usort($plppIndex['items'], make_comparer([$plppConfiguration['libraries']['sort_by'], constant($plppConfiguration['libraries']['sort_order'])], ['title', SORT_ASC]));
 
 // Creating the plex library menu
-$filtersGeneros = $plex->getListAllGenre();
+$filtersGeneros = $plex->getListAllGenre($plppItem);
 $plppOutput['generos']='';
 foreach ($filtersGeneros AS  $key=> $genero) {
     
-    $plppOutput['generos'] .='<a class="buttonGenero" href="' . PLPP_BASE_PATH . '?genre=' . $key . '&item=1&type=library">' . $genero . '</a>';
+    $plppOutput['generos'] .='<a class="buttonGenero" href="' . PLPP_BASE_PATH . '?genre=' . $key . '&item='.$plppItem.'&type=library">' . $genero . '</a>';
 }
 
 
@@ -779,7 +779,7 @@ foreach ($plppItems as $parentKey => $parent) {
             }
         }
     } else if ($plppGenre!=''){
-        $listItemByGenrer = $plex->getFiltersByGenre($plppGenre);
+        $listItemByGenrer = $plex->getFiltersByGenre($plppItem,$plppGenre);
         foreach ($listItemByGenrer  as $childKey => $child) {
              
             
@@ -883,7 +883,7 @@ foreach ($plppItems as $parentKey => $parent) {
         
        
     } else if ($plppYear!=''){
-        $listItemByYear = $plex->getFiltersByYear($plppYear);
+        $listItemByYear = $plex->getFiltersByYear($plppItem,$plppYear);
         foreach ($listItemByYear  as $childKey => $child) {           
             
             switch ($plppViewmode) {
@@ -1316,9 +1316,9 @@ $plppOutput['ScriptCode'] .= PHP_EOL;
 // Close the script tag
 
 if($plppYear!='' AND $plppYear!=NULL){
-$plppOutput['ScriptCode'] .= ' var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItem.'; var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
 }else{
-$plppOutput['ScriptCode'] .= 'var years=""; var sorM=1;</script>' . PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItem.'; var years=""; var sorM=1;</script>' . PHP_EOL;
 }
 
 // Constructing the error messages

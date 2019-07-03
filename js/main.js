@@ -5,28 +5,26 @@ $(document).ready(function () {
         $('#formToSecond #d').val($(this).attr('data-c'));
         $('#formToSecond #us').val($(this).attr('data-us'));
         var c = $(this).parent().find('img.img-rounded').attr('src');
-        
+
         $('#formToSecond #c').val(c);
         if ($(this).attr('data-c') == 'season') {
-            var tit = $(this).parent().find('span.plpp_slider_Show_Title').text()+' '+$(this).parent().find('span.plpp_slider_Season_Title').text();
+            var tit = $(this).parent().find('span.plpp_slider_Show_Title').text() + ' ' + $(this).parent().find('span.plpp_slider_Season_Title').text();
             $('#formToSecond #amt').val('1500');
-            $('#formToSecond #amt_r').val('15.00');            
+            $('#formToSecond #amt_r').val('15.00');
             $('#formToSecond #b').val(tit);
         } else if ($(this).attr('data-c') == 'episode')
         {
-             var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text()+' - '+$(this).parent().find('span.plpp_thumbs_Episode_Title').text()+' - '+$(this).parent().find('span.plpp_thumbs_Episode_No').text();
+            var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_No').text();
             $('#formToSecond #amt').val('300');
             $('#formToSecond #amt_r').val('3.00');
             $('#formToSecond #b').val(tit);
-        }
-         else if ($(this).attr('data-c') == 'show')
+        } else if ($(this).attr('data-c') == 'show')
         {
-            var tit = $(this).parent().find('span.plpp_thumbs_Title').text()+' - '+$(this).parent().find('span.plpp_thumbs_Year').text();
+            var tit = $(this).parent().find('span.plpp_thumbs_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Year').text();
             $('#formToSecond #amt').val('5000');
             $('#formToSecond #amt_r').val('50.00');
             $('#formToSecond #b').val(tit);
-        }
-        else {
+        } else {
             $('#formToSecond #amt').val('500');
             $('#formToSecond #amt_r').val('5.00');
         }
@@ -49,14 +47,21 @@ $(document).ready(function () {
             size: 'large'
         });
     });
-    
-    if(sorM==1){
+
+    if (sorM == 1) {
         $('#onlyM').show();
-    }else{
+    } else {
         $('#onlyM').hide();
     }
-    if(years!=null && years != ''){
-    $('#anio').val(0);
-    $('#anioSelected').html(years);
+    if (years != null && years != '') {
+        $('#anio').val(0);
+        $('#anioSelected').html(years);
     }
+
+    $("#anio > option").each(function () {
+        var lib = plppItem;
+        var year = years;
+        $(this).attr('value', '?year=' + $(this).text() + '&item='+ lib +'&type=library')
+    });
+
 });
