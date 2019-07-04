@@ -1,5 +1,7 @@
 {
-    "excluded_libraries": [],
+    "excluded_libraries": [
+        8
+    ],
     "default_viewmode": "thumbs",
     "sort_by": "type",
     "sort_order": "SORT_ASC"
