@@ -332,7 +332,7 @@ foreach ($plppIndex['items'] AS $child) {
     if ($child['key'] == $plppLibrarySectionID) {
         $plppOutput['Menu'] .= ' plpp_menu_selected selected';
     }
-    $plppOutput['Catalogo'] = '<a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library"><span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a>';
+    $plppOutput['Catalogo'] .= '<a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library"><span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a>';
     $plppOutput['Menu'] .= '"><a href="' . PLPP_BASE_PATH . '?item=' . $child['key'] . '&type=library">';
     $plppOutput['Menu'] .= '<span class="plpp_menu plpp_menu_' . $child['type'] . '">' . $child['title'] . '</span></a></li>' . PHP_EOL;
     if (!in_array($child['type'], $plppLibraryTypes)) {
