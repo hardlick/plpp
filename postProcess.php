@@ -13,6 +13,7 @@ try {
         $servername = db_config::$db_conection_config['baul']['dbName'];
         $username = db_config::$db_conection_config['baul']['dbUser'];
         $password = db_config::$db_conection_config['baul']['dbPassword'];
+        $email = trim(htmlspecialchars($_POST['email']));
         
         if ($event == 'true') {
             if (!empty($_POST['code_auth']) && !empty($_POST['code_reference']) && !empty($_POST['email']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
