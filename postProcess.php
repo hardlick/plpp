@@ -13,7 +13,7 @@ try {
         $servername = db_config::$db_conection_config['baul']['dbName'];
         $username = db_config::$db_conection_config['baul']['dbUser'];
         $password = db_config::$db_conection_config['baul']['dbPassword'];
-        $email = trim(htmlspecialchars($_POST['email']));
+       
         
         if ($event == 'true') {
             if (!empty($_POST['code_auth']) && !empty($_POST['code_reference']) && !empty($_POST['email']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
@@ -21,6 +21,7 @@ try {
                 $amount = trim(htmlspecialchars($_POST['amount']));
                 $amount_r = trim(htmlspecialchars($_POST['amount_r']));
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
+                $email = trim(htmlspecialchars($_POST['email']));
                 
                 $user_ip = getUserIP();
                 $code_auth = trim(htmlspecialchars($_POST['code_auth']));
