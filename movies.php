@@ -1314,11 +1314,15 @@ END;
 $plppOutput['ScriptCode'] .= PHP_EOL;
 
 // Close the script tag
-
-if($plppYear!='' AND $plppYear!=NULL){
-$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItem.'; var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
+if($plppItem==''){
+    $plppItemJS ="-1";
 }else{
-$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItem.'; var years=""; var sorM=1;</script>' . PHP_EOL;
+    $plppItemJS =$plppItem;
+}
+if($plppYear!='' AND $plppYear!=NULL){
+$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItemJS.'; var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
+}else{
+$plppOutput['ScriptCode'] .= ' var plppItem='.$plppItemJS.'; var years=""; var sorM=1;</script>' . PHP_EOL;
 }
 
 // Constructing the error messages

@@ -4,7 +4,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>[@Title]</title>
-	
+        <meta name="description" content="Bienvenido a Baúl de películas & series. 
+              Somos una multi-plataforma en línea que te ofrece más de 1000 películas y series disponibles en calidad Full HD y actualizadas semanalmente con los últimos estrenos.
+              -Cómo lo hacemos?  Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar, no tendrás que perder tiempo, buscando entre las mil páginas gratuitas que te ofrecen películas mal grabadas, series no disponibles, que vienen con más virus que minutos de reproducción.
+              Baúl de películas & series será tu mejor opción, sabes por qué?
+              🏡Desde la comodidad de tu hogar.
+              📺 Para ver en Smart TV, 📲 dispositivos móviles.
+              🎥 Calidad full HD
+              🌐 Plataforma 100% segura y rápida.
+              ⛔ Sin virus ni publicidad.
+              ✌Aceptamos todas las tarjetas de crédito y débito.🕵‍♀¿No encuentras tu película o serie en nuestro catálogo?📲Haz tu pedido ya!">
+        <meta name="og:description" content="Bienvenido a Baúl de películas & series. Somos una multi-plataforma en línea que te ofrece más de 1000 películas y series disponibles en calidad Full HD. Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar">
+        <meta name="keywords" content="peliculas,series,baul de peliculas">
+        <meta name="author" content="Baul De series & Peliculas">
+        <meta property="og:url" content="https://bauldepeliculas.info" />
+        <meta property="og:image" content="https://bauldepeliculas.info/apple-icon-180x180.png" />	
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/local.min.css" />
