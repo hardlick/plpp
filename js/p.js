@@ -8,6 +8,17 @@
                     $(document).on('click', '#procesarPedido', function () {
                         Culqi.open();
                     });
+                    $(document).on('click', '#help', function () {
+                       bootbox.alert({
+                        message: "<p>1. Realizar el Pago</p>\n\
+<p>2. Se te enviará un email automaticamente con la información de acceso</p>\n\
+<p>3. Disfruta de tu Pedido!</p>\n\
+<p>4. Cualquier duda, no dudes en contactarnos via Facebook</p>",
+                        callback: function () {
+                            
+                        }
+                    })
+                    });
                 });
                 function culqi() {
 

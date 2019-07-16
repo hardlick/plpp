@@ -58,7 +58,7 @@
                 var amount_r = '<?php echo $__amount_r; ?>';
                 Culqi.publicKey = '<?= $__public_key; ?>';
             </script>
-            <script src="js/p.min.js"></script>
+            <script src="js/p.js"></script>
             <div class="limiter">
                 <div class="container-login100">
                     <div class="wrap-login100">
@@ -88,6 +88,7 @@
                             <div class="text-center p-t-10">
                                 <span class="txt1">
                                     <ul>
+                                        <li><a id="help"><b>* Click aqui para saber cuales son los pasos a seguir</b></a> </li>
                                         <li>* Toda la información de pago es segura</li>
                                         <li>* Algunas de las tarjetas de débito con CVV podrían ser rechazadas por la plataforma de pago que utilizamos debido a las políticas de seguridad del banco</li>
                                         <li>* Contamos con protección SSL para transacciones seguras
@@ -99,6 +100,7 @@
                                                 TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
                                             </script>
                                         </li>
+                                        
                                     </ul>
                                 </span>
                                 <hr>

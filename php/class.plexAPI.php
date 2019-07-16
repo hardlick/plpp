@@ -418,6 +418,12 @@ class plexAPI {
         $filters = $index['Video'];
         return $filters;
     }
+    public function getListPlaylists() {
+        $path = '/playlists?type=15&playlistType=audio%2Cvideo';
+        $index = $this->getXMLNGeneral($path);
+        $filters = $index['MediaContainer']['Playlist'];
+        return $filters;
+    }
 
     public function search($item = 0, $type = '', $query = '') {
         if (empty($this->plexItems[$type])) {
@@ -634,9 +640,21 @@ class plexAPI {
         }
         return $libraryIndex['MediaContainer'];
     }
+    private function getXMLNGeneral($path = '', $query = array()) {
+        $query['X-Plex-Token'] = $this->plexServer['token'];
+        $url = $this->plexServer['scheme'] . '://' . $this->plexServer['domain'] . ':' . $this->plexServer['port'] . $path . '&' . http_build_query($query);
+        $this->plexURL[] = $url;
+        $libraryIndex = $this->loadXMLFile($url);
+        if (!empty($libraryIndex)) {
+            $libraryIndex = $this->xmlToArray($libraryIndex);
+        }
+        return $libraryIndex;
+    }
 
     private function loadXMLFile($url) {
+     
         $ch = curl_init($url);
+ 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);

@@ -219,7 +219,9 @@ session_write_close();
 if (!is_writable(PLPP_IMGCACHE_PATH) && $plppConfiguration['usersettings']['cache_images']) {
     $plppErrors[] = PLPP_IMGCACHE_PATH . ' must be writable in order to cache the images!';
 }
-
+  //$listItemByGenrer = $plex->getListPlaylists();
+  //var_dump($listItemByGenrer);
+  //die();
 // If Viewmode is img serve image and end script (Images can be cached to speed up image delivery)
 if ($plppViewmode == 'img') {
 

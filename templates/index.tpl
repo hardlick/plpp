@@ -125,7 +125,7 @@
     (function () {
         var options = {
             facebook: "518981848157046", // Facebook page ID
-            call_to_action: "Escríbenos", // Call to action
+            call_to_action: "Haz tu pedido", // Call to action
             position: "right" // Position may be 'right' or 'left'
         };
         var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
