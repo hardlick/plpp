@@ -474,7 +474,8 @@ if (in_array($plppLibrarySectionID, $plppConfiguration['libraries']['excluded_li
     }
 }
 
-
+// Setting the Title
+$plppOutput['Title'] = $plppConfiguration['usersettings']['title'];
 // Add the header sections
 // By default we include the trunc8 jQuery javascript (even if it is not used on all pages)
 $plppOutput['IncludeJS'] .= '	<script src="' . PLPP_JS_PATH . 'trunk8.min.js"></script>' . PHP_EOL;
@@ -997,6 +998,7 @@ foreach ($plppItems as $parentKey => $parent) {
         }
         $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');
 
+        $plppOutput['Title'] = 'Ver Pelicula '.$plppItems['movie']['items'][0]['title'] .' -- '.$plppItems['movie']['items'][0]['originalTitle'];
         // If it is an ajax request serve it to the browser and end
         if ($plppIsModal) {
             echo $plppDetails;
@@ -1341,8 +1343,7 @@ $plppOutput['Include'] .= $plppOutput['IncludeCSS'];
 $plppOutput['Include'] .= $plppOutput['ScriptCode'];
 
 
-// Setting the Title
-$plppOutput['Title'] = $plppConfiguration['usersettings']['title'];
+
 
 
 // Fill the generated html into the template and output the template
