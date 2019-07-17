@@ -13,13 +13,13 @@
         <title>Catalogo de Peliculas & Series - Pago</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/util.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/main.min.css">
-        <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootbox.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css?version=7556756">
+        <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=7556756">
+        <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=7556756">
+        <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=7556756">
+        <script src="js/jquery-1.10.2.min.js?version=7556756"></script>
+        <script src="js/bootstrap.min.js?version=7556756"></script>
+        <script src="js/bootbox.min.js?version=7556756"></script>
     </head>
     <body>
         <?php
