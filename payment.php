@@ -63,13 +63,13 @@
                 <div class="container-login100">
                     <div class="wrap-login100">
                         <div class="login100-form validate-form">
-                            <span class="login100-form-title p-b-26">
-                                <strong style="font-size: 32px;"><?php echo $desc; ?></strong><br>
-                                <img src="<?php echo $img_c; ?>">
+                            <span class="login100-form-title p-b-7">
+                                <strong style="font-size: 22px;"><?php echo $desc; ?></strong><br>
+                                <img style="padding-top: 5px;" src="<?php echo $img_c; ?>">
                             </span>
                             <span class="login100-form-title p-b-1">
-                                Tarjeta de Crédito o Débito<br>
-                                <strong style="font-size: 25px;">S/ <?php echo $__amount_r; ?></strong><br>
+                                Tarjeta de Crédito/Débito<br>
+                                <strong style="font-size: 20px;">S/ <?php echo $__amount_r; ?></strong>
                             </span>
                             <span class="login100-form-title p-b-5">
                                 <i class="zmdi zmdi-font"></i>
@@ -104,7 +104,7 @@
                                     </ul>
                                 </span>
                                 <hr>
-                                <strong>Alerta</strong> Si en caso deseas seleccionar otra pelicula o serie en vez de esta <b><a href="<?php echo $urlBase; ?>" class="alert-link"> Click Aquí para volver al Catálogo</a></b>, y poder volver a hacer tu pedido.
+                                <strong>Alerta</strong> Si en caso deseas seleccionar otra pelicula o serie en vez de esta <b><a  id="help" href="<?php echo $urlBase; ?>" class="alert-link"> Click Aquí para volver al Catálogo</a></b>, y poder volver a hacer tu pedido.
                             </div>
                         </div>
                     </div>
