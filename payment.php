@@ -13,13 +13,13 @@
         <title>Catalogo de Peliculas & Series - Pago</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bootstrap.min.css?version=987411">
-        <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=987411">
-        <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=987411">
-        <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=987411">
-        <script src="js/jquery-1.10.2.min.js?version=987411"></script>
-        <script src="js/bootstrap.min.js?version=987411"></script>
-        <script src="js/bootbox.min.js?version=987411"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css?version=66669">
+        <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=66669">
+        <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=66669">
+        <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=66669">
+        <script src="js/jquery-1.10.2.min.js?version=66669"></script>
+        <script src="js/bootstrap.min.js?version=66669"></script>
+        <script src="js/bootbox.min.js?version=66669"></script>
     </head>
     <body>
         <?php
@@ -58,7 +58,7 @@
                 var amount_r = '<?php echo $__amount_r; ?>';
                 Culqi.publicKey = '<?= $__public_key; ?>';
             </script>
-            <script src="js/p.min.js?version=9997111"></script>
+            <script src="js/p.min.js?version=66669"></script>
             <div class="limiter">
                 <div class="container-login100">
                     <div class="wrap-login100">

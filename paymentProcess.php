@@ -16,12 +16,16 @@ try {
             $amount = filter_var($amount, FILTER_VALIDATE_INT);
             if ($amount === false) {
                 $charge = 'Formato Incorrecto de Precio';
+                echo json_encode($charge);
+                die();
             }
             $descrp = trim(htmlspecialchars($_POST['descrp']));
             $email = trim(htmlspecialchars($_POST['email']));
             $email = filter_var($email, FILTER_VALIDATE_EMAIL);
             if ($email === false) {
                 $charge = 'Formato de Email incorrecto';
+                 echo json_encode($charge);
+                die();
             }
 
             $charge = $culqi->Charges->create(

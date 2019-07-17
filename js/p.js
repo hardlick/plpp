@@ -89,7 +89,7 @@ function culqi() {
                     });
 
                 }
-                if (result.object === 'error') {
+                else if (result.object === 'error') {
                     $.ajax({
                         type: "POST",
                         data: {
@@ -113,7 +113,13 @@ function culqi() {
                     });
                     bootbox.alert({
                         centerVertical: true,
-                        message: 'COD01 - Hubo un problema con la transacción: ' + result.user_message,
+                        message: 'COD01 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result.user_message,
+                        size: 'small'
+                    });
+                }else{
+                    bootbox.alert({
+                        centerVertical: true,
+                        message: 'COD02 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' +response,
                         size: 'small'
                     });
                 }
@@ -122,7 +128,7 @@ function culqi() {
             error: function (response) {
                 bootbox.alert({
                     centerVertical: true,
-                    message: 'COD02 - Hubo un problema con la transacción: ' + response,
+                    message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
                     size: 'small'
                 });
             }
@@ -152,7 +158,7 @@ function culqi() {
         });
         bootbox.alert({
             centerVertical: true,
-            message: 'COD03 - Hubo un problema con la transacción: ' + Culqi.error.user_message,
+            message: 'COD04 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + Culqi.error.user_message,
             size: 'small'
         });
     }
