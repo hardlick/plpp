@@ -7,8 +7,10 @@ $(document).ready(function () {
         var c = $(this).parent().find('img.img-rounded').attr('src');
 
         $('#formToSecond #c').val(c);
+        console.log($(this).attr('data-c'));
+        
         if ($(this).attr('data-c') == 'season') {
-            var tit = $(this).parent().find('span.plpp_slider_Show_Title').text() + ' ' + $(this).parent().find('span.plpp_slider_Season_Title').text();
+            var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' ' + $(this).parent().find('span.plpp_thumbs_Season_Title').text();
             $('#formToSecond #amt').val('1500');
             $('#formToSecond #amt_r').val('15.00');
             $('#formToSecond #b').val(tit);
@@ -53,15 +55,18 @@ $(document).ready(function () {
     } else {
         $('#onlyM').hide();
     }
+    if (typeof years != 'undefined') {
     if (years != null && years != '') {
         $('#anio').val(0);
         $('#anioSelected').html(years);
     }
-
-    $("#anio > option").each(function () {
+     $("#anio > option").each(function () {
         var lib = plppItem;
         var year = years;
         $(this).attr('value', '?year=' + $(this).text() + '&item='+ lib +'&type=library')
     });
+    }
+
+   
 
 });
