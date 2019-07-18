@@ -1,3 +1,4 @@
+var dialog = null;
 $.extend($.validator.messages, {
     required: "Este campo es obligatorio.",
     remote: "Por favor, llene este campo.",
@@ -72,6 +73,10 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             Culqi.createToken();
+            dialog = bootbox.dialog({
+                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
+                closeButton: false
+            });
             setTimeout(function () {
                 if (Culqi.token !== null && Culqi.token.object === 'token' && Culqi.token.active === true) {
                     var token = Culqi.token.id;
@@ -88,12 +93,7 @@ $(document).ready(function () {
                         },
                         dataType: 'json',
                         url: '/paymentProcess.php',
-                        beforeSend: function () {
-                            dialog = bootbox.dialog({
-                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
-                                closeButton: false
-                            });
-                        },
+                       
                         complete: function (event, r) {
                             dialog.modal('hide');
                         },
@@ -170,6 +170,7 @@ $(document).ready(function () {
 
                         },
                         error: function (response) {
+                              dialog.modal('hide');
                             bootbox.alert({
                                 message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
                                 size: 'small'
@@ -178,6 +179,7 @@ $(document).ready(function () {
                     });
 
                 } else {
+                    dialog.modal('hide');
                     bootbox.alert({
                         message: 'COD04 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ',
                         size: 'small'

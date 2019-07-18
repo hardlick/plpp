@@ -1,3 +1,4 @@
+var dialog = null;
 Culqi.settings({
     title: 'Baul de Peliculas & Series',
     currency: 'PEN',
@@ -14,6 +15,7 @@ $(document).ready(function () {
         $('#formToThree #us').val(us);
         $('#formToThree #amt').val(amount);
         $('#formToThree #amt_r').val(amount_r);
+        $('#formToThree #c').val(c);
         $('#formToThree').submit();
     });
     $(document).on('click', '#help', function () {
@@ -130,6 +132,7 @@ function culqi() {
 
             },
             error: function (response) {
+                dialog.modal('hide');
                 bootbox.alert({
                     message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
                     size: 'small'

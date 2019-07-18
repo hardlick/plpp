@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <script>
                     var urlBase = '<?= $urlBase; ?>';
                     var b = '<?= $desc; ?>';
+                    var c = '<?= $img_c; ?>';
                     var descrp = '<?= $item . ' - ' . $desc; ?>';
                     var item = '<?= $item; ?>';
                     var us = '<?= $idUser; ?>';
@@ -59,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     var amount_r = '<?php echo $__amount_r; ?>';                   
                     Culqi.publicKey = '<?= $__public_key; ?>';
                 </script>
-                <script src="js/p.min.js?version=99871112"></script>
+                <script src="js/p.js?version=99871112"></script>
                 <div class="limiter">
                     <div class="container-login100">
                         <div class="wrap-login100">
