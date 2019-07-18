@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </span>
                                     <hr>
                                     <strong>Alerta</strong> Si en caso deseas seleccionar otra pelicula o serie en vez de esta <b><a  id="help" href="<?php echo $urlBase; ?>" class="alert-link"> Click Aquí para volver al Catálogo</a></b>, y poder volver a hacer tu pedido.
-                                  <!--    <hr>
+                                    <hr>
                                     <form id='formToThree' action='/paymentSecond.php' method="post">
                                         <input id='token' type='hidden' name='token' value='=789543455gdf23xvsKSJHh23'>
                                         <input id='i' type='hidden' name='i' value=''>
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <input id='amt' type='hidden' name='amt' value=''>
                                         <input id='amt_r' type='hidden' name='amt_r' value=''>
                                         <button type="submit"  id="OtherPayment" class="alert-link">Tienes problemas con el pago? Click Aqui</button>
-                                    </form> -->
+                                    </form> 
                                 </div>
                             </div>
                         </div>

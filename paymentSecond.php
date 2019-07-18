@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $culqi_key_public = 'culqi_public_' . $culqi_environment;
                 $__public_key = db_config::$db_conection_config['baul'][$culqi_key_public];
                 ?>
-                <script src="https://checkout.culqi.com/v2"></script>
+                <script src="https://checkout.culqi.com/js/v3"></script>
                 <script>
                     var urlBase = '<?= $urlBase; ?>';
                     var descrp = '<?= $item . ' - ' . $desc; ?>';
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                         <input type="text" class="form-control" name="exp_month" maxlength="2"  data-culqi="card[exp_month]" id="card[exp_month]" placeholder="MM" required />
                                                     </div>
                                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                                        <input type="text" class="form-control" name="exp_year"  maxlength="2" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="YY" required /></div>
+                                                        <input type="text" class="form-control" name="exp_year"  maxlength="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="YYYY" required /></div>
                                                 </div>
                                             </div>
                                             <div class="col-xs-5 col-md-5 pull-right">
@@ -140,8 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <br/>
                               <button type="submit"  id="SubmitReview" class="btn btn-success btn-lg btn-block">
                             PAGAR
-                        </button>
-                            
+                        </button>                           
 
                         </div>
                     </div>

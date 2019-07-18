@@ -58,14 +58,9 @@ function culqi() {
             },
             success: function (response) {
                 var result = "";
-                
-                if (response.constructor == String) {                    
-                    result = response;
-                    bootbox.alert({
-                    message: 'COD00 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result,
-                    size: 'small'
-                });
-                return false;
+
+                if (response.constructor == String) {
+                    result = JSON.parse(response);
                 }
                 if (response.constructor == Object) {
                     result = JSON.parse(JSON.stringify(response));

@@ -45,8 +45,8 @@ $(document).ready(function () {
             },
             exp_year: {
                 required: true,
-                minlength: 2,
-                maxlength: 2
+                minlength: 4,
+                maxlength: 4
             },
             cvv: {
                 required: true,
@@ -71,132 +71,121 @@ $(document).ready(function () {
             }
         },
         submitHandler: function (form) {
-            var dataString = $('form#processReview').serialize();
-           Culqi.createToken();
+            Culqi.createToken();
+            setTimeout(function () {
+                if (Culqi.token !== null && Culqi.token.object === 'token' && Culqi.token.active === true) {
+                    var token = Culqi.token.id;
+                    var email = Culqi.token.email;
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            token: token,
+                            amount: amount,
+                            amount_r: amount_r,
+                            descrp: descrp,
+                            email: email,
+                            us: us
+                        },
+                        dataType: 'json',
+                        url: '/paymentProcess.php',
+                        beforeSend: function () {
+                            dialog = bootbox.dialog({
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
+                                closeButton: false
+                            });
+                        },
+                        complete: function (event, r) {
+                            dialog.modal('hide');
+                        },
+                        success: function (response) {
+                            var result = "";
+                            if (response.constructor == String) {
+                                result = JSON.parse(response);
+                            }
+                            if (response.constructor == Object) {
+                                result = JSON.parse(JSON.stringify(response));
+                            }
+                            if (result.object === 'charge') {
+
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        event: true,
+                                        item: item,
+                                        amount: amount,
+                                        amount_r: amount_r,
+                                        email: response.email,
+                                        descrp: descrp,
+                                        us: us,
+                                        code_reference: response.reference_code,
+                                        code_auth: response.authorization_code
+                                    },
+                                    dataType: 'json',
+                                    url: '/postProcess.php',
+                                    success: function (response) {
+                                        return true;
+                                    }
+                                });
+                                bootbox.alert({
+                                    message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico',
+                                    size: 'small',
+                                    callback: function () {
+                                        window.location.replace("https://bauldepeliculas.info/");
+                                        return false;
+                                    }
+                                });
+
+                            } else if (result.object === 'error') {
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        event: false,
+                                        item: item,
+                                        amount: amount,
+                                        amount_r: amount_r,
+                                        email: email,
+                                        descrp: descrp,
+                                        us: us,
+                                        user_message: result.user_message,
+                                        type: result.type,
+                                        codigo_error: '0001',
+                                        merchant_message: result.merchant_message
+                                    },
+                                    dataType: 'json',
+                                    url: '/postProcess.php',
+                                    success: function (response) {
+                                        return true;
+                                    }
+                                });
+                                bootbox.alert({
+                                    message: 'COD01 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result.user_message,
+                                    size: 'small'
+                                });
+                            } else {
+                                bootbox.alert({
+                                    message: 'COD02 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + response,
+                                    size: 'small'
+                                });
+                            }
+
+                        },
+                        error: function (response) {
+                            bootbox.alert({
+                                message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
+                                size: 'small'
+                            });
+                        }
+                    });
+
+                } else {
+                    bootbox.alert({
+                        message: 'COD04 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ',
+                        size: 'small'
+                    });
+
+                }
+            }, 5000);
         }
     });
 
 });
-function culqi() {
-    
-    if (Culqi && Culqi instanceof Array && !Culqi.length) {
-        if (Culqi.token) { // ¡Objeto Token creado exitosamente!
-            var token = Culqi.token.id;
-            var email = Culqi.token.email;
-            $.ajax({
-                type: "POST",
-                data: {
-                    token: token,
-                    amount: amount,
-                    amount_r: amount_r,
-                    descrp: descrp,
-                    email: email,
-                    us: us
-                },
-                dataType: 'json',
-                url: '/paymentProcess.php',
-                beforeSend: function () {
-                    dialog = bootbox.dialog({
-                        centerVertical: true,
-                        message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
-                        closeButton: false
-                    });
-                },
-                complete: function (event, r) {
-                    dialog.modal('hide');
-                },
-                success: function (response) {
-                    var result = "";
-
-                    if (response.constructor == String) {
-                        result = response;
-                        bootbox.alert({
-                            message: 'COD00 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result,
-                            size: 'small'
-                        });
-                        return false;
-                    }
-                    if (response.constructor == Object) {
-                        result = JSON.parse(JSON.stringify(response));
-                    }
-                    if (result.object === 'charge') {
-
-                        $.ajax({
-                            type: "POST",
-                            data: {
-                                event: true,
-                                item: item,
-                                amount: amount,
-                                amount_r: amount_r,
-                                email: response.email,
-                                descrp: descrp,
-                                us: us,
-                                code_reference: response.reference_code,
-                                code_auth: response.authorization_code
-                            },
-                            dataType: 'json',
-                            url: '/postProcess.php',
-                            success: function (response) {
-                                return true;
-                            }
-                        });
-                        bootbox.alert({
-                            message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico',
-                            size: 'small',
-                            callback: function () {
-                                window.location.replace("https://bauldepeliculas.info/");
-                                return false;
-                            }
-                        });
-
-                    } else if (result.object === 'error') {
-                        $.ajax({
-                            type: "POST",
-                            data: {
-                                event: false,
-                                item: item,
-                                amount: amount,
-                                amount_r: amount_r,
-                                email: email,
-                                descrp: descrp,
-                                us: us,
-                                user_message: result.user_message,
-                                type: result.type,
-                                codigo_error: '0001',
-                                merchant_message: result.merchant_message
-                            },
-                            dataType: 'json',
-                            url: '/postProcess.php',
-                            success: function (response) {
-                                return true;
-                            }
-                        });
-                        bootbox.alert({
-                            message: 'COD01 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result.user_message,
-                            size: 'small'
-                        });
-                    } else {
-                        bootbox.alert({
-                            message: 'COD02 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + response,
-                            size: 'small'
-                        });
-                    }
-
-                },
-                error: function (response) {
-                    bootbox.alert({
-                        message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
-                        size: 'small'
-                    });
-                }
-            });
-        } else {
-            alert(Culqi.error.user_message);
-        }
-    } else {
-        bootbox.alert({
-            message: 'COD00 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ',
-            size: 'small'
-        });
-    }
-}
