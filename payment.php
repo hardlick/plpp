@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <title>Catalogo de Peliculas & Series - Pago</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="/css/bootstrap.min.css?version=66669">
-            <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=21155454">
-            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=21155454">
-            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=21155454">
-            <script src="js/jquery-1.10.2.min.js?version=21155454"></script>
-            <script src="js/bootstrap.min.js?version=21155454"></script>
-            <script src="js/bootbox.min.js?version=21155454"></script>
+            <link rel="stylesheet" href="/css/bootstrap.min.css?version=99871112">
+            <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=99871112">
+            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=99871112">
+            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=99871112">
+            <script src="js/jquery-1.10.2.min.js?version=99871112"></script>
+            <script src="js/bootstrap.min.js?version=99871112"></script>
+            <script src="js/bootbox.min.js?version=99871112"></script>
         </head>
         <body>
             <?php
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     var amount_r = '<?php echo $__amount_r; ?>';                   
                     Culqi.publicKey = '<?= $__public_key; ?>';
                 </script>
-                <script src="js/p.min.js?version=21155454"></script>
+                <script src="js/p.min.js?version=99871112"></script>
                 <div class="limiter">
                     <div class="container-login100">
                         <div class="wrap-login100">
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </span>
                                     <hr>
                                     <strong>Alerta</strong> Si en caso deseas seleccionar otra pelicula o serie en vez de esta <b><a  id="help" href="<?php echo $urlBase; ?>" class="alert-link"> Click Aquí para volver al Catálogo</a></b>, y poder volver a hacer tu pedido.
-                                    <hr>
+                                  <!--    <hr>
                                     <form id='formToThree' action='/paymentSecond.php' method="post">
                                         <input id='token' type='hidden' name='token' value='=789543455gdf23xvsKSJHh23'>
                                         <input id='i' type='hidden' name='i' value=''>
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <input id='amt' type='hidden' name='amt' value=''>
                                         <input id='amt_r' type='hidden' name='amt_r' value=''>
                                         <button type="submit"  id="OtherPayment" class="alert-link">Tienes problemas con el pago? Click Aqui</button>
-                                    </form>
+                                    </form> -->
                                 </div>
                             </div>
                         </div>
@@ -141,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 ?>
                 <script>
+                   var urlBase = '<?= $urlBase; ?>';
                     bootbox.alert('Hubo un Error al procesar la informacion, volver a la pagina principal', function () {
                         window.location.replace(urlBase);
                         return false;

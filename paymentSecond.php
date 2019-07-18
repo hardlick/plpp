@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <script src="js/jquery-1.10.2.min.js?version=66669"></script>
             <script src="js/bootstrap.min.js?version=66669"></script>
             <script src="js/bootbox.min.js?version=66669"></script>
-             <script src="/js/jquery.validate.min.js"></script>
+            <script src="/js/jquery.validate.min.js"></script>
+            <script src="/js/additional-methods.min.js"></script>
         </head>
         <body>
             <?php
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     min-width: 180px;
 }
                 </style>
-<form  role="form" name="processPaymentTwo" id="processPaymentTwo" method="post" action="">
+<form  name="processPaymentTwo" id="processPaymentTwo" method="post" action="">
 
                 <div class="container">
                     <div class="row">
@@ -140,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                               <button type="submit"  id="SubmitReview" class="btn btn-success btn-lg btn-block">
                             PAGAR
                         </button>
+                            
 
                         </div>
                     </div>
@@ -147,8 +149,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
                 <?php
             } else {
+                
                 ?>
                 <script>
+                      var urlBase = '<?= $urlBase; ?>';
                     bootbox.alert('Hubo un Error al procesar la informacion, volver a la pagina principal', function () {
                         window.location.replace(urlBase);
                         return false;

@@ -49,7 +49,6 @@ function culqi() {
             url: '/paymentProcess.php',
             beforeSend: function () {
                 dialog = bootbox.dialog({
-                    centerVertical: true,
                     message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
                     closeButton: false
                 });
@@ -63,7 +62,6 @@ function culqi() {
                 if (response.constructor == String) {                    
                     result = response;
                     bootbox.alert({
-                    centerVertical: true,
                     message: 'COD00 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result,
                     size: 'small'
                 });
@@ -96,7 +94,6 @@ function culqi() {
                     bootbox.alert({
                         message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico',
                         size: 'small',
-                        centerVertical: true,
                         callback: function () {
                             window.location.replace("https://bauldepeliculas.info/");
                             return false;
@@ -126,13 +123,11 @@ function culqi() {
                         }
                     });
                     bootbox.alert({
-                        centerVertical: true,
                         message: 'COD01 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result.user_message,
                         size: 'small'
                     });
                 } else {
                     bootbox.alert({
-                        centerVertical: true,
                         message: 'COD02 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + response,
                         size: 'small'
                     });
@@ -141,7 +136,6 @@ function culqi() {
             },
             error: function (response) {
                 bootbox.alert({
-                    centerVertical: true,
                     message: 'COD03 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + response,
                     size: 'small'
                 });
@@ -160,7 +154,7 @@ function culqi() {
                 descrp: descrp,
                 us: us,
                 user_message: Culqi.error.user_message,
-                type: Culqi.card_error,
+                type: Culqi.type,
                 codigo_error: '0000',
                 merchant_message: Culqi.error.merchant_message
             },
@@ -171,7 +165,6 @@ function culqi() {
             }
         });
         bootbox.alert({
-            centerVertical: true,
             message: 'COD04 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + Culqi.error.user_message,
             size: 'small'
         });
