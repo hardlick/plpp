@@ -1,3 +1,42 @@
+$.extend( $.validator.messages, {
+	required: "Este campo es obligatorio.",
+	remote: "Por favor, llene este campo.",
+	email: "Por favor, escriba un correo electrónico válido.",
+	url: "Por favor, escriba una URL válida.",
+	date: "Por favor, escriba una fecha válida.",
+	dateISO: "Por favor, escriba una fecha (ISO) válida.",
+	number: "Por favor, escriba un número válido.",
+	digits: "Por favor, escriba sólo dígitos.",
+	creditcard: "Por favor, escriba un número de tarjeta válido.",
+	equalTo: "Por favor, escriba el mismo valor de nuevo.",
+	extension: "Por favor, escriba un valor con una extensión permitida.",
+	maxlength: $.validator.format( "Por favor, no escriba más de {0} caracteres." ),
+	minlength: $.validator.format( "Por favor, no escriba menos de {0} caracteres." ),
+	rangelength: $.validator.format( "Por favor, escriba un valor entre {0} y {1} caracteres." ),
+	range: $.validator.format( "Por favor, escriba un valor entre {0} y {1}." ),
+	max: $.validator.format( "Por favor, escriba un valor menor o igual a {0}." ),
+	min: $.validator.format( "Por favor, escriba un valor mayor o igual a {0}." ),
+	nifES: "Por favor, escriba un NIF válido.",
+	nieES: "Por favor, escriba un NIE válido.",
+	cifES: "Por favor, escriba un CIF válido."
+} );
+$.validator.setDefaults({
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if(element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    }
+});
 Culqi.settings({
     title: 'Baul de Peliculas & Series',
     currency: 'PEN',
@@ -5,36 +44,54 @@ Culqi.settings({
     amount: amount
 });
 $(document).ready(function () {
-    $(document).on('click', '#procesarPedido', function () {
-        Culqi.open();
-    });
-    $(document).on('click', '#OtherPayment', function () {
-        $('#formToThree #i').val(item);
-        $('#formToThree #b').val(b);
-        $('#formToThree #us').val(us);
-        $('#formToThree #amt').val(amount);
-        $('#formToThree #amt_r').val(amount_r);
-        $('#formToThree').submit();
-    });
-    $(document).on('click', '#help', function () {
-        bootbox.alert({
-            centerVertical: true,
-            message: "<p>1. Realizar el Pago</p>\n\
-<p>2. Se te enviará un email automaticamente con la información de acceso</p>\n\
-<p>3. Disfruta de tu Pedido!</p>\n\
-<p>4. Cualquier duda, no dudes en contactarnos via Facebook</p>",
-            callback: function () {
 
+    $("form#processPaymentTwo").validate({
+        rules: {
+            cardNumber: {
+                required: true,
+                creditcard: true,
+                minlength: 13,
+                maxlength: 16
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            exp_month: {
+                required: true,
+                minlength: 2,
+                maxlength: 2
+            },
+            exp_year: {
+                required: true,
+                minlength: 2,
+                maxlength: 2
+            },
+            cvv: {
+                required: true,
+                minlength: 3,
+                maxlength: 3
             }
-        })
+
+        },
+        messages: {
+            email: "Ingresa un email valido"
+        },
+        submitHandler: function () {
+            alert('entra?');
+            var dataString = $('form#processReview').serialize();
+            Culqi.createToken();
+            e.preventDefault();
+        }
     });
+
 });
 function culqi() {
-
-    if (Culqi.token) {
-        var dialog;
+    if (Culqi.token) { // ¡Objeto Token creado exitosamente!
         var token = Culqi.token.id;
         var email = Culqi.token.email;
+        alert('Se ha creado un token:' + token);
+
         $.ajax({
             type: "POST",
             data: {
@@ -59,15 +116,9 @@ function culqi() {
             },
             success: function (response) {
                 var result = "";
-                
-                if (response.constructor == String) {                    
-                    result = response;
-                    bootbox.alert({
-                    centerVertical: true,
-                    message: 'COD00 - Contactacte con nosotros y muestranos esta imagen, Hubo un problema con la transacción: ' + result,
-                    size: 'small'
-                });
-                return false;
+                console.log(response);
+                if (response.constructor == String) {
+                    result = JSON.parse(response);
                 }
                 if (response.constructor == Object) {
                     result = JSON.parse(JSON.stringify(response));
@@ -147,33 +198,8 @@ function culqi() {
                 });
             }
         });
-
     } else {
-        $.ajax({
-            type: "POST",
-            data: {
-                event: false,
-                item: item,
-                amount: amount,
-                amount_r: amount_r,
-                email: '',
-                descrp: descrp,
-                us: us,
-                user_message: Culqi.error.user_message,
-                type: Culqi.card_error,
-                codigo_error: '0000',
-                merchant_message: Culqi.error.merchant_message
-            },
-            dataType: 'json',
-            url: '/postProcess.php',
-            success: function (response) {
-                return true;
-            }
-        });
-        bootbox.alert({
-            centerVertical: true,
-            message: 'COD04 - Contactacte con nosotros y muestranos esta imagen,  Hubo un problema con la transacción: ' + Culqi.error.user_message,
-            size: 'small'
-        });
+        alert(Culqi.error.user_message);
     }
 }
+;

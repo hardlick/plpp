@@ -5,10 +5,7 @@ $(document).ready(function () {
         $('#formToSecond #d').val($(this).attr('data-c'));
         $('#formToSecond #us').val($(this).attr('data-us'));
         var c = $(this).parent().find('img.img-rounded').attr('src');
-
-        $('#formToSecond #c').val(c);
-        console.log($(this).attr('data-c'));
-        
+        $('#formToSecond #c').val(c);        
         if ($(this).attr('data-c') == 'season') {
             var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' ' + $(this).parent().find('span.plpp_thumbs_Season_Title').text();
             $('#formToSecond #amt').val('1500');

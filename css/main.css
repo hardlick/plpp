@@ -496,7 +496,7 @@ iframe {
                 margin-top: 10px;
                 margin-bottom: 10px;
             }
-            #help{
+            #help, #OtherPayment{
                 cursor: pointer;
                text-decoration: underline;
             }           

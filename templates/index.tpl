@@ -20,12 +20,12 @@
         <meta property="og:url" content="https://bauldepeliculas.info" />
         <meta property="og:image" content="https://bauldepeliculas.info/apple-icon-180x180.png" />	
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css?version=7556756" />
-	<link rel="stylesheet" type="text/css" href="/css/local.min.css?version=7556756" />
-        <script src="/js/jquery-1.10.2.min.js?version=7556756"></script>
-        <script src="/js/bootstrap.min.js?version=7556756"></script>
-        <script src="/js/bootbox.min.js?version=7556756"></script>
-        <script src="/js/main.min.js?version=7556756"></script>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css?version=21155454" />
+	<link rel="stylesheet" type="text/css" href="/css/local.min.css?version=21155454" />
+        <script src="/js/jquery-1.10.2.min.js?version=21155454"></script>
+        <script src="/js/bootstrap.min.js?version=21155454"></script>
+        <script src="/js/bootbox.min.js?version=21155454"></script>
+        <script src="/js/main.min.js?version=21155454"></script>
 [@Include]
 </head>
 <body>
