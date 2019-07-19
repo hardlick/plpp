@@ -14,7 +14,7 @@
               🌐 Plataforma 100% segura y rápida.
               ⛔ Sin virus ni publicidad.
               ✌Aceptamos todas las tarjetas de crédito y débito.🕵‍♀¿No encuentras tu película o serie en nuestro catálogo?📲Haz tu pedido ya!">
-        <meta name="og:description" content="Bienvenido a Baúl de películas & series. Somos una multi-plataforma en línea que te ofrece más de 1000 películas y series disponibles en calidad Full HD. Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar">
+        <meta name="og:description" content="Bienvenido a Baúl de películas & series. Somos una multi-plataforma en línea que te ofrece más de 5000 películas y series disponibles en calidad Full HD. Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar">
         <meta name="keywords" content="peliculas,series,baul de peliculas">
         <meta name="author" content="Baul De series & Peliculas">
         <meta property="og:url" content="https://bauldepeliculas.info" />
