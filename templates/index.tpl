@@ -103,7 +103,7 @@
                                      </div>
                                         </div>
                                     <div style="margin-top: 5px;" id="RetornoCatalogo" class="alert alert-warning" role="alert">¿Cómo ver una película o serie? <strong><a href="#" id="viewWhy" class="alert-link">click Aquí Para descubrirlo.</a></strong> No encuentro lo que estoy buscando <a href="#" id="order" class="alert-link">¡Quiero hacer un pedido!</a> </div>
-                                    <div id="viewPacks" class="alert alert-warning" role="alert">Tambien tenemos Packs!,<strong><a href="/packs/packs.html" id="viewPacks" class="alert-link"> Click Aqui para conocerlos!</a></strong></div>				 
+                                    <div id="viewPacks" class="alert alert-warning" role="alert">Tambien tenemos Combos!,<strong><a href="#" id="viewPacks" class="alert-link"> Click Aqui para conocerlos!</a></strong></div>				 
 [@Errors]
 [@Content]
 				</div>
