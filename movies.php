@@ -415,12 +415,13 @@ if ($plppIsSearch) {
     }
     $plppViewmode = $_SESSION['viewmode'];
 } else {
+  
     // If there is no item defined, we are on the start page and load the recently added items
     if (empty($plppItem)) {
         $plppItems['movie'] = $plex->getRecentlyAdded('movie');
-        $plppItems['season'] = $plex->getRecentlyAdded('season');
-        $plppItems['photo'] = $plex->getRecentlyAdded('photo');
-        $plppItems['artist'] = $plex->getRecentlyAdded('artist');
+        //$plppItems['season'] = $plex->getRecentlyAdded('season');
+        //$plppItems['photo'] = $plex->getRecentlyAdded('photo');
+        //$plppItems['artist'] = $plex->getRecentlyAdded('artist');
     }
     // Else we load the requested item
     else if($plppGenre !=''){

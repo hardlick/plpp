@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
     $(document).on('click', '#order', function () {
         var text = '<div><b class="titleviewWhy">¿Buscas una pelicula y no la tenemos disponible aún?🤔</b><br>';
-        text += '<span>Si no te alcanza el presupuesto para adquirir una cuenta de pago para ver tus series o películas en línea, NO TE PREOCUPES! Escríbenos , pide tu serie o peli y podrás verla en calidad HD desde cualquier dispositivo y a un precio justo! El pago es sencillo: pagas directamente desde nuestra pág web o transfieres a BCP o INTERBANK Y el link estará disponible aprox 5 hrs.</div>';
+        text += '<span>Si no te alcanza el presupuesto para adquirir una cuenta de pago para ver tus series o películas en línea, NO TE PREOCUPES! Escríbenos , pide tu serie o peli y podrás verla en calidad HD desde cualquier dispositivo y a un precio justo! El pago es sencillo: pagas directamente desde nuestra pág web o transfieres a BCP o INTERBANK Y el link estará disponible aprox 30 min.</div>';
         bootbox.alert({
             message: text,
             size: 'large'

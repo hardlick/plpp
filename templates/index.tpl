@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>[@Title]</title>
         <meta name="description" content="Bienvenido a Baúl de películas & series. 
-              Somos una multi-plataforma en línea que te ofrece más de 1000 películas y series disponibles en calidad Full HD y actualizadas semanalmente con los últimos estrenos.
+              Somos una multi-plataforma en línea que te ofrece más de 5000 películas y series disponibles en calidad Full HD y actualizadas semanalmente con los últimos estrenos.
               -Cómo lo hacemos?  Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar, no tendrás que perder tiempo, buscando entre las mil páginas gratuitas que te ofrecen películas mal grabadas, series no disponibles, que vienen con más virus que minutos de reproducción.
               Baúl de películas & series será tu mejor opción, sabes por qué?
               🏡Desde la comodidad de tu hogar.
