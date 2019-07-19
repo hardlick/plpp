@@ -998,9 +998,12 @@ foreach ($plppItems as $parentKey => $parent) {
             }
         }
         $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');
-
-        $plppOutput['Title'] = 'Ver Pelicula '.$plppItems['movie']['items'][0]['title'] .' -- '.$plppItems['movie']['items'][0]['originalTitle'];
+        $plppOutput['Title'] = 'Ver Pelicula '.$plppItems['movie']['items'][0]['title'] .' -- '.$plppItems['movie']['items'][0]['summary'];
         // If it is an ajax request serve it to the browser and end
+         $plppOutput['descp'] =$plppItems['movie']['items'][0]['title'];
+         $plppOutput['amt'] ='500';
+         $plppOutput['it'] =$plppItems['movie']['items'][0]['ratingKey'];
+            
         if ($plppIsModal) {
             echo $plppDetails;
             die;

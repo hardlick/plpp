@@ -30,7 +30,14 @@ $(document).ready(function () {
             $('#formToSecond #amt').val('5000');
             $('#formToSecond #amt_r').val('50.00');
             $('#formToSecond #b').val(tit);
-        } else {
+        } 
+        else if ($(this).attr('data-c') == 'movie_det'){
+             c = $(this).parent().parent().find('img.img-rounded').attr('src');
+            $('#formToSecond #c').val(c);
+            $('#formToSecond #amt').val('500');
+            $('#formToSecond #amt_r').val('5.00');
+        }
+        else {
             $('#formToSecond #amt').val('500');
             $('#formToSecond #amt_r').val('5.00');
         }
