@@ -614,7 +614,6 @@ foreach ($plppItems as $parentKey => $parent) {
             }
         }        
         
-    
         $plppOutput['Content'] .= plpp_templates($plppItems, $plppViewgroupType, 'details');
         if(isset($plppItems['show'])){
         $plppOutput['Title'] = $plppItems['show']['parentTitle'] .' -- '.$plppItems['show']['summary'];
@@ -625,7 +624,7 @@ foreach ($plppItems as $parentKey => $parent) {
       
         elseif(isset($plppItems['episode'])){
             $plppOutput['Title'] = $plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'] .' '.$plppItems['episode']['items'][0]['summary'];
-            $plppOutput['descp'] =$plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'];
+            $plppOutput['descp'] = $plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'];
             $plppOutput['amt'] ='300';
             $plppOutput['it'] =$plppItems['episode']['items'][0]['ratingKey'];
         }
@@ -774,6 +773,15 @@ foreach ($plppItems as $parentKey => $parent) {
                 $plppItems['itemdetails'][$item['name']] = $plex->getFormatedItemsContent(0, $item['type'], $item['content'], $item['content_type'], $plexKey);
             }
         }
+        
+
+     
+        if(isset($plppItems['episode'])){
+        $plppItems['itemdetails']['descp'] =$plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'];
+        $plppItems['itemdetails']['amt'] ='300';
+        $plppItems['itemdetails']['it'] =$plppItems['episode']['items'][0]['ratingKey'];
+        }
+        
         $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');        
         // If it is an ajax request serve it to the browser and end
         if ($plppIsModal) {
@@ -853,7 +861,6 @@ if ($plppIsModalLink) {
     $plppOutput['ScriptCode'] .= <<<END
 		$(function() {
 			$("a[data-target=#plpp_Modal]").click(function (ev) {
-				console.log("clicked");
 				ev.preventDefault();
 				$("#plpp_Modal .modal-body").empty();
 				$("#plpp_Modal .modal-body").append("<div class=\"plpp_spinner\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw \"></i></div>");

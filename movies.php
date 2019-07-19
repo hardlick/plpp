@@ -997,6 +997,9 @@ foreach ($plppItems as $parentKey => $parent) {
                 $plppItems['itemdetails'][$item['name']] = $plex->getFormatedItemsContent(0, $item['type'], $item['content'], $item['content_type'], $plexKey);
             }
         }
+        $plppItems['itemdetails']['descp'] =$plppItems['movie']['items'][0]['title'];
+        $plppItems['itemdetails']['amt'] ='500';
+        $plppItems['itemdetails']['it'] =$plppItems['movie']['items'][0]['ratingKey'];
         $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');
         $plppOutput['Title'] = 'Ver Pelicula '.$plppItems['movie']['items'][0]['title'] .' -- '.$plppItems['movie']['items'][0]['summary'];
         // If it is an ajax request serve it to the browser and end
@@ -1081,7 +1084,6 @@ if ($plppIsModalLink) {
     $plppOutput['ScriptCode'] .= <<<END
 		$(function() {
 			$("a[data-target=#plpp_Modal]").click(function (ev) {
-				console.log("clicked");
 				ev.preventDefault();
 				$("#plpp_Modal .modal-body").empty();
 				$("#plpp_Modal .modal-body").append("<div class=\"plpp_spinner\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw \"></i></div>");

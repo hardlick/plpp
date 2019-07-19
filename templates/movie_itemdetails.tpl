@@ -8,7 +8,7 @@
 			<span class="plpp_details plpp_details_Summary">[@Summary]</span>
 		</div>
 
-<div>
-     <a data-i="[@it]" data-b="[@descp]" data-c="movie_det" data-us="[@us]" class="buttonPay">Pagar</a>
+<div id="infoP">
+     <a data-i="[@it]" data-b="[@descp]" data-c="movie_det" data-us="[@us]" class="buttonPay detailSPay">Pagar</a>
 </div>
      
