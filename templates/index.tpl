@@ -16,7 +16,7 @@
               ✌Aceptamos todas las tarjetas de crédito y débito.🕵‍♀¿No encuentras tu película o serie en nuestro catálogo?📲Haz tu pedido ya!">
         <meta name="og:description" content="Bienvenido a Baúl de películas & series. Somos una multi-plataforma en línea que te ofrece más de 5000 películas y series disponibles en calidad Full HD. Nos encargamos de seleccionar las mejores películas y series para reunirlas en un solo lugar">
         <meta name="keywords" content="peliculas,series,baul de peliculas">
-        <meta name="author" content="Baul De series & Peliculas">
+        <meta name="author" content="Baúl  De series & Peliculas">
         <meta property="og:url" content="https://bauldepeliculas.info" />
         <meta property="og:image" content="https://bauldepeliculas.info/apple-icon-180x180.png" />	
 	<link rel="shortcut icon" href="favicon.ico">
@@ -38,7 +38,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<div class="navbar-brand">[@Title]</div>
+				<div class="navbar-brand">Baúl  De series & Peliculas</div>
                                 <div id="navbar" class="navbar-collapse collapse" style="margin-left: 300px;">
                                 <ul class="naver">
                                     <li><a href="index.html">Inicio</a></li>

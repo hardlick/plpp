@@ -17,7 +17,14 @@ $(document).ready(function () {
             $('#formToSecond #amt').val('300');
             $('#formToSecond #amt_r').val('3.00');
             $('#formToSecond #b').val(tit);
-        } else if ($(this).attr('data-c') == 'show')
+        }
+       else if ($(this).attr('data-c') == 'episode_det'){  
+            c = $(this).parent().parent().find('img.img-rounded').attr('src');
+              $('#formToSecond #c').val(c);
+            $('#formToSecond #amt').val('300');
+            $('#formToSecond #amt_r').val('3.00');
+        }
+        else if ($(this).attr('data-c') == 'show')
         {
             var tit = $(this).parent().find('span.plpp_thumbs_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Year').text();
             $('#formToSecond #amt').val('5000');

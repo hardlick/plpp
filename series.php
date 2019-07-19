@@ -477,6 +477,8 @@ if ($plppItems[$plppItemType]['viewGroup'] == 'photo') {
     $plppOutput['IncludeJS'] .= '	<script src="' . PLPP_JS_PATH . 'lightbox.min.js"></script>' . PHP_EOL;
     $plppOutput['IncludeCSS'] .= '	<link rel="stylesheet" type="text/css" href="' . PLPP_CSS_PATH . 'lightbox.min.css" />' . PHP_EOL;
 }
+// Setting the Title
+$plppOutput['Title'] = $plppConfiguration['usersettings']['title'];
 
 // Include font awesome and plpp css
 $plppOutput['IncludeCSS'] .= '	<link rel="stylesheet" type="text/css" href="' . PLPP_CSS_PATH . 'font-awesome.min.css" />' . PHP_EOL;
@@ -488,12 +490,10 @@ foreach ($plppItems as $parentKey => $parent) {
 
     // Set the type of content
     $plppViewgroupType = (!empty($parent['viewGroup'])) ? $parent['viewGroup'] : $parentKey;
-    ;
     if ($plppIsSearch) {
         $plexKey = $parentKey;
     } else {
         $plexKey = (empty($plppItem)) ? $plppViewgroupType : $plppItem;
-        ;
     }
 
     // Start of the content output container
@@ -612,10 +612,24 @@ foreach ($plppItems as $parentKey => $parent) {
             if (in_array('details', $item['visibility'])) {
                 $plppItems['details'][$item['name']] = $plex->getFormatedItemsContent(0, $item['type'], $item['content'], $item['content_type'], $plexKey);
             }
-        }
+        }        
+        
+    
         $plppOutput['Content'] .= plpp_templates($plppItems, $plppViewgroupType, 'details');
+        if(isset($plppItems['show'])){
+        $plppOutput['Title'] = $plppItems['show']['parentTitle'] .' -- '.$plppItems['show']['summary'];
+        }
+        elseif(isset($plppItems['season'])){
+             $plppOutput['Title'] = $plppItems['season']['title1'] .' '.$plppItems['season']['title2'];
+        }
+      
+        elseif(isset($plppItems['episode'])){
+            $plppOutput['Title'] = $plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'] .' '.$plppItems['episode']['items'][0]['summary'];
+            $plppOutput['descp'] =$plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'];
+            $plppOutput['amt'] ='300';
+            $plppOutput['it'] =$plppItems['episode']['items'][0]['ratingKey'];
+        }
     }
-
 
     // If we are in list viewmode we need to generate the table header
     if ($plppViewmode == 'list') {
@@ -753,15 +767,14 @@ foreach ($plppItems as $parentKey => $parent) {
                     }
             }
         }
-    } else {
+    } else {       
         // Generate item details output if we are in details viewmode
         foreach ($plppConfiguration['mediatypes'][$plppViewgroupType]['itemList'] as $item) {
             if (in_array('itemdetails', $item['visibility'])) {
                 $plppItems['itemdetails'][$item['name']] = $plex->getFormatedItemsContent(0, $item['type'], $item['content'], $item['content_type'], $plexKey);
             }
         }
-        $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');
-
+        $plppDetails = plpp_templates($plppItems, $plppViewgroupType, 'itemdetails');        
         // If it is an ajax request serve it to the browser and end
         if ($plppIsModal) {
             echo $plppDetails;
@@ -1099,8 +1112,7 @@ $plppOutput['Include'] .= $plppOutput['IncludeCSS'];
 $plppOutput['Include'] .= $plppOutput['ScriptCode'];
 
 
-// Setting the Title
-$plppOutput['Title'] = $plppConfiguration['usersettings']['title'];
+
 
 
 // Fill the generated html into the template and output the template
