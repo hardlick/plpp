@@ -13,8 +13,8 @@ try {
         $servername = db_config::$db_conection_config['baul']['dbName'];
         $username = db_config::$db_conection_config['baul']['dbUser'];
         $password = db_config::$db_conection_config['baul']['dbPassword'];
-       
-        
+
+
         if ($event == 'true') {
             if (!empty($_POST['code_auth']) && !empty($_POST['code_reference']) && !empty($_POST['email']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
                 $item = trim(htmlspecialchars($_POST['item']));
@@ -22,7 +22,7 @@ try {
                 $amount_r = trim(htmlspecialchars($_POST['amount_r']));
                 $descrp = trim(htmlspecialchars($_POST['descrp']));
                 $email = trim(htmlspecialchars($_POST['email']));
-                
+
                 $user_ip = getUserIP();
                 $code_auth = trim(htmlspecialchars($_POST['code_auth']));
                 $code_reference = trim(htmlspecialchars($_POST['code_reference']));
@@ -33,33 +33,19 @@ try {
                     $idUser = null;
                 }
 
-                $db = new mysqli($serverDBName, $username, $password,$servername);
+                $db = new mysqli($serverDBName, $username, $password, $servername);
                 if ($db->connect_error) {
-                    echo json_encode("Problemas de conexion con la DB: " . $db->connect_error);
+                    header('Content-type: application/json');
+                    $msg = array("Problemas de conexion con la DB: " . $db->connect_error);
+                    echo json_encode($msg);
                     die();
                 }
-                $fecha_pedido =date('Y-m-d H:i:s');
+                $fecha_pedido = date('Y-m-d H:i:s');
                 $stmt = $db->prepare("INSERT INTO pedidos (item, descripcion, monto, codigo_referencia, codigo_autorizacion, fecha_pedido, email, fecha_creacion, ip,idUser) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
-                $stmt->bind_param('ssssssssss',$item, $descrp, $amount, $code_reference, $code_auth, $fecha_pedido, $email,$fecha_pedido, $user_ip,$idUser);               
+                $stmt->bind_param('ssssssssss', $item, $descrp, $amount, $code_reference, $code_auth, $fecha_pedido, $email, $fecha_pedido, $user_ip, $idUser);
                 $stmt->execute();
                 $stmt->close();
                 $result = $db->close();
-                
-                $mail = new PHPMailer(true);
-                $mail->isSMTP();
-                $mail->CharSet = 'UTF-8';
-                $mail->Encoding = 'base64';
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'bauldepeliculas1@gmail.com';
-                $mail->Password = 'peliculas2019';
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = 587;
-                $mail->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
-                $mail->addAddress('hugocasanovam@gmail.com');
-                $mail->Subject = 'Nuevo pedido: ' . $code_reference . '- -' . $code_auth;
-                $mail->msgHTML($descrp);
-                $mail->send();
 
                 $mail_to_client = new PHPMailer(true);
                 $mail_to_client->isSMTP();
@@ -68,15 +54,17 @@ try {
                 //$mail_to_client->SMTPDebug = 2; //Alternative to above constant
                 $mail_to_client->Host = 'smtp.gmail.com';
                 $mail_to_client->SMTPAuth = true;
-                $mail_to_client->Username = 'bauldepeliculas1@gmail.com';
-                $mail_to_client->Password = 'peliculas2019';
+                $mail_to_client->Username = 'bauldepeliculasgeneral@gmail.com';
+                $mail_to_client->Password = 'Jt011@395';
                 $mail_to_client->SMTPSecure = 'tls';
                 $mail_to_client->Port = 587;
                 $mail_to_client->setFrom('bauldepeliculas1@gmail.com', 'Baul de Peliculas & Series');
                 $mail_to_client->addAddress($email);
+                $mail_to_client->addBCC('hugocasanovam@gmail.com', 'Person Two');
                 $mail_to_client->Subject = 'Gracias por tu Pedido: ' . $descrp;
                 $message = '<h2>Gracias por confiar en nosotros!</h2><hr><br><h3>Los datos de tu pedido fue: ' . $descrp;
                 $message .= '</h3><br><h3>Monto Pagado: ' . $amount_r . '</h3><br>';
+                $message .= '</h4><br><h3>Codigo de Referencia: ' . $code_reference . '- -' . $code_auth; '</h4><br>';
                 $message .= '<h4>Adjuntamos el pdf para poder acceder a nuestro contenido y disfrutar de la pelicula elegida.</h4>';
                 $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h4><a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
                 $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h4><a target="_blank" href="http://bit.do/eS7dC" >http://bit.do/eS7dC </a>';
@@ -84,10 +72,12 @@ try {
                 $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'] . '/media/pasos_y_cuenta_general.pdf', $name = 'pasos_y_cuenta_general.pdf', $encoding = 'base64', $type = 'application/pdf');
                 $mail_to_client->msgHTML($message);
                 $mail_to_client->send();
-
-                echo json_encode($result);
+                header('Content-type: application/json');
+                echo json_encode($mail_to_client);
             } else {
-                echo json_encode('Faltan parametros');
+                header('Content-type: application/json');
+                $msg = array('Faltan parametros para procesar su pago');
+                echo json_encode($msg);
             }
         } else {
             if (!empty($_POST['codigo_error']) && !empty($_POST['merchant_message']) && !empty($_POST['amount']) && !empty($_POST['descrp'])) {
@@ -112,25 +102,32 @@ try {
                 $merchant_message = trim(htmlspecialchars($_POST['merchant_message']));
                 $user_message = trim(htmlspecialchars($_POST['user_message']));
                 $fecha_pedido = date('Y-m-d H:i:s');
-                $db = new mysqli($serverDBName, $username, $password,$servername);
+                $db = new mysqli($serverDBName, $username, $password, $servername);
                 if ($db->connect_error) {
-                    echo json_encode("Problemas de conexion con la DB: " . $db->connect_error);
+                    header('Content-type: application/json');
+                    $msg = array('Problemas de conexion con la DB: ');
+                    echo json_encode($msg . $db->connect_error);
                     die();
                 }
                 $stmt = $db->prepare("INSERT INTO pedidos_error (item, descripcion, monto, type, codigo_error, merchant_message, user_message, fecha_pedido, email,ip,idUser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param('sssssssssss',$item, $descrp, $amount, $type,$codigo_error, $merchant_message,$user_message,$fecha_pedido,$email, $user_ip, $idUser);               
+                $stmt->bind_param('sssssssssss', $item, $descrp, $amount, $type, $codigo_error, $merchant_message, $user_message, $fecha_pedido, $email, $user_ip, $idUser);
                 $stmt->execute();
-                $stmt->close();                
-                $result=$db->close();
+                $stmt->close();
+                $result = $db->close();
                 echo json_encode($result);
             } else {
-                echo json_encode('Faltan parametros');
+                header('Content-type: application/json');
+                $msg = array('Faltan parametros hubo un error al procesar su pago');
+                echo json_encode($msg);
             }
         }
     } else {
-        echo json_encode('Peticion Erronea');
+        header('Content-type: application/json');
+        $msg = array('No se puede acceder de esta manera');
+        echo json_encode($msg);
     }
 } catch (Exception $e) {
+    header('Content-type: application/json');
     echo json_encode($e->getMessage());
 }
 
