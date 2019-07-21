@@ -69,7 +69,7 @@ try {
                 $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h4><a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
                 $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h4><a target="_blank" href="http://bit.do/eS7dC" >http://bit.do/eS7dC </a>';
                 $message .= '<h4>Al finalizar tu experiencia con nosotros, podrias comentarnoslo?</h4><a target="_blank" href="https://bauldepeliculas.info/reviews.html" >CLick aqui!</a>';
-                $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'] . '/media/pasos_y_cuenta_general.pdf', $name = 'pasos_y_cuenta_general.pdf', $encoding = 'base64', $type = 'application/pdf');
+                $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'] . '/media/pasos_y_cuenta_general_min.pdf', $name = 'pasos_y_cuenta_general_min.pdf', $encoding = 'base64', $type = 'application/pdf');
                 $mail_to_client->msgHTML($message);
                 $mail_to_client->send();
                 header('Content-type: application/json');
