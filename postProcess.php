@@ -41,8 +41,8 @@ try {
                     die();
                 }
                 $fecha_pedido = date('Y-m-d H:i:s');
-                $stmt = $db->prepare("INSERT INTO pedidos (item, descripcion, monto, codigo_referencia, codigo_autorizacion, fecha_pedido, email, fecha_creacion, ip,idUser) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
-                $stmt->bind_param('ssssssssss', $item, $descrp, $amount, $code_reference, $code_auth, $fecha_pedido, $email, $fecha_pedido, $user_ip, $idUser);
+                $stmt = $db->prepare("INSERT INTO pedidos (item, descripcion, monto_real, monto, codigo_referencia, codigo_autorizacion, fecha_pedido, email, fecha_creacion, ip,idUser) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)");
+                $stmt->bind_param('sssssssssss', $item, $descrp,$amount_r, $amount, $code_reference, $code_auth, $fecha_pedido, $email, $fecha_pedido, $user_ip, $idUser);
                 $stmt->execute();
                 $stmt->close();
                 $result = $db->close();
@@ -66,14 +66,17 @@ try {
                 $message .= '</h3><br><h3>Monto Pagado: ' . $amount_r . '</h3><br>';
                 $message .= '</h4><br><h3>Codigo de Referencia: ' . $code_reference . '- -' . $code_auth; '</h4><br>';
                 $message .= '<h4>Adjuntamos el pdf para poder acceder a nuestro contenido y disfrutar de la pelicula elegida.</h4>';
-                $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h4><a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>';
+                $message .= '<h4>Aca tambien el link con el mismo archivo adjunto: </h4><a target="_blank" href="' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf">Click Aqui</a>';
                 $message .= '<h4>Cualquier cosa, comunicate con nosotros via whatsapp</h4><a target="_blank" href="http://bit.do/eS7dC" >http://bit.do/eS7dC </a>';
-                $message .= '<h4>Al finalizar tu experiencia con nosotros, podrias comentarnoslo?</h4><a target="_blank" href="https://bauldepeliculas.info/reviews.html" >CLick aqui!</a>';
+                $message .= '<h4>Al finalizar tu experiencia con nosotros, podrias comentarnoslo?</h4><a target="_blank" href="https://bauldepeliculas.info/reviews.html" >Click aqui!</a>';
                 $mail_to_client->AddAttachment($_SERVER['DOCUMENT_ROOT'] . '/media/pasos_y_cuenta_general_min.pdf', $name = 'pasos_y_cuenta_general_min.pdf', $encoding = 'base64', $type = 'application/pdf');
                 $mail_to_client->msgHTML($message);
                 $mail_to_client->send();
                 header('Content-type: application/json');
-                echo json_encode($mail_to_client);
+                $msg = array(
+                    'rp'=>'<a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>'
+                    );
+                echo json_encode($msg);
             } else {
                 header('Content-type: application/json');
                 $msg = array('Faltan parametros para procesar su pago');

@@ -41,6 +41,11 @@ try {
                         "source_id" => $token
                     )
             );
+             
+                $msg = array(
+                    'rp'=>'<a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Click Aqui</a>'
+                    );
+                echo json_encode($msg);
         } else {
             header('Content-type: application/json');
             $charge = array('Error al procesar Pago - Informacion Erronea - Faltan Parametros');

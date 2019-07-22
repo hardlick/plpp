@@ -12,6 +12,7 @@ try {
 
         $db = new mysqli($serverDBName, $username, $password, $servername);
         if ($db->connect_error) {
+            header('Content-type: application/json');
             echo json_encode("Problemas de conexion con la DB: " . $db->connect_error);
             die();
         }
@@ -26,11 +27,13 @@ try {
         while ($row_avg = $avg->fetch_assoc()) {
             $data_avg[] = $row_avg;
         }
+        header('Content-type: application/json');
         $aResponse['code'] = 200;
         $aResponse['data'] = $data;
         $aResponse['avg'] = $data_avg;
         echo json_encode($aResponse);
     } else {
+        header('Content-type: application/json');
         $aResponse['data'] = 'Error al procesar  el Review - Informacion Erronea';
         $aResponse['code'] = 400;
         echo json_encode($aResponse);

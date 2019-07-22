@@ -84,15 +84,15 @@ function culqi() {
                         },
                         dataType: 'json',
                         url: '/postProcess.php',
-                        success: function (response) {
+                        success: function () {
                             return true;
                         }
                     });
                     bootbox.alert({
-                        message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico',
+                        message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico o carpeta de SPAM',
                         size: 'small',
                         callback: function () {
-                            window.location.replace("https://bauldepeliculas.info/");
+                            window.location.replace("https://bauldepeliculas.info/confirmPayment.php?c="+response.reference_code);
                             return false;
                         }
                     });

@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <title>Baúl  De series & Peliculas - Catalogo de Peliculas & Series - Pago</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="/css/bootstrap.min.css?version=99871112">
-            <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=99871112">
-            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=99871112">
-            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=99871112">
-            <script src="js/jquery-1.10.2.min.js?version=99871112"></script>
-            <script src="js/bootstrap.min.js?version=99871112"></script>
-            <script src="js/bootbox.min.js?version=99871112"></script>
+            <link rel="stylesheet" href="/css/bootstrap.min.css?version=99971100">
+            <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=99971100">
+            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=99971100">
+            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=99971100">
+            <script src="js/jquery-1.10.2.min.js?version=99971100"></script>
+            <script src="js/bootstrap.min.js?version=99971100"></script>
+            <script src="js/bootbox.min.js?version=99971100"></script>
         </head>
         <body>
             <?php
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     var amount_r = '<?php echo $__amount_r; ?>';                   
                     Culqi.publicKey = '<?= $__public_key; ?>';
                 </script>
-                <script src="js/p.js?version=99871112"></script>
+                <script src="js/p.min.js?version=99971100"></script>
                 <div class="limiter">
                     <div class="container-login100">
                         <div class="wrap-login100">
