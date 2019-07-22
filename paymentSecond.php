@@ -159,7 +159,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </li>
                                     </ul>
                                 </span>
+                                 <div class=" wow fadeInLeft" data-wow-delay="0.9s">                                                     
+                            <p>El tiempo de acceso a nuestra plataforma depende de tu tipo de pedido. <br>Te detallamos los días de acceso disponibles según tu pedido.</p>
+                            <strong>PELICULAS:</strong>
+                            <ul>
+                                <li> 1 Pelicula: 1 Semana</li>
+                                <li> Combo 3 Peliculas: 2 Semanas</li>
+                                <li> Combo 5 Peliculas: 1 Mes</li>
+                                <li> Combo 10 Peliculas: 2 Meses</li>                                   
+                            </ul>
+                            <strong>SERIES</strong>
+                            <ul>
+                                <li>Por un capítulo :  2 días</li>
+                                <li>Por una temporada : 2 Semanas</li>
+                                <li>Serie completa: 1 Mes</li>                                   
+                                <li>Combo 2 Series: 2 Meses</li>      
+                                <li>Combo 3 Series: 3 Meses</li>      
+                                <li>Combo 5 Series: 5 Meses</li>
+                            </ul>
+                            <a  id="help" href="/combos/combos.html" class="alert-link">Deseas saber mas de nuestros combos? - Click Aqui</a>
 
+                        </div>
                             </div>
                         </div>
                     </div>
