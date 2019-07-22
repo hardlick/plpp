@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <title>Catalogo de Peliculas & Series - Pago</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="/css/bootstrap.min.css?version=66669" id="bootstrap-css">
+            <link rel="stylesheet" href="/css/bootstrap.min.css?version=68710332" id="bootstrap-css">
 
-            <script src="js/jquery-1.10.2.min.js?version=66669"></script>
-            <script src="js/bootstrap.min.js?version=66669"></script>
-            <script src="js/bootbox.min.js?version=66669"></script>
+            <script src="js/jquery-1.10.2.min.js?version=68710332"></script>
+            <script src="js/bootstrap.min.js?version=68710332"></script>
+            <script src="js/bootbox.min.js?version=68710332"></script>
             <script src="/js/jquery.validate.min.js"></script>
             <script src="/js/additional-methods.min.js"></script>
         </head>
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Culqi.publicKey = '<?= $__public_key; ?>';
                     Culqi.init();
                 </script>
-                <script src="js/p2.js?version=66669"></script>      
+                <script src="js/p2.min.js?version=68710332"></script>      
                 <style>
                     body {margin: 0px; 
                           padding: 0px; 

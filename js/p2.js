@@ -130,7 +130,7 @@ $(document).ready(function () {
                                     message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico',
                                     size: 'small',
                                     callback: function () {
-                                        window.location.replace("https://bauldepeliculas.info/");
+                                        window.location.replace("https://bauldepeliculas.info/confirmPayment.php?c="+response.reference_code);
                                         return false;
                                     }
                                 });
