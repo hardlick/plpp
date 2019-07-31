@@ -115,7 +115,7 @@
     $('.carousel').carousel('prev');
     return false;
   });
-
+ 
  
   $("#myCarousel").on("slide.bs.carousel", function (e) {
     var $e = $(e.relatedTarget);
