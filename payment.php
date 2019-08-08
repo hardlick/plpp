@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <i class="zmdi zmdi-font"></i>
                                 </span>
                                 <center> Paga tus pedidos  de peliculas y/o series usando tus tarjetas de débito o crédito VISA, Mastercard, American Express o Diners que tengan código CVV.
+                                    <br>
                                     <img src="/images/icono-tarjetas.png" style="width: 250px;">
                                 </center>
                                 <div class="container-login100-form-btn">
