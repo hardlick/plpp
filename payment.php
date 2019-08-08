@@ -15,11 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="/css/bootstrap.min.css?version=99971100">
             <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css?version=99971100">
-            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=99971100">
-            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=99971100">
-            <script src="js/jquery-1.10.2.min.js?version=99971100"></script>
-            <script src="js/bootstrap.min.js?version=99971100"></script>
-            <script src="js/bootbox.min.js?version=99971100"></script>
+            <link rel="stylesheet" type="text/css" href="/css/util.min.css?version=8322222">
+            <link rel="stylesheet" type="text/css" href="/css/main.min.css?version=8322222">
+            <script src="js/jquery-1.10.2.min.js?version=8322222"></script>
+            <script src="js/bootstrap.min.js?version=8322222"></script>
+            <script src="js/bootbox.min.js?version=8322222"></script>
         </head>
         <body>
             <?php
