@@ -1,6 +1,6 @@
 {
     "excluded_libraries": [
-        8,11,12
+        3,4,8
     ],
     "default_viewmode": "thumbs",
     "sort_by": "type",
