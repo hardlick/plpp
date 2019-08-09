@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Catalogo de Peliculas & Series - Pago</title>
+        <title>Baúl de Películas & Series - Pago Manual</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/bootstrap.min.css?version=68710332" id="bootstrap-css">
-
         <script src="js/jquery-1.10.2.min.js?version=68710332"></script>
         <script src="js/bootstrap.min.js?version=68710332"></script>
         <script src="js/bootbox.min.js?version=68710332"></script>
-        <script src="/js/jquery.validate.min.js"></script>
-        <script src="/js/additional-methods.min.js"></script>
-        <script src="/js/jquery.mask.min.js"></script>
+        <script src="/js/jquery.validate.min.js?version=68710332"></script>
+        <script src="/js/additional-methods.min.js?version=68710332"></script>
+        <script src="/js/jquery.mask.min.js?version=68710332"></script>
     </head>
     <body>
         <?php
@@ -51,9 +50,9 @@
                 min-width: 180px;
             }
             form {
-                
+
                 margin: 0 auto;
-                
+
             }
             form input {
                 font-size: 20px;
@@ -78,7 +77,7 @@
             }
 
             label {
-                color: #999;
+                color: #666;
                 display: block;
                 margin-bottom: 10px;
                 text-transform: uppercase;
@@ -105,7 +104,17 @@
                 border-radius: 7px 0 0 7px;
                 background: white;
             }
-            #SubmitReview{
+            ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #ccc;
+                opacity: 1; /* Firefox */
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: #ccc;
+            }
+
+            ::-ms-input-placeholder { /* Microsoft Edge */
+                color: #ccc;
             }
         </style>
         <form  name="processPaymentTwo" id="processPaymentTwo" method="post" action="" autocomplete="off">
@@ -114,13 +123,13 @@
                 <div class="row">                           
 
                     <div class="col-xs-12 col-md-4">
-                       
+
                         <div class="panel panel-default">
                             <div class="panel-heading"><center>
-                                <h4 class="panel-title">
-                                    PEDIDO PERSONALIZADO
-                                </h4>      </center>
-                                
+                                    <h4 class="panel-title">
+                                        PEDIDO PERSONALIZADO
+                                    </h4>      </center>
+
                             </div>
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -162,66 +171,65 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="card[email]">
-                                        EMAIL</label>
+                                    <label for="card[email]">EMAIL</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control"  name="email" data-culqi="card[email]" id="card[email]" placeholder="Correo Electronico" required autofocus />
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                                     </div>
                                 </div>                                    
-
-                                <label for="amount">Ingrese Monto</label>
-                                <div class="flex">
-                                    <span class="currency">S/</span>
-                                    <input id="amount" name="amount" type="text" maxlength="8" />
-                                </div>
-                       
+                                <div class="form-group">
+                                    <label for="amount">Ingrese Monto</label>
+                                    <div class="flex input-group">
+                                        <span class="currency">S/</span>
+                                        <input id="amount" name="amount" type="text" maxlength="8" placeholder="con 2 decimales" />
+                                    </div>
+                                </div>  
                                 <br>
 
-                        <button type="submit"  id="SubmitReview" class="btn btn-success btn-lg btn-block">
-                            PAGAR
-                        </button>
-                        <hr>
-                        <div style="padding: 10px;">
-                        <span class="txt1">
-                            <ul>                                        
-                                <li>Toda la información de pago es segura</li>
-                                <li>Algunas de las tarjetas de débito con CVV podrían ser rechazadas por la plataforma de pago que utilizamos debido a las políticas de seguridad del banco</li>
-                                <li>Contamos con protección SSL para transacciones seguras
-                                    <script type="text/javascript"> //<![CDATA[
+                                <button type="submit"  id="SubmitReview" class="btn btn-success btn-lg btn-block">
+                                    PAGAR
+                                </button>
+                                <hr>
+                                <div style="padding: 10px;">
+                                    <span class="txt1">
+                                        <ul>                                        
+                                            <li>Toda la información de pago es segura</li>
+                                            <li>Algunas de las tarjetas de débito con CVV podrían ser rechazadas por la plataforma de pago que utilizamos debido a las políticas de seguridad del banco</li>
+                                            <li>Contamos con protección SSL para transacciones seguras
+                                                <script type="text/javascript"> //<![CDATA[
             var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
             document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
             //]]></script>
-                                    <script language="JavaScript" type="text/javascript">
-                                        TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
-                                    </script>
-                                </li>
-                            </ul>
-                        </span>
-                        <div class=" wow fadeInLeft" data-wow-delay="0.9s">                                                     
-                            <p>El tiempo de acceso a nuestra plataforma depende de tu tipo de pedido. <br>Te detallamos los días de acceso disponibles según tu pedido.</p>
-                            <strong>PELICULAS:</strong>
-                            <ul>
-                                <li> 1 Pelicula: 1 Semana</li>
-                                <li> Combo 3 Peliculas: 2 Semanas</li>
-                                <li> Combo 5 Peliculas: 1 Mes</li>
-                                <li> Combo 10 Peliculas: 2 Meses</li>                                   
-                            </ul>
-                            <strong>SERIES</strong>
-                            <ul>
-                                <li>Por un capítulo :  2 días</li>
-                                <li>Por una temporada : 2 Semanas</li>
-                                <li>Serie completa: 1 Mes</li>                                   
-                                <li>Combo 2 Series: 2 Meses</li>      
-                                <li>Combo 3 Series: 3 Meses</li>      
-                                <li>Combo 5 Series: 5 Meses</li>
-                            </ul>
-                            <a  id="help" href="/combos/combos.html" class="alert-link">Deseas saber mas de nuestros combos? - Click Aqui</a>
+                                                <script language="JavaScript" type="text/javascript">
+                                                    TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png", "POSDV", "none");
+                                                </script>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <div class=" wow fadeInLeft" data-wow-delay="0.9s">                                                     
+                                        <p>El tiempo de acceso a nuestra plataforma depende de tu tipo de pedido. <br>Te detallamos los días de acceso disponibles según tu pedido.</p>
+                                        <strong>PELICULAS:</strong>
+                                        <ul>
+                                            <li> 1 Pelicula: 1 Semana</li>
+                                            <li> Combo 3 Peliculas: 2 Semanas</li>
+                                            <li> Combo 5 Peliculas: 1 Mes</li>
+                                            <li> Combo 10 Peliculas: 2 Meses</li>                                   
+                                        </ul>
+                                        <strong>SERIES</strong>
+                                        <ul>
+                                            <li>Por un capítulo :  2 días</li>
+                                            <li>Por una temporada : 2 Semanas</li>
+                                            <li>Serie completa: 1 Mes</li>                                   
+                                            <li>Combo 2 Series: 2 Meses</li>      
+                                            <li>Combo 3 Series: 3 Meses</li>      
+                                            <li>Combo 5 Series: 5 Meses</li>
+                                        </ul>
+                                        <a  id="help" href="/combos/combos.html" class="alert-link">Deseas saber mas de nuestros combos? - Click Aqui</a>
 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                        </div>
-                                 </div>
                     </div>
                 </div>
             </div>

@@ -37,6 +37,9 @@ $('input#amount').mask("#,##0.00", {reverse: true});
                 required: true,
                 email: true
             },
+            amount: {
+                required: true
+            },
             exp_month: {
                 required: true,
                 minlength: 2,

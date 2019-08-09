@@ -10,11 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!DOCTYPE html>
     <html>
         <head>
-            <title>Catalogo de Peliculas & Series - Pago</title>
+            <title>Baúl de Películas & Series - Segunda Opcion de Pago</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="/css/bootstrap.min.css?version=68710332" id="bootstrap-css">
-
             <script src="js/jquery-1.10.2.min.js?version=68710332"></script>
             <script src="js/bootstrap.min.js?version=68710332"></script>
             <script src="js/bootbox.min.js?version=68710332"></script>

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!DOCTYPE html>
     <html>
         <head>
-            <title>Baúl  De series & Peliculas - Catalogo de Peliculas & Series - Pago</title>
+            <title>Baúl de Películas & Series - Proceso de Pago</title>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="/css/bootstrap.min.css?version=99971100">

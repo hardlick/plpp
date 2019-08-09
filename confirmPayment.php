@@ -23,7 +23,7 @@ try {
                 while ($row = $result->fetch_assoc()) {
                     $html='<html>
     <head>
-        <title>Baúl  De series & Peliculas - Dejanos tu Experiencia!</title>
+        <title>Baúl De Peliculas & Series - Gracias por confiar en Nosotros!</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min4.1.3.css" />
         <link rel="stylesheet" type="text/css" href="/fonts/fontawesome-5.3.1/css/all.min.css">
