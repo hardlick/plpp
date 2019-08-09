@@ -33,7 +33,7 @@
             Culqi.publicKey = '<?= $__public_key; ?>';
             Culqi.init();
         </script>
-        <script src="js/pmanual.min.js?version=68710332"></script>      
+        <script src="js/pmanual.min.js?version=1121117"></script>      
         <style>
             body {margin: 0px; 
                   padding: 0px; 
