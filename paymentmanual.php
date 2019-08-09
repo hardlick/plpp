@@ -33,7 +33,7 @@
             Culqi.publicKey = '<?= $__public_key; ?>';
             Culqi.init();
         </script>
-        <script src="js/pmanual.js?version=68710332"></script>      
+        <script src="js/pmanual.min.js?version=68710332"></script>      
         <style>
             body {margin: 0px; 
                   padding: 0px; 
@@ -104,16 +104,16 @@
                 border-radius: 7px 0 0 7px;
                 background: white;
             }
-            ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            ::placeholder {
                 color: #ccc;
-                opacity: 1; /* Firefox */
+                opacity: 1; 
             }
 
-            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            :-ms-input-placeholder { 
                 color: #ccc;
             }
 
-            ::-ms-input-placeholder { /* Microsoft Edge */
+            ::-ms-input-placeholder { 
                 color: #ccc;
             }
         </style>
