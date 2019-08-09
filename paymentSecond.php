@@ -82,21 +82,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="row">                           
 
                             <div class="col-xs-12 col-md-4">
-                                <center>
-                                    <div class="panel-heading">
-                                        <strong style="font-size: 22px;"><?php echo $desc; ?></strong><br>
-                                     <!--   <img style="padding-top: 5px;" src="<?php echo $img_c; ?>"> -->
-                                    </div>
-                                </center>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            INFO DE PAGO 
-                                        </h4>      
-                                        <div class="display-td" >                            
-                                            <img style=" width: 50%; margin-right: -16px; margin-top: -30px;" class="img-responsive pull-right" src="/images/accepted_c22e0.png">
-                                        </div>
-                                    </div>
+                                 <div class="panel panel-default">
+                                     <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    INFO DE PAGO 
+                                </h4>      
+                                <div class="display-td" >                            
+                                    <img style=" width: 50%; margin-right: -16px; margin-top: -30px;" class="img-responsive pull-right" src="/images/accepted_c22e0.png">
+                                </div>
+                            </div>
+                                    <div class="panel-heading"><center>
+                                <h4 class="panel-title">
+                                  <strong style="font-size: 22px;"><?php echo $desc; ?></strong><br>
+                                <img style="padding-top: 5px;" src="<?php echo $img_c; ?>">
+                                </h4>      </center>
+                                
+                            </div>
+                            
                                     <div class="panel-body">
 
                                         <div class="form-group">
@@ -135,8 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <input type="text" class="form-control"  name="email" data-culqi="card[email]" id="card[email]" placeholder="Correo Electronico" required autofocus />
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                                             </div>
-                                        </div>                                    </div>
-                                </div>
+                                        </div>                                 
                                 <ul class="nav nav-pills nav-stacked" style="padding-bottom: 5px;">
                                     <li class="active"><a href="#"><span class="badge pull-right"><span style="font-size: 1.5em;">S/<?php echo $__amount_r; ?></span></span>MONTO A PAGAR</a>
                                     </li>
@@ -180,6 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a  id="help" href="/combos/combos.html" class="alert-link">Deseas saber mas de nuestros combos? - Click Aqui</a>
 
                         </div>
+                                           </div>
+                                </div>
                             </div>
                         </div>
                     </div>

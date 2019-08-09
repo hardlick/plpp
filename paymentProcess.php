@@ -29,7 +29,6 @@ try {
                 echo json_encode($charge);
                 die();
             }
-
             $charge = $culqi->Charges->create(
                     array(
                         "amount" => $amount,
@@ -41,19 +40,16 @@ try {
                         "source_id" => $token
                     )
             );
-             
-                $msg = array(
-                    'rp'=>'<a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Click Aqui</a>'
-                    );
-                echo json_encode($msg);
+              header('Content-type: application/json');
+               echo json_encode($charge);
+                die();
         } else {
             header('Content-type: application/json');
             $charge = array('Error al procesar Pago - Informacion Erronea - Faltan Parametros');
             echo json_encode($charge);
             die();
         }
-        header('Content-type: application/json');
-        echo json_encode($charge);
+       
     } else {
         header('Content-type: application/json');
         $charge = array('Peticion Erronea - Mal metodo');
@@ -62,4 +58,42 @@ try {
     }
 } catch (Exception $e) {
     echo json_encode($e->getMessage());
+}
+
+function getUserIP() {
+    // Get real visitor IP behind CloudFlare network
+    if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+        $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+    }
+    $client = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote = $_SERVER['REMOTE_ADDR'];
+
+    if (filter_var($client, FILTER_VALIDATE_IP)) {
+        $ip = $client;
+    } elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
+        $ip = $forward;
+    } else {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
+function getBaseUrlReal() {
+    // output: /myproject/index.php
+    $currentPath = $_SERVER['PHP_SELF'];
+
+    // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index ) 
+    $pathInfo = pathinfo($currentPath);
+
+    // output: localhost
+    $hostName = $_SERVER['HTTP_HOST'];
+
+    // output: http://
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https' : 'http';
+
+    // return: http://localhost/myproject/
+    return $protocol . '://' . $hostName;
 }

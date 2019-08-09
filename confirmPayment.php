@@ -47,7 +47,7 @@ try {
       </div>
       <div class="modal-body">
         <i class="fas fa-bell fa-2x animated rotateIn mb-2"></i>
-        <p>Aca la informacion de tu transaccion</p>
+        <p>Aca la información de tu transacción</p>
         <ul  class="list-group">
         <li class="list-group-item"><b>Códigos de Autorización:</b>&nbsp;'.$row['codigo_autorizacion'].'</li>
         <li class="list-group-item"><b>Códigos de Referencia:</b>&nbsp;'.$row['codigo_referencia'].'</li>
@@ -55,7 +55,7 @@ try {
         <li class="list-group-item"><b>Monto Pagado:</b>&nbsp;S/ '.$row['monto_real'].'</li>
         </ul><br>
         <div class="alert alert-warning" role="alert">
-  No te llego el email de confirmación?&nbsp;&nbsp; <a target="_blank" href=' . getBaseUrlReal() .' "/media/pasos_y_cuenta_general.pdf">Click Aqui</a>
+  No te llego el email de confirmación?&nbsp;&nbsp; <a target="_blank" href="' . getBaseUrlReal() .'/media/pasos_y_cuenta_general.pdf">Click Aqui</a>
 </div>
 <div class="alert alert-primary" role="alert">
   No te olvides de dejarnos tu experiencia!!! &nbsp;&nbsp; <a target="_blank" href="https://bauldepeliculas.info/reviews.html">Click Aqui</a>
@@ -65,6 +65,7 @@ try {
 
       <div class="modal-footer flex-center">
         <a href="https://bauldepeliculas.info/combos/combos.html" target="_blank" class="btn btn-info">Ver Combos</a>
+        <a href="https://bauldepeliculas.info/paymentmanual.php" target="_blank" class="btn btn-success">Hacer otro Pedido</a>
         <a href="https://bauldepeliculas.info" target="_blank" class="btn btn-info">Terminar</a>
         
       </div>
@@ -73,34 +74,30 @@ try {
 </div>
     </body>';
                     
-                 header('Content-Type: text/html; charset=utf-8');
-                    $msg = array(
-                        'rp' => '<a target="_blank" href=' . getBaseUrlReal() . '/media/pasos_y_cuenta_general.pdf>Clik Aqui</a>',
-                        'rc' => $row
-                    );
+                 header('Content-Type: text/html; charset=utf-8');                  
                     echo $html;
                     die();
                 }
             } else {
-                header('Content-type: application/json');
+                header('Content-Type: text/html; charset=utf-8');     
                 $msg = array('Codigo no identificado');
                 echo json_encode($msg);
                 die();
             }
         } else {
-            header('Content-type: application/json');
+             header('Content-Type: text/html; charset=utf-8');     
             $msg = array('No se puede acceder de esta manera');
             echo json_encode($msg);
             die();
         }
     } else {
-        header('Content-type: application/json');
+       header('Content-Type: text/html; charset=utf-8');     
         $msg = array('No se puede acceder de esta manera');
         echo json_encode($msg);
         die();
     }
 } catch (Exception $e) {
-    header('Content-type: application/json');
+     header('Content-Type: text/html; charset=utf-8');     
     echo json_encode($e->getMessage());
 }
 

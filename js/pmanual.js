@@ -1,4 +1,7 @@
 var dialog = null;
+var descrp = 'Pago Manual';
+var item='9999';
+
 $.extend($.validator.messages, {
     required: "Este campo es obligatorio.",
     remote: "Por favor, llene este campo.",
@@ -21,14 +24,9 @@ $.extend($.validator.messages, {
     nieES: "Por favor, escriba un NIE válido.",
     cifES: "Por favor, escriba un CIF válido."
 });
-Culqi.settings({
-    title: 'Baul de Peliculas & Series',
-    currency: 'PEN',
-    description: descrp,
-    amount: amount
-});
-$(document).ready(function () {
 
+$(document).ready(function () {
+$('input#amount').mask("#,##0.00", {reverse: true});
     $("form#processPaymentTwo").validate({
         rules: {
             cardNumber: {
@@ -72,6 +70,16 @@ $(document).ready(function () {
             }
         },
         submitHandler: function (form) {
+             var amount_r = $('form#processPaymentTwo input#amount').val();
+             var amount = amount_r.split('.').join("");
+                    
+            Culqi.settings({
+                title: 'Baul de Peliculas & Series',
+                currency: 'PEN',
+                description: descrp,
+                amount: amount
+            });
+
             Culqi.createToken();
             dialog = bootbox.dialog({
                 message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>Por favor, espere un momento...<img src="/images/Spinner-1s-73px.gif" title="Procesando..."/></p>',
@@ -80,16 +88,17 @@ $(document).ready(function () {
             setTimeout(function () {
                 if (Culqi.token !== null && Culqi.token.object === 'token' && Culqi.token.active === true) {
                     var token = Culqi.token.id;
-                    var email = Culqi.token.email;
+                    var email = Culqi.token.email;                 
+                   
                     $.ajax({
                         type: "POST",
                         data: {
                             token: token,
                             amount: amount,
                             amount_r: amount_r,
-                            descrp: descrp,
+                            descrp: 'Pago Manual',
                             email: email,
-                            us: us
+                            us: 0
                         },
                         dataType: 'json',
                         url: '/paymentProcess.php',
@@ -127,7 +136,7 @@ $(document).ready(function () {
                                     }
                                 });
                                 bootbox.alert({
-                                     message: '<b>' + response.outcome.user_message + ' </b> Codigo Referencia: ' + response.reference_code  + '<br> </b> Codigo Autorizacion: ' + response.authorization_code + ' <br>Revisar tu correo electronico para mas detalles.<br>Click abajo para ver PDF',
+                                    message: '<b>' + response.outcome.user_message + ' </b> Codigo Referencia: ' + response.reference_code  + '<br> </b> Codigo Autorizacion: ' + response.authorization_code + ' <br>Revisar tu correo electronico para mas detalles.<br>Click abajo para ver PDF',
                                     size: 'small',
                                     callback: function () {
                                         window.location.replace("https://bauldepeliculas.info/confirmPayment.php?c="+response.authorization_code);

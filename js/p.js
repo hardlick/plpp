@@ -89,10 +89,10 @@ function culqi() {
                         }
                     });
                     bootbox.alert({
-                        message: '<b>' + response.outcome.user_message + ' </b> Codigo Autorizacion: ' + response.reference_code + ' <br>Revisar tu correo electronico o carpeta de SPAM',
+                        message: '<b>' + response.outcome.user_message + ' </b> Codigo Referencia: ' + response.reference_code  + '<br> </b> Codigo Autorizacion: ' + response.authorization_code + ' <br>Revisar tu correo electronico para mas detalles.<br>Click abajo para ver PDF',
                         size: 'small',
                         callback: function () {
-                            window.location.replace("https://bauldepeliculas.info/confirmPayment.php?c="+response.reference_code);
+                            window.location.replace("https://bauldepeliculas.info/confirmPayment.php?c="+response.authorization_code);
                             return false;
                         }
                     });
