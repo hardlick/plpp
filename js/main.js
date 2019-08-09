@@ -7,39 +7,45 @@ $(document).ready(function () {
         var c = $(this).parent().find('img.img-rounded').attr('src');
         $('#formToSecond #c').val(c);
         if ($(this).attr('data-c') == 'season') {
-            var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' ' + $(this).parent().find('span.plpp_thumbs_Season_Title').text();
-            $('#formToSecond #amt').val('1500');
-            $('#formToSecond #amt_r').val('15.00');
+           
+            var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Season_Title').text();
+          
+          if(tit==' - '){
+              tit = $(this).parent().find('span.plpp_slider_Show_Title').text() + ' - ' + $(this).parent().find('span.plpp_slider_Season_Title').text();
+          }
+            $('#formToSecond #amt').val(serie_season_amt);
+            $('#formToSecond #amt_r').val(serie_season_amt_r);
             $('#formToSecond #b').val(tit);
         } else if ($(this).attr('data-c') == 'episode')
         {
             var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_No').text();
-            $('#formToSecond #amt').val('300');
-            $('#formToSecond #amt_r').val('3.00');
+            $('#formToSecond #amt').val(serie_cap_amt);
+            $('#formToSecond #amt_r').val(serie_cap_amt_r);
             $('#formToSecond #b').val(tit);
         }
        else if ($(this).attr('data-c') == 'episode_det'){  
             c = $(this).parent().parent().find('img.img-rounded').attr('src');
               $('#formToSecond #c').val(c);
-            $('#formToSecond #amt').val('300');
-            $('#formToSecond #amt_r').val('3.00');
+            $('#formToSecond #amt').val(serie_cap_amt);
+            $('#formToSecond #amt_r').val(serie_cap_amt_r);
         }
         else if ($(this).attr('data-c') == 'show')
         {
             var tit = $(this).parent().find('span.plpp_thumbs_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Year').text();
-            $('#formToSecond #amt').val('5000');
-            $('#formToSecond #amt_r').val('50.00');
+            $('#formToSecond #amt').val(serie_all_amt);
+            $('#formToSecond #amt_r').val(serie_all_amt_r);
             $('#formToSecond #b').val(tit);
         } 
         else if ($(this).attr('data-c') == 'movie_det'){
              c = $(this).parent().parent().find('img.img-rounded').attr('src');
             $('#formToSecond #c').val(c);
-            $('#formToSecond #amt').val('500');
-            $('#formToSecond #amt_r').val('5.00');
+            $('#formToSecond #amt').val(movie_one_amt);
+            $('#formToSecond #amt_r').val(movie_one_amt_r);
         }
         else {
-            $('#formToSecond #amt').val('500');
-            $('#formToSecond #amt_r').val('5.00');
+            console.log(movie_one_amt_r);
+            $('#formToSecond #amt').val(movie_one_amt);
+            $('#formToSecond #amt_r').val(movie_one_amt_r);
         }
 
         $('#formToSecond').submit();

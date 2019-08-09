@@ -24,6 +24,24 @@ if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
     die;
 }
 
+include_once './config/config.php';
+$movie_one_amt = db_config::$db_conection_config['baul']['movie_one_amt'];
+$movie_one_amt_r = db_config::$db_conection_config['baul']['movie_one_amt_r'];
+
+$serie_all_amt = db_config::$db_conection_config['baul']['serie_all_amt'];
+$serie_all_amt_r = db_config::$db_conection_config['baul']['serie_all_amt_r'];
+$serie_cap_amt = db_config::$db_conection_config['baul']['serie_cap_amt'];
+$serie_cap_amt_r = db_config::$db_conection_config['baul']['serie_cap_amt_r'];
+$serie_season_amt = db_config::$db_conection_config['baul']['serie_season_amt'];
+$serie_season_amt_r = db_config::$db_conection_config['baul']['serie_season_amt_r'];
+
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_three_amt'];
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_three_amt_r'];
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_five_amt'];
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_five_amt_r'];
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_ten_amt'];
+//$movie_one_amt = db_config::$db_conection_config['baul']['movie_ten_amt_r'];
+
 
 // Defining runtime variables and setting standard details
 $plppConfiguration = array(
@@ -1329,11 +1347,21 @@ if($plppItem==''){
 }else{
     $plppItemJS =$plppItem;
 }
+
+$plppOutput['ScriptCode'] .= ' var movie_one_amt= "'.$movie_one_amt.'";'.PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var movie_one_amt_r= "'.$movie_one_amt_r.'";'. PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_all_amt= "'.$serie_all_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_all_amt_r= "'.$serie_all_amt_r.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_cap_amt= "'.$serie_cap_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_cap_amt_r= "'.$serie_cap_amt_r.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_season_amt= "'.$serie_season_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_season_amt_r= "'.$serie_season_amt_r.'";'.  PHP_EOL;
 if($plppYear!='' AND $plppYear!=NULL){
 $plppOutput['ScriptCode'] .= ' var plppItem='.$plppItemJS.'; var years='.$plppYear.'; var sorM=1;</script>' . PHP_EOL;
 }else{
 $plppOutput['ScriptCode'] .= ' var plppItem='.$plppItemJS.'; var years=""; var sorM=1;</script>' . PHP_EOL;
 }
+
 
 // Constructing the error messages
 if (!empty($plppErrors)) {
@@ -1347,10 +1375,6 @@ if (!empty($plppErrors)) {
 $plppOutput['Include'] = $plppOutput['IncludeJS'];
 $plppOutput['Include'] .= $plppOutput['IncludeCSS'];
 $plppOutput['Include'] .= $plppOutput['ScriptCode'];
-
-
-
-
 
 // Fill the generated html into the template and output the template
 $output = new Template(PLPP_TEMPLATES_PATH . 'index.tpl');

@@ -24,6 +24,16 @@ if (!file_exists(PLPP_CONFIGURATION_PATH . 'general.json')) {
     die;
 }
 
+include_once './config/config.php';
+$movie_one_amt = db_config::$db_conection_config['baul']['movie_one_amt'];
+$movie_one_amt_r = db_config::$db_conection_config['baul']['movie_one_amt_r'];
+
+$serie_all_amt = db_config::$db_conection_config['baul']['serie_all_amt'];
+$serie_all_amt_r = db_config::$db_conection_config['baul']['serie_all_amt_r'];
+$serie_cap_amt = db_config::$db_conection_config['baul']['serie_cap_amt'];
+$serie_cap_amt_r = db_config::$db_conection_config['baul']['serie_cap_amt_r'];
+$serie_season_amt = db_config::$db_conection_config['baul']['serie_season_amt'];
+$serie_season_amt_r = db_config::$db_conection_config['baul']['serie_season_amt_r'];
 
 // Defining runtime variables and setting standard details
 $plppConfiguration = array(
@@ -1101,6 +1111,14 @@ END;
 $plppOutput['ScriptCode'] .= PHP_EOL;
 
 // Close the script tag
+$plppOutput['ScriptCode'] .= ' var movie_one_amt= "'.$movie_one_amt.'";'.PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var movie_one_amt_r= "'.$movie_one_amt_r.'";'. PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_all_amt= "'.$serie_all_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_all_amt_r= "'.$serie_all_amt_r.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_cap_amt= "'.$serie_cap_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_cap_amt_r= "'.$serie_cap_amt_r.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_season_amt= "'.$serie_season_amt.'";'.  PHP_EOL;
+$plppOutput['ScriptCode'] .= ' var serie_season_amt_r= "'.$serie_season_amt_r.'";'.  PHP_EOL;
 
 $plppOutput['ScriptCode'] .= 'var sorM=0 </script>' . PHP_EOL;
 
