@@ -94,8 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <h4 class="panel-title">
                                   <strong style="font-size: 22px;"><?php echo $desc; ?></strong><br>
                                
-                                </h4>      </center>
-                                 <img style="padding-top: 5px; max-width: 250px" src="<?php echo $img_c; ?>">
+                                </h4>     
+                                 <img style="padding-top: 5px; max-width: 300px" src="<?php echo $img_c; ?>">
+                                  </center>
                             </div>
                             
                                     <div class="panel-body">
