@@ -2524,7 +2524,7 @@
 	#header {
 		color: #fff;
 		cursor: default;
-		height: 3.25em;
+		height: 3.55em;
 		left: 0;
 		line-height: 3.25em;
 		position: absolute;
@@ -2733,7 +2733,7 @@
 /* Banner */
 
 	#banner {
-		padding: 8em 0 1em 0;
+		padding: 9em 0 1em 0;
 		background-image: url(../../images/banner.jpg);
 		background-size: cover;
 		background-position: bottom;
@@ -2880,11 +2880,16 @@
 				}
 
 		}
+                @media screen and (max-width: 980px) {
+                    #banner {
+				padding: 9em 0 3em 0;
+			}
+                }
 
 		@media screen and (max-width: 736px) {
 
 			#banner {
-				padding: 4em 0 3em 0;
+				padding: 9em 0 3em 0;
 			}
 
 				#banner .inner {
@@ -3145,3 +3150,41 @@ background-repeat: no-repeat;
 background-position: 100% .4em;
 padding-right: .6em;
 }
+
+#logoImage{
+    width: 400px;
+}
+@media screen and (max-width: 980px) {
+
+		#logoImage{
+    width: 400px;
+}
+
+	}
+
+	@media screen and (max-width: 736px) {
+
+		#logoImage{
+    width: 300px;
+}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		#logoImage{
+ width: 300px;
+}
+
+	}
+
+/* Nav */
+
+	@media screen and (max-width: 980px) {
+
+		#logoImage{
+    width: 350px;
+
+}
+
+	}
