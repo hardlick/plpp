@@ -3730,7 +3730,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 50px;
+  height: 65px;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -5953,7 +5953,7 @@ table.tablesorter thead tr th:hover {
 	left: 225px;
 	width: 225px;
 	position: fixed;
-	top: 50px;
+	top: 66px;
 	height: 100%;
 	border-radius: 0;
 	border: none;
@@ -6300,3 +6300,44 @@ ul.naver li a {
 ul.naver li a:hover {
   background-color: #111111;
 }
+
+#logoImage{
+    width: 220px;
+top: 0;
+margin-top: -20px;
+}
+
+@media screen and (max-width: 980px) {
+
+		#logoImage{
+    width: 200px;
+}
+
+	}
+
+	@media screen and (max-width: 736px) {
+
+		#logoImage{
+    width: 200px;
+}
+
+	}
+
+	@media screen and (max-width: 480px) {
+
+		#logoImage{
+ width: 200px;
+}
+
+	}
+
+/* Nav */
+
+	@media screen and (max-width: 980px) {
+
+		#logoImage{
+    width: 200px;
+
+}
+
+	}

@@ -38,7 +38,9 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<div class="navbar-brand">Baúl  De series & Peliculas</div>
+                            <div class="navbar-brand">
+                                <img id="logoImage" src="/images/logo/LOGO-BAUL-DE-PELICULAS-&-SERIES.png">
+                            </div>
                                 <div id="navbar" class="navbar-collapse collapse" style="margin-left: 300px;">
                                 <ul class="naver">
                                     <li><a href="index.html">Inicio</a></li>
