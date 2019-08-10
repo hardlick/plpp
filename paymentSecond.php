@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <li> Combo 5 Peliculas: 1 Mes</li>
                                 <li> Combo 10 Peliculas: 2 Meses</li>                                   
                             </ul>
-                            <strong>SERIES</strong>
+                            <strong>SERIES:</strong>
                             <ul>
                                 <li>Por un capítulo :  2 días</li>
                                 <li>Por una temporada : 2 Semanas</li>
