@@ -559,7 +559,7 @@ foreach ($plppItems as $parentKey => $parent) {
     }
 
     // If there is a title2 it is always the title of the active view.
-    if (!empty($parent['title2'])) {
+    if (!empty($parent['title2'])) {       
         if ($parent['title2'] == 'All Shows') {
             $parent['title2'] = 'Todas las series';
         } elseif ($parent['title2'] == 'Recently Added') {
@@ -571,7 +571,7 @@ foreach ($plppItems as $parentKey => $parent) {
         if ($plppItemType == 'library' && $plppItem != '') {
             $filters = $plex->getFilters($plppItem);
             asort($filters);
-            $plppOutput['Content'] .= '				<li class="plpp_dropdown dropdown active">' . PHP_EOL;
+            $plppOutput['Content'] .= ' <li class="plpp_dropdown dropdown active">' . PHP_EOL;
             // First we have to find the active filter view and set it as title of the dropdwon menu
             foreach ($filters as $key => $value) {
                 if ($value == 'All Shows') {
@@ -585,7 +585,7 @@ foreach ($plppItems as $parentKey => $parent) {
                     $plppOutput['Content'] .= '					' . $parent['title2'] . ' (' . count($parent['items']) . ')&nbsp;&nbsp;<a href="" class="plpp_dropdown-toggle dropdown-toggle" data-toggle="dropdown"><i class="caret"></i></a>' . PHP_EOL;
                 }
             }
-            $plppOutput['Content'] .= '					<ul class="plpp_dropdown-menu dropdown-menu">' . PHP_EOL;
+            $plppOutput['Content'] .= '	<ul class="plpp_dropdown-menu dropdown-menu">' . PHP_EOL;
             // Then we add the other filters except the active filter as dropdown items
             foreach ($filters as $key => $value) {
                 if ($value == 'All Shows') {
@@ -596,7 +596,7 @@ foreach ($plppItems as $parentKey => $parent) {
                     $value = 'Lanzados Recientemente';
                 }
                 if ($plppItemsFilter != $key && (!($plppItemsFilter == '' && $key == 'all') || $plppIsSearch)) {
-                    $plppOutput['Content'] .= '						<li><a href="' . PLPP_BASE_PATH . '?item=' . $plppItem . '&type=library&filter=' . $key . '">' . $value . '</a></li>' . PHP_EOL;
+                    $plppOutput['Content'] .= '	<li><a href="' . PLPP_BASE_PATH . '?item=' . $plppItem . '&type=library&filter=' . $key . '">' . $value . '</a></li>' . PHP_EOL;
                 }
             }
             $plppOutput['Content'] .= '					</ul>' . PHP_EOL;
@@ -628,21 +628,23 @@ foreach ($plppItems as $parentKey => $parent) {
         if(isset($plppItems['show'])){
         $plppOutput['Title'] = $plppItems['show']['parentTitle'] .' -- '.$plppItems['show']['summary'];
         }
-        elseif(isset($plppItems['season'])){
+        elseif(isset($plppItems['season'])){          
              $plppOutput['Title'] = $plppItems['season']['title1'] .' '.$plppItems['season']['title2'];
+             $plppOutput['descp'] = $plppItems['season']['title1'] .' '.$plppItems['season']['title2'];
+             $plppOutput['it'] = $plppItems['season']['key'];          
+             $plppOutput['amt'] =$serie_all_amt;
         }
       
         elseif(isset($plppItems['episode'])){
             $plppOutput['Title'] = $plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'] .' '.$plppItems['episode']['items'][0]['summary'];
             $plppOutput['descp'] = $plppItems['episode']['items'][0]['grandparentTitle'] .' '.$plppItems['episode']['items'][0]['parentTitle'] .' '.$plppItems['episode']['items'][0]['title'];
-            $plppOutput['amt'] ='300';
+            $plppOutput['amt'] = $serie_cap_amt;
             $plppOutput['it'] =$plppItems['episode']['items'][0]['ratingKey'];
         }
     }
 
     // If we are in list viewmode we need to generate the table header
     if ($plppViewmode == 'list') {
-
         // Start of the table
         $plppOutput['Content'] .= '		<table class="table table-condensed table-responsive plpp_table" id="plpp_table_' . $plppViewgroupType . '">' . PHP_EOL;
 
@@ -652,7 +654,7 @@ foreach ($plppItems as $parentKey => $parent) {
         foreach ($plppConfiguration['mediatypes'][$plppViewgroupType]['itemList'] as $item) {
             if (in_array('list', $item['visibility'])) {
                 if ($plex->isSetContent(0, $item['type'], $item['content'], $plexKey)) {
-                    $plppOutput['Content'] .= '					<th class="plpp_table plpp_table_' . str_replace(' ', '_', $item['nameEspa']) . '">' . $item['nameEspa'] . '</th>' . PHP_EOL;
+                    $plppOutput['Content'] .= '	<th class="plpp_table plpp_table_' . str_replace(' ', '_', $item['nameEspa']) . '">' . $item['nameEspa'] . '</th>' . PHP_EOL;
                 }
             }
         }
@@ -727,7 +729,7 @@ foreach ($plppItems as $parentKey => $parent) {
                 if ($plex->isSetContent(0, $item['type'], $item['content'], $plexKey)) {
                     if (in_array($plppViewmode, $item['visibility'])) {
                         // For the list view we have to add the td and link tag
-                        if ($plppViewmode == 'list') {
+                        if ($plppViewmode == 'list') {                         
                             $plppOutput['Content'] .= '					<td class="plpp_table plpp_table_' . str_replace(' ', '_', $item['name']) . '">' . PHP_EOL;
                             $plppOutput['Content'] .= '						<a class="plpp_' . $plppViewmode . '" href="' . PLPP_BASE_PATH . '?item=' . $child['ratingKey'] . '&type=' . $child['type'];
                             if ($plppConfiguration['mediatypes'][$child['type']]['isItem']) {
@@ -741,7 +743,7 @@ foreach ($plppItems as $parentKey => $parent) {
                                 $plppOutput['Content'] .= '">' . PHP_EOL;
                             }
                         }
-                        $plppOutput['Content'] .= '				<span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
+                        $plppOutput['Content'] .= ' <span class="plpp_' . $plppViewmode . ' plpp_' . $plppViewmode . '_' . str_replace(' ', '_', $item['name']) . '">';
                         $contentText = $plex->getFormatedItemsContent($childKey, $item['type'], $item['content'], $item['content_type'], $plexKey);
 
                         $plppOutput['Content'] .= $contentText;

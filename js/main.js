@@ -16,7 +16,14 @@ $(document).ready(function () {
             $('#formToSecond #amt').val(serie_season_amt);
             $('#formToSecond #amt_r').val(serie_season_amt_r);
             $('#formToSecond #b').val(tit);
-        } else if ($(this).attr('data-c') == 'episode')
+        }
+          else if ($(this).attr('data-c') == 'season_all_det'){
+               var tit = $(this).attr('data-b');
+               $('#formToSecond #amt').val(serie_season_amt);
+            $('#formToSecond #amt_r').val(serie_season_amt_r);
+            $('#formToSecond #b').val(tit);
+          }
+        else if ($(this).attr('data-c') == 'episode')
         {
             var tit = $(this).parent().find('span.plpp_thumbs_Show_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_Title').text() + ' - ' + $(this).parent().find('span.plpp_thumbs_Episode_No').text();
             $('#formToSecond #amt').val(serie_cap_amt);
